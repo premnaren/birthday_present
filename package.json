@@ -4,7 +4,8 @@
   "description": "A handcrafted birthday storybook for Kritika ('Lucky')",
   "main": "serve.js",
   "scripts": {
-    "start": "node serve.js"
+    "start": "node serve.js",
+    "share": "node share.js"
   },
   "keywords": ["scrapbook", "birthday", "storybook"],
   "author": "Prem",

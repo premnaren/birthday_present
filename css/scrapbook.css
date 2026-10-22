@@ -48,42 +48,124 @@
 }
 
 .washi-tape.tape-center {
-  top: -12px;
+  top: -16px;
   left: 50%;
   transform: translateX(-50%) rotate(-1.5deg);
+  z-index: 10;
 }
 
+.washi-tape.tape-corner-tl,
 .washi-tape.tape-top-left {
-  top: -10px;
-  left: -15px;
-  transform: rotate(-18deg);
+  top: -12px;
+  left: -14px;
+  transform: rotate(-26deg);
+  z-index: 10;
 }
 
+.washi-tape.tape-corner-tr,
 .washi-tape.tape-top-right {
-  top: -10px;
-  right: -15px;
-  transform: rotate(18deg);
+  top: -12px;
+  right: -14px;
+  transform: rotate(26deg);
+  z-index: 10;
+}
+
+.washi-tape.tape-corner-bl {
+  bottom: -12px;
+  left: -14px;
+  transform: rotate(24deg);
+  z-index: 10;
+}
+
+.washi-tape.tape-corner-br {
+  bottom: -12px;
+  right: -14px;
+  transform: rotate(-24deg);
+  z-index: 10;
 }
 
 .washi-tape-pink {
-  background-color: rgba(244, 194, 199, 0.8);
+  background-color: rgba(244, 194, 199, 0.82);
 }
 
 .washi-tape-sage {
-  background-color: rgba(183, 201, 168, 0.8);
+  background-color: rgba(183, 201, 168, 0.82);
 }
 
 .washi-tape-butter {
-  background-color: rgba(247, 227, 161, 0.85);
+  background-color: rgba(247, 227, 161, 0.84);
 }
 
 .washi-tape-lavender {
-  background-color: rgba(205, 184, 227, 0.8);
+  background-color: rgba(205, 184, 227, 0.82);
 }
 
 .washi-tape-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.4) 15%, transparent 16%);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.45) 15%, transparent 16%);
   background-size: 8px 8px;
+}
+
+/* --- Hand-drawn Doodle SVGs --- */
+.doodle-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.doodle-portrait {
+  width: 48px;
+  height: 48px;
+}
+
+.doodle-polaroid-art {
+  width: 72px;
+  height: 72px;
+}
+
+.doodle-arrow {
+  display: inline-block;
+  vertical-align: middle;
+  width: 28px;
+  height: 18px;
+  fill: currentColor;
+  margin-left: 6px;
+}
+
+.doodle-heart-inline {
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  fill: #E04D6B;
+  margin: 0 4px;
+}
+
+/* --- Varied Paper Textures --- */
+.cork-canvas-texture {
+  background-color: #D2A679;
+  background-image: 
+    radial-gradient(#B88654 1.5px, transparent 1.5px),
+    radial-gradient(#C69363 1px, #D2A679 1px);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.25), var(--shadow-paper-deep);
+  border: 4px solid #A06D3B;
+  padding: 16px 10px;
+}
+
+.notebook-ruled-page {
+  background: var(--color-paper-cream);
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 22px,
+    rgba(120, 150, 180, 0.18) 22px,
+    rgba(120, 150, 180, 0.18) 23px
+  );
+  border-left: 3px solid rgba(220, 80, 80, 0.35);
+  padding-left: 18px;
 }
 
 /* --- Polaroid Photo Frames --- */

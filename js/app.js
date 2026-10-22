@@ -1,10 +1,10 @@
 /**
  * Birthday Storybook - Main Bootstrap
- * Connects ContentStore, AudioEngine, and BookStage
+ * Connects ContentStore, AudioEngine, BookStage, HeroPortal, PassportStamps, StickerTray, and Chapters
  */
 
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log("🌸 Initializing Birthday Storybook for Kritika ('Lucky')...");
+  console.log("🌸 Initializing Handcrafted Birthday Storybook for Kritika ('Lucky')...");
 
   // 1. Initialize Audio Engine & UI Binding
   const audioBtn = document.getElementById('audio-toggle-btn');
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     audioBtn.addEventListener('click', () => {
       const isPlaying = window.AudioEngine.toggleAudio();
       if (audioLabel) {
-        audioLabel.textContent = isPlaying ? "Sound: Playing 🎵" : "Sound: Off";
+        audioLabel.textContent = isPlaying ? "Sound: On" : "Sound: Off";
       }
     });
   }
@@ -23,50 +23,65 @@ document.addEventListener('DOMContentLoaded', async () => {
   let content = null;
   if (window.ContentStore) {
     content = await window.ContentStore.loadContent();
-    console.log("📖 Content loaded successfully for:", content.recipient.displayName);
+    console.log("📖 Content loaded successfully for:", content?.recipient?.displayName);
   }
 
   // 3. Initialize Book Stage
   if (window.BookStage) {
     window.BookStage.init();
 
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('preview') === 'all') {
-      window.BookStage.unlockChapter(6);
+    // Debug flag: Gate ?preview=all strictly behind local-only development check
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('preview') === 'all') {
+        window.BookStage.unlockChapter(6);
+      }
     }
   }
 
-  // 4. Initialize Entry Gate (Chapter 0)
-  if (window.EntryGate) {
+  // 4. Initialize Interactive Hero Portal (Chapter 0)
+  if (window.HeroPortal) {
+    window.HeroPortal.init();
+  } else if (window.EntryGate) {
     window.EntryGate.init();
   }
 
-  // 5. Initialize Let Me Guess (Chapter 1)
+  // 5. Initialize Passport Stamps System
+  if (window.PassportStamps) {
+    window.PassportStamps.init();
+  }
+
+  // 6. Initialize Interactive Sticker Tray
+  if (window.StickerTray) {
+    window.StickerTray.init();
+  }
+
+  // 7. Initialize Let Me Guess (Chapter 1)
   if (window.LetMeGuess) {
     window.LetMeGuess.init();
   }
 
-  // 6. Initialize Parents (Chapter 2)
+  // 8. Initialize Parents (Chapter 2)
   if (window.ChapterParents) {
     window.ChapterParents.init();
   }
 
-  // 7. Initialize OG Opp (Chapter 3)
+  // 9. Initialize OG Opp (Chapter 3)
   if (window.ChapterOgOpp) {
     window.ChapterOgOpp.init();
   }
 
-  // 8. Initialize Cousins (Chapter 4)
+  // 10. Initialize Cousins (Chapter 4)
   if (window.ChapterCousins) {
     window.ChapterCousins.init();
   }
 
-  // 9. Initialize Friends (Chapter 5)
+  // 11. Initialize Friends (Chapter 5)
   if (window.ChapterFriends) {
     window.ChapterFriends.init();
   }
 
-  // 10. Initialize Finale (Chapter 6)
+  // 12. Initialize Finale (Chapter 6)
   if (window.ChapterFinale) {
     window.ChapterFinale.init();
   }

@@ -93,16 +93,18 @@ flowchart TD
 
 ## 3. Chapter-by-Chapter Breakdown
 
-### Chapter 0: Cover Gate ("The Sealed Diary")
+### Chapter 0: Cover Gate ("Interactive Hero & Sealed Diary")
 * **Mount ID**: `#chapter-0` (`data-chapter="gate"`)
-* **Controller**: [`js/gate.js`](file:///c:/Users/premn/birthday_present/js/gate.js) | **Styles**: [`css/gate.css`](file:///c:/Users/premn/birthday_present/css/gate.css)
-* **Narrative Arc**: Mystery & Personalization. Before entering, the visitor proves she is the intended recipient.
+* **Controllers**: [`js/hero.js`](file:///c:/Users/premn/birthday_present/js/hero.js), [`js/gate.js`](file:///c:/Users/premn/birthday_present/js/gate.js) | **Styles**: [`css/hero.css`](file:///c:/Users/premn/birthday_present/css/hero.css), [`css/gate.css`](file:///c:/Users/premn/birthday_present/css/gate.css)
+* **Narrative Arc**: Mystery, Tactile Engagement & Personalization.
 * **Components & Visual Design**:
-  - Handcrafted leather/cloth journal texture with stitched spine seam.
-  - Handwritten input line for Name/Nickname (case-insensitive validation for `"Kritika"`, `"Lucky"`, `"Kriti"`, `"Kittu"`).
-  - Vintage day and month selector tabs for her birthday (`16th October`).
-  - **3D Wax Seal Button**: Crimson embossed wax ring with a gold star (`✦ OPEN`) that melts and cracks when pressed with a pop sound (`playStickerPop()`).
-  - **Sticky Note Hints**: If inputs are incorrect, a wobbly yellow Post-it note floats down with playful hints (*"That's definitely you, but check the birthday again! Psst... it's in October 😉"*).
+  - **Closed Journal Initial View**: A vintage rose-leather bound diary on a warm wooden desk surface (`--color-desk`) with gold foil debossing: *"A Secret Storybook • Handcrafted for Kritika ('Lucky')"*.
+  - **Unhookable Ribbon Band**: Elastic cloth ribbon holding the book closed. Tapping the charm plays paper rustle audio (`playPaperRustle()`) and unhooks the band.
+  - **3D Cover Opening**: The cover rotates open along its spine in 3D perspective (`rotateY(-110deg)` with GSAP timeline) revealing the inside page.
+  - **Handwritten Name Field**: As Kritika types her name or nickname, an ink handwriting preview renders her name smoothly.
+  - **Hand-drawn October Calendar Date Picker**: An illustrated calendar page where she flips or taps the date. Clicking October 16 triggers an SVG pen stroke circling the date in red ink.
+  - **Press-and-Hold Wax Seal**: Instead of a simple click, the user presses and holds the crimson wax seal for 1.2s. An SVG circular progress ring fills while held; early release wobbles and drains; completing the hold plays a crack sound, vibrates haptics, and explodes into 4 GSAP-animated wax shards!
+  - **Validation & Hints**: Case-insensitive aliases (`"Kritika"`, `"Lucky"`, `"Kriti"`, `"Kittu"`) + 16th October. Incorrect combinations trigger a gentle seal wobble and a wobbly Post-it note with friendly clues.
 * **Navigation Outcome**: Unlocks Chapter 1 and turns page forward.
 
 ---
@@ -112,113 +114,95 @@ flowchart TD
 * **Controller**: [`js/guess.js`](file:///c:/Users/premn/birthday_present/js/guess.js) | **Styles**: [`css/guess.css`](file:///c:/Users/premn/birthday_present/css/guess.css)
 * **Narrative Arc**: Playful Warm-up. Proves we know her quirky habits before revealing the celebration.
 * **Components & Visual Design**:
-  - Progress tracker with 5 cute step dots.
-  - 5 Staggered flashcards held by alternating washi tapes (pink, sage, lavender, butter).
-  - Cards probe her traits:
-    1. *Cozy Vibe*: Bundled up in a blanket sipping tea.
-    2. *Artist Soul*: Paint streaks on fingers or sketchbook.
-    3. *Sweet Tooth*: Scheduling 3 cake tastings this week.
-    4. *Dancer Mode*: Solo dance concerts in the room when music hits.
-    5. *Surprise!*: Wondering if anyone remembered her belated celebration.
-  - **Reaction Stamps**: Tapping "Yes, spot on! 🙈" or "Nope, false! 😂" stamps rubber-inked badges (*"KNEW IT! ✨"*, *"DENIAL! 😜"*, *"WE HAVE PROOF 📸"*).
-  - **Reveal Card & Confetti**: After card 5, paper confetti showers down and a big reveal card appears with button *"Open Mom & Daddy's Letters →"*.
+  - 5 flashcards entering from alternating directions with distinct natural tilts (-3deg to +3deg).
+  - Sketched reaction arrow (`#doodle-arrow-sketch`) playfully pointing toward the action buttons.
+  - Corner washi tapes (`.tape-corner-tl`, `.tape-corner-tr`) anchoring the cards without obscuring text.
+  - Rubber stamp badges stamped in tactile ink (*"KNEW IT!"*, *"DENIAL!"*, *"WE HAVE PROOF"*).
+  - Soft paper confetti burst on completion.
+  - Zero decorative emojis in UI elements.
 * **Navigation Outcome**: Unlocks Chapter 2 and navigates to Parents.
 
 ---
 
-### Chapter 2: Parents ("Mom & Daddy Vintage Album")
+### Chapter 2: Parents ("Mom & Daddy Heirloom Album")
 * **Mount ID**: `#chapter-2` (`data-chapter="parents"`)
 * **Controller**: [`js/chapter-parents.js`](file:///c:/Users/premn/birthday_present/js/chapter-parents.js) | **Styles**: [`css/chapters.css`](file:///c:/Users/premn/birthday_present/css/chapters.css)
 * **Narrative Arc**: Unconditional Love & Emotional Foundation.
 * **Components & Visual Design**:
-  - Two dedicated vintage heirloom cards for **Mom** and **Daddy**.
-  - **Antique Brass Photo Corners**: Realistic 4-corner mounts holding each photo (`.corner-tl`, `.corner-tr`, `.corner-bl`, `.corner-br`).
-  - Portrait badges with pastel inner glows (`👩‍👧` for Mom, `👨‍👧` for Daddy) and pressed botanical sprigs (`🌿`).
-  - Heartfelt blessings typed in warm serif typography (`Lora`) with cursive sign-offs (*"With endless love ❤️"*).
-  - Advance button: *"Turn to The OG Opp 💥 →"*.
+  - **Unified Heirloom Album Frame**: Antique mounting corners (`.photo-corner`) encasing Mom and Daddy's portraits.
+  - **Hand-drawn SVG Portraits**: Handcrafted SVG monogram badges for Mom (`#doodle-portrait-mom`) and Daddy (`#doodle-portrait-daddy`) in torn-paper circles with pressed botanical sprig (`#doodle-leaf-sprig`).
+  - **Staggered Handwritten Letter Sheets**: Rather than identical stacked boxes, Mom and Daddy's blessings are rendered on textured stationery sheets with natural tilts and corner washi tapes.
+  - Elegant serif typography (`Lora`) with handwritten signatures.
+  - Advance button: *"Turn to The OG Opp →"*.
 * **Navigation Outcome**: Unlocks Chapter 3 and navigates to OG Opp.
 
 ---
 
-### Chapter 3: The OG Opp ("Sister's Wanted Poster & Banter")
+### Chapter 3: The OG Opp ("Sister Wanted Poster & Dossier")
 * **Mount ID**: `#chapter-3` (`data-chapter="og_opp"`)
 * **Controller**: [`js/chapter-og-opp.js`](file:///c:/Users/premn/birthday_present/js/chapter-og-opp.js) | **Styles**: [`css/chapters.css`](file:///c:/Users/premn/birthday_present/css/chapters.css)
-* **Narrative Arc**: Comic Relief & Sibling Bond. Dedicated exclusively to her sister.
+* **Narrative Arc**: Sisterhood, Banter & Lifelong Bond.
 * **Components & Visual Design**:
-  - **Parody Wanted Poster**: Distressed parchment card with red dashed borders, tilted at `-2°`.
-  - Case file badge: `CASE FILE #1016-OPP`.
-  - Sister Polaroid frame: Snapshot labeled *"Roommates by blood, rivals by choice"* (`👯‍♀️`).
-  - **Crimes Dossier**: Typewriter monospace list detailing:
-    * Unauthorized borrowing of hoodies and scrunchies.
-    * Eating 75% of the birthday cake frosting without remorse.
-    * Midnight dance concerts in shared room.
-    * Leaving unwashed watercolor brushes in drinking cups.
-  - **Peelable Washi Tape Confession**: An interactive sage washi tape strip. Tapping it triggers a rustle sound, rotates the tape `18°`, and reveals her sister's secret note: *"Okay fine, I admit it! You might be annoying sometimes, but life would be so dreadfully boring without my favorite opponent... Best sister for life 💖"*.
-  - Advance button: *"Turn to Cousin Air Mail ✈️ →"*.
+  - **Full-page Wanted Poster**: Ripped kraft paper with red dashed border, case file badge (`CASE FILE #1016-OPP`), and bold lettering for sister Riya.
+  - **Sister Snapshot Doodle**: Hand-drawn SVG doodle (`#doodle-sister-snap`) in a tilted Polaroid frame with caption *"Roommates by blood, rivals by choice"*.
+  - **Crimes Dossier**: Typewriter monospace list of infractions (hoodie theft, midnight dance concerts, frosting robbery).
+  - **Peelable Washi Tape Confession**: An interactive tape strip covering her sister's heartfelt message. Tapping peels the tape upward and reveals the touching confession and verdict stamp: `VERDICT: BEST SISTER FOR LIFE`.
+  - Advance button: *"Turn to Cousin Air Mail →"*.
 * **Navigation Outcome**: Unlocks Chapter 4 and navigates to Cousins.
 
 ---
 
-### Chapter 4: Cousins ("Snapshots & Air Mail Modal")
+### Chapter 4: Cousins ("Organic Scattered Postcards & Air Mail")
 * **Mount ID**: `#chapter-4` (`data-chapter="cousins"`)
 * **Controller**: [`js/chapter-cousins.js`](file:///c:/Users/premn/birthday_present/js/chapter-cousins.js) | **Styles**: [`css/chapters.css`](file:///c:/Users/premn/birthday_present/css/chapters.css)
-* **Narrative Arc**: Distant Tribe & Shared Adventures.
+* **Narrative Arc**: Shared Roots & Family Adventures.
 * **Components & Visual Design**:
-  - **2x2 Photo Gallery Grid**: Individual Polaroid snapshots for 4 cousins:
-    1. **Aarav**: *"Vacation Partner"* (Goa beach trip `🏖️`)
-    2. **Simran**: *"Choreo Queen"* (Sangeet dance practice `💃`)
-    3. **Kabir**: *"Foodie Gang"* (Midnight pizza run `🍕`)
-    4. **Diya**: *"Art Connoisseur"* (Pottery workshop `🎨`)
-  - Cute floating badge on each snapshot: `✉️ Open Letter`.
-  - **Air Mail Modal Overlay**: Clicking any cousin's snapshot opens an authentic Air Mail envelope modal:
+  - **Organic Scattered Postcards**: Asymmetrical scattered layout with overlapping cards, natural tilts (-3deg to +3.5deg), and varied heights (Aarav, Simran, Kabir, Diya). Not a stiff grid.
+  - **Miniature Stamps & Postmarks**: Each card features a miniature postal stamp with handcrafted SVG doodle (`#doodle-beach`, `#doodle-dance`, `#doodle-pizza`, `#doodle-pottery`) and circular `PAR AVION` postmark.
+  - **Air Mail Modal Overlay**: Tapping any cousin's postcard opens an authentic Air Mail envelope modal:
     * Red and blue diagonal chevron stripes (*PAR AVION*).
     * Circular postmark stamp with date cancellation: `OCT 16`.
-    * Unique postage stamp matching cousin's accent color.
-    * Unfolded lined stationery sheet with personal handwriting and signoff.
-    * Tactile `Close Letter ✕` button and backdrop dismissal.
-  - Advance button: *"Turn to The Friends Corkboard 📸 →"*.
+    * Unfolded lined stationery sheet with personal message and signoff.
+    * Tactile `Close Letter ✕` button.
+  - Advance button: *"Turn to Friends Corkboard →"*.
 * **Navigation Outcome**: Unlocks Chapter 5 and navigates to Friends.
 
 ---
 
-### Chapter 5: Friends ("Corkboard, Lightbox & Memory Jar")
+### Chapter 5: Friends ("Real Corkboard, Pushpins & Memory Jar")
 * **Mount ID**: `#chapter-5` (`data-chapter="friends"`)
 * **Controller**: [`js/chapter-friends.js`](file:///c:/Users/premn/birthday_present/js/chapter-friends.js) | **Styles**: [`css/chapters.css`](file:///c:/Users/premn/birthday_present/css/chapters.css)
 * **Narrative Arc**: Everyday Laughs & Soul Circle.
 * **Components & Visual Design**:
-  - **8 Enlarged Photocards Grid**: High-contrast, clean Polaroid frames for Ananya, Rohan, Meera, Priya, Kabir, Sneha, Tanvi, and Arjun.
-  - **Anti-clutter rule**: Removed all distracting "tap to flip" text from the main cards.
-  - **Centered Lightbox Zoom & 3D Flip**: Tapping any card opens a 340px centered lightbox modal with backdrop blur. Tapping the enlarged card triggers a 3D flip (`transform: rotateY(180deg)`) revealing ruled stationery paper with their full message.
+  - **Real Corkboard Frame**: Textured cork background with wooden border and subtle red string overlay connecting besties across the board.
+  - **Pushpin Mounting**: Pushpins (`#doodle-pushpin`) instead of tape for all 8 friend photocards (Ananya, Rohan, Meera, Priya, Dev, Sneha, Tanvi, Arjun).
+  - **Hand-drawn SVG Doodles**: Camera, Paintbrush, Cake Slice, Teacup, Headphones, Sparkle, Dance, Sunset.
+  - **Centered Lightbox Zoom & 3D Flip**: Tapping any card focuses and enlarges the Polaroid in a centered modal. Tapping the enlarged card triggers a 3D flip (`rotateY(180deg)`) revealing the handwritten letter on lined paper.
   - **Realistic Glass Memory Jar**:
-    * Rendered mason jar with cork stopper, twine string, and kraft tag (`Memories ✨`).
-    * Semi-transparent cylindrical glass reflections and highlights (`.glass-shine-left`, `.glass-shine-right`).
-    * Multiple pastel colored paper slips (`.paper-slip`) visible inside the glass.
-  - **Animated Reaching Hand**:
-    * When the jar is tapped, an SVG illustrated sleeve and hand reaches down into the jar neck (`@keyframes hand-reach-down-and-pull`).
-    * The hand fingers grip a folded paper note and pull it upward out of the jar with paper rustle SFX.
-    * An unfolded paper note modal blooms onto the screen displaying one of Lucky's sweet memories, with options to *"Fold back into jar ✕"* or *"Draw another note 🫙"*.
-  - Advance button: *"Head to the Finale: Make a Wish! 🎂 →"*.
+    * Rendered mason jar with cork stopper, twine string, glass reflections, and colorful paper slips inside.
+    * Animated reaching hand (`#animated-hand`) that reaches into the jar and draws out a folded note with rustle SFX.
+    * Unfolded note modal displays personal shared memories.
+  - Advance button: *"Turn to Make a Wish →"*.
 * **Navigation Outcome**: Unlocks Chapter 6 and navigates to Finale.
 
 ---
 
-### Chapter 6: Wish! 🎂 ("Realistic Vibrant Cake & Closing Note")
+### Chapter 6: Wish! ("Grand Artisanal Cake, Bunting & Blowout Ceremony")
 * **Mount ID**: `#chapter-6` (`data-chapter="finale"`)
 * **Controller**: [`js/chapter-finale.js`](file:///c:/Users/premn/birthday_present/js/chapter-finale.js) | **Styles**: [`css/finale.css`](file:///c:/Users/premn/birthday_present/css/finale.css)
 * **Narrative Arc**: Climax, Celebration & Emotional Closure.
 * **Components & Visual Design**:
-  - **Pulsing Candlelight Aura**: Radial amber/gold halo illuminating the cake top that dims as candles are extinguished.
-  - **3 Realistic Spiral Candles**: Detailed wicks with red ember points, pastel candy stripes, and teardrop flickering flame gradients (blue core, yellow body, white center).
-  - **Cake Toppings**: Fresh ruby strawberries (`🍓`), mint leaves (`🍃`), blueberries (`🫐`), and whipped cream dollops.
-  - **Top Tier (Strawberry Cream)**: Velvety strawberry frosting with glossy glaze drips having bright specular highlights (`.glossy-glaze-drips .drip`).
-  - **Middle Piping Layer**: Scalloped cream rosettes.
-  - **Bottom Tier (Belgian Chocolate Velvet Sponge)**: Rich dark cocoa sponge texture, chocolate ganache drizzle, and shimmering gold pearls.
-  - **Ceramic Pedestal**: Glazed cake stand with table drop shadow.
+  - **Paper Bunting Garland**: Colorful celebratory bunting flags strung across the top of the page.
+  - **Scaled-Up Cake**: Expanded to dominate mobile viewport (320px width), with glazed ceramic pedestal and wooden table surface underneath.
+  - **Candles Lit First**: 3 realistic spiral candles with teardrop flickering flames and ambient candlelight glow aura.
+  - **Closing Letter Strictly Hidden**: Prem's letter card is 100% hidden until candles are blown out.
   - **Interactive Blowout Ceremony**:
-    * Tap individual candles or tap *"Blow Out All Candles 🕯️✨"*.
-    * Realistic curly smoke puffs rise (`@keyframes realistic-smoke-curl`) with wind blowout sound.
-    * Confetti shower erupts across the screen.
-    * **Prem's Closing Letter**: A warm parchment letter unfolds with a heartfelt note acknowledging her belated celebration and offering enduring support.
+    * Tap individual candles or tap *"Blow Out All Candles"*.
+    * Realistic rising smoke puffs curl upward.
+    * Confetti shower erupts across the screen for under 4 seconds.
+    * Prem's closing letter unfolds with a heartfelt message.
+  - **Passport Stamps & Replay**:
+    * Action button to view the collected passport stamps booklet.
     * *"Replay from Cover ↺"* button for smooth re-reading.
 
 ---
@@ -343,3 +327,32 @@ When planning new features, styling enhancements, or adding new memory cards, fo
 
 5. **Audio Etiquette**:
    - Never autoplay audio with sound unmuted on initial load; always require explicit user opt-in via `#audio-toggle-btn`.
+
+---
+
+## 8. Mobile & Desktop Responsive Architecture
+
+The storybook implements a dual-mode responsive layout: **tactile single-column scroll on mobile** (360px–430px) and an **authentic two-page scrapbook journal spread on desktop** (768px–1920px).
+
+### 📱 Mobile Experience (360px–430px, Primary Target)
+- **Spine & Navigation**: The center fold line (`.journal-spine`) and bottom navigation bar (`.journal-nav-bar`) are completely removed (`display: none !important;`). Progression is guided naturally by tactile in-page CTA stamps (*"Turn to..."*).
+- **Zero Horizontal Overflow**: All grids use fluid minmax definitions (`grid-template-columns: repeat(7, minmax(0, 1fr))` for calendar days, `width: min(310px, calc(100vw - 36px))` for cake wrapper, `width: min(330px, calc(100vw - 28px))` for wooden tabletop).
+- **Touch Target Compliance**: All buttons, reaction stamps, audio toggles, and photo cards have tap targets ≥ `44px × 44px`.
+- **Chapter Layouts on Mobile**:
+  - *Cover Gate*: Single-column stacked input, calendar picker, and wax seal button.
+  - *Parents*: Compact heirloom frame with circular portraits and vertically stacked letter sheets.
+  - *OG Opp*: Centered wanted poster with responsive padding and full-width peelable tape.
+  - *Cousins*: 2-column organic postcard grid with subtle tilts (1-column on ≤360px).
+  - *Friends Corkboard*: 2-column photo grid with pushpins and spanning red string (1-column on ≤360px).
+  - *Make a Wish Finale*: Cake scaled cleanly (`scale(0.92)` on ≤440px, `scale(0.85)` on ≤360px) preventing any viewport clipping.
+
+### 💻 Desktop Experience (768px–1920px, Two-Page Journal Spread)
+- **Journal Dimensions**: The scrapbook expands up to `960px` (≥768px) and `1040px` (≥1200px) with subtle page shadows.
+- **Center Spine Fold**: A subtle 32px vertical fold line is centered at `50%` (`opacity: 0.04; z-index: 0; pointer-events: none;`) mimicking an open hardcover journal.
+- **Two-Page Multi-Column Layouts**:
+  - *Cover Gate*: 2-column spread (Left: Name input + ink calligraphy; Right: Hand-drawn calendar picker; Bottom: Centered wax seal).
+  - *Parents*: 2-column letter spread (Mom's letter on the left page, Daddy's letter on the right page) below the heirloom frame.
+  - *OG Opp*: Centered wanted poster (up to 520px) with rich layered drop shadows.
+  - *Cousins*: 4-column organic postcard spread across both pages with staggered tilts.
+  - *Friends Corkboard*: 4-column × 2-row pinboard layout spanning 8 bestie Polaroids with red string connecting pins.
+  - *Make a Wish Finale*: Grand cake presentation with expanded wooden table surface (440px), bunting garland (540px), and wide closing letter card (660px).

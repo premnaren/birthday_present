@@ -234,3 +234,68 @@
   opacity: 0.85;
   border-radius: 1px;
 }
+
+/* ==========================================================================
+   Guess Chapter Responsive Breakpoints: Desktop (>=768px) & Mobile (<=440px)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .guess-chapter-container {
+    max-width: 640px;
+  }
+
+  .guess-card {
+    padding: 38px 36px 30px;
+  }
+
+  .guess-text {
+    font-size: 1.85rem;
+    min-height: 80px;
+  }
+
+  .guess-reveal-card {
+    max-width: 640px;
+    padding: 42px 36px;
+  }
+}
+
+@media (max-width: 440px) {
+  .guess-chapter-container {
+    width: 100%;
+  }
+
+  .guess-card {
+    padding: 24px 16px 20px;
+  }
+
+  .guess-text {
+    font-size: 1.35rem;
+    min-height: 60px;
+    margin-bottom: 16px;
+  }
+
+  .guess-actions {
+    gap: 10px;
+  }
+
+  .btn-guess-reaction {
+    padding: 8px 14px;
+    font-size: 1.15rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .guess-reveal-card {
+    padding: 24px 16px;
+  }
+
+  .reveal-title {
+    font-size: 2rem;
+  }
+
+  .reveal-message {
+    font-size: 1.1rem;
+  }
+}

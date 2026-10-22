@@ -47,10 +47,48 @@
   100% { transform: scale(1.06); opacity: 1; }
 }
 
+/* Bunting Garland Across Top */
+.bunting-garland {
+  width: 100%;
+  max-width: 480px;
+  height: 36px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  pointer-events: none;
+}
+
+.bunting-flag {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 28px solid var(--color-rose);
+  filter: drop-shadow(0 2px 3px rgba(74, 59, 63, 0.2));
+  transform-origin: top center;
+}
+
+.bunting-flag:nth-child(even) {
+  border-top-color: var(--color-sage);
+  transform: rotate(2deg);
+}
+
+.bunting-flag:nth-child(3n) {
+  border-top-color: var(--color-butter);
+  transform: rotate(-3deg);
+}
+
+.bunting-flag:nth-child(4n) {
+  border-top-color: var(--color-lavender);
+  transform: rotate(1deg);
+}
+
 .cake-wrapper {
   position: relative;
-  width: 270px;
-  height: 250px;
+  width: 320px;
+  height: 290px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +98,7 @@
 /* --- 3 Realistic Candles --- */
 .candles-row {
   display: flex;
-  gap: 42px;
+  gap: 52px;
   position: absolute;
   top: 6px;
   z-index: 20;
@@ -84,8 +122,8 @@
 .flame-glow {
   position: absolute;
   top: -8px;
-  width: 28px;
-  height: 38px;
+  width: 32px;
+  height: 42px;
   background: radial-gradient(circle, rgba(255, 210, 80, 0.7) 0%, rgba(255, 130, 20, 0.2) 60%, transparent 100%);
   border-radius: 50%;
   filter: blur(4px);
@@ -94,11 +132,11 @@
 
 /* Realistic 3D Flame */
 .candle-flame {
-  width: 15px;
-  height: 28px;
+  width: 17px;
+  height: 32px;
   border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
   background: radial-gradient(ellipse at 50% 80%, #FFFDF8 0%, #FFE266 35%, #FF7A00 70%, #E63900 100%);
-  box-shadow: 0 0 16px rgba(255, 170, 50, 0.9), 0 0 5px #FF5500;
+  box-shadow: 0 0 18px rgba(255, 170, 50, 0.9), 0 0 6px #FF5500;
   transform-origin: center bottom;
   animation: flame-natural-flicker 0.9s infinite alternate ease-in-out;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -110,8 +148,8 @@
   bottom: 2px;
   left: 50%;
   transform: translateX(-50%);
-  width: 6px;
-  height: 12px;
+  width: 7px;
+  height: 14px;
   background: #FFFFFF;
   border-radius: 50%;
   opacity: 0.9;
@@ -137,8 +175,8 @@
 .smoke-puff {
   position: absolute;
   top: -12px;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(200, 190, 195, 0.6) 0%, rgba(160, 150, 155, 0.2) 70%, transparent 100%);
   opacity: 0;
@@ -159,7 +197,7 @@
 /* Charred Wick with Red Ember */
 .candle-wick {
   width: 2.5px;
-  height: 7px;
+  height: 8px;
   background: #2B2124;
   margin-top: -1px;
   box-shadow: 0 -1px 3px rgba(255, 60, 0, 0.8);
@@ -168,8 +206,8 @@
 
 /* Handcrafted Pastel Spiral Candles */
 .candle-wax {
-  width: 14px;
-  height: 52px;
+  width: 16px;
+  height: 58px;
   border-radius: 3px 3px 1px 1px;
   box-shadow: 1px 2px 6px rgba(74, 59, 63, 0.2), inset -2px 0 3px rgba(0, 0, 0, 0.15);
 }
@@ -204,32 +242,31 @@
   );
 }
 
-/* --- Fresh Strawberry & Berry Toppings --- */
+/* --- Fresh Strawberry & Berry Toppings (SVG Doodles) --- */
 .cake-toppings-row {
   position: absolute;
-  top: 50px;
+  top: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 16px;
   z-index: 15;
   pointer-events: none;
 }
 
-.cake-berry {
-  font-size: 1.8rem;
+.cake-doodle-topping {
+  width: 32px;
+  height: 32px;
   filter: drop-shadow(0 3px 4px rgba(74, 59, 63, 0.3));
-  transition: transform 0.2s ease;
 }
 
 .berry-1 { transform: rotate(-12deg); }
 .berry-2 { transform: rotate(8deg); }
-.berry-3 { transform: rotate(-5deg); font-size: 1.4rem; }
-.cake-leaf { font-size: 1.1rem; transform: rotate(20deg); }
+.leaf-1 { transform: rotate(22deg); }
 
 .cream-dollop {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   background: #FFFDF8;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(74, 59, 63, 0.15), inset 0 2px 4px rgba(255, 255, 255, 0.9);
@@ -238,10 +275,10 @@
 /* --- Top Tier: Velvety Strawberry Cream Cake --- */
 .cake-tier-top {
   position: relative;
-  width: 180px;
-  height: 56px;
+  width: 215px;
+  height: 64px;
   background: linear-gradient(180deg, #FDE8ED 0%, #F8CED6 100%);
-  border-radius: 24px 24px 8px 8px;
+  border-radius: 28px 28px 8px 8px;
   box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.9), 0 4px 10px rgba(74, 59, 63, 0.15);
   z-index: 10;
 }
@@ -345,10 +382,10 @@
 /* --- Bottom Tier: Decadent Belgian Chocolate Velvet Sponge --- */
 .cake-tier-bottom {
   position: relative;
-  width: 230px;
-  height: 72px;
+  width: 275px;
+  height: 84px;
   background: linear-gradient(180deg, #4A2810 0%, #341908 60%, #2A1305 100%);
-  border-radius: 10px 10px 14px 14px;
+  border-radius: 12px 12px 16px 16px;
   box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.4), 0 8px 18px rgba(40, 20, 10, 0.35);
   z-index: 8;
   overflow: hidden;
@@ -385,11 +422,11 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-.p1 { top: 22px; left: 32px; }
-.p2 { top: 38px; left: 75px; }
-.p3 { top: 26px; left: 120px; }
-.p4 { top: 40px; right: 65px; }
-.p5 { top: 22px; right: 28px; }
+.p1 { top: 24px; left: 38px; }
+.p2 { top: 42px; left: 88px; }
+.p3 { top: 28px; left: 140px; }
+.p4 { top: 44px; right: 80px; }
+.p5 { top: 24px; right: 35px; }
 
 /* Bottom Scalloped Piped Frosting */
 .bottom-scallop-frosting {
@@ -397,9 +434,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 10px;
+  height: 12px;
   background: radial-gradient(circle at 10px 10px, #FFFDF8 8px, transparent 9px);
-  background-size: 20px 10px;
+  background-size: 20px 12px;
   background-repeat: repeat-x;
 }
 
@@ -414,8 +451,8 @@
 }
 
 .pedestal-plate {
-  width: 265px;
-  height: 14px;
+  width: 310px;
+  height: 16px;
   background: linear-gradient(180deg, #FFFFFF 0%, #F3ECE2 70%, #D8CABE 100%);
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(74, 59, 63, 0.25), inset 0 2px 4px #FFFFFF;
@@ -423,25 +460,38 @@
 }
 
 .pedestal-rim {
-  width: 235px;
-  height: 4px;
+  width: 275px;
+  height: 5px;
   background: #E8DED2;
   border-radius: 2px;
 }
 
 .pedestal-foot {
-  width: 110px;
-  height: 12px;
+  width: 130px;
+  height: 14px;
   background: linear-gradient(180deg, #E2D7CB 0%, #D0C3B5 100%);
   border-radius: 0 0 16px 16px;
   box-shadow: 0 6px 12px rgba(74, 59, 63, 0.2);
+}
+
+/* Wooden Table Surface */
+.wooden-table-surface {
+  width: 100%;
+  max-width: 360px;
+  height: 16px;
+  background: linear-gradient(180deg, #D4A373 0%, #BC8A5F 100%);
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(74, 59, 63, 0.25), inset 0 1px 3px rgba(255, 255, 255, 0.4);
+  margin-top: 4px;
+  position: relative;
+  z-index: 6;
 }
 
 /* Cake Table Shadow */
 .cake-table-shadow {
   position: absolute;
   bottom: -10px;
-  width: 270px;
+  width: 320px;
   height: 18px;
   background: radial-gradient(ellipse at 50% 50%, rgba(74, 59, 63, 0.35) 0%, rgba(74, 59, 63, 0.1) 50%, transparent 75%);
   z-index: 5;
@@ -462,6 +512,9 @@
   box-shadow: var(--shadow-tape);
   transition: transform 0.2s var(--ease-bounce), background 0.2s ease, box-shadow 0.2s ease;
   user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-blow-all:hover {
@@ -486,7 +539,7 @@
   text-align: left;
   display: none;
   animation: letter-reveal 0.6s var(--ease-bounce) forwards;
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 @keyframes letter-reveal {
@@ -522,10 +575,17 @@
   gap: 12px;
 }
 
+.finale-action-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-view-stamps,
 .btn-replay-storybook {
   background: var(--color-butter-light);
   border: 1px solid rgba(74, 59, 63, 0.25);
-  padding: 6px 16px;
+  padding: 7px 16px;
   border-radius: 18px;
   font-family: 'Gaegu', cursive;
   font-size: 1.05rem;
@@ -533,10 +593,141 @@
   color: var(--color-ink);
   cursor: pointer;
   box-shadow: var(--shadow-tape);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
+.btn-view-stamps:hover,
 .btn-replay-storybook:hover {
   background: var(--color-rose-light);
   transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Finale Responsive Breakpoints: Desktop (>=768px) & Mobile (<=440px)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .finale-content-wrapper {
+    max-width: 820px;
+  }
+
+  .cake-stage-container {
+    margin: 20px 0 34px;
+  }
+
+  .cake-wrapper {
+    transform: scale(1.08);
+    transform-origin: center bottom;
+    margin: 16px auto 36px;
+  }
+
+  .wooden-table-surface {
+    max-width: 440px;
+    height: 18px;
+  }
+
+  .cake-table-shadow {
+    width: 390px;
+  }
+
+  .pedestal-plate {
+    width: 330px;
+  }
+
+  .bunting-garland {
+    max-width: 540px;
+    height: 42px;
+  }
+
+  .bunting-flag {
+    border-top-width: 32px;
+    border-left-width: 17px;
+    border-right-width: 17px;
+  }
+
+  .closing-letter-card {
+    max-width: 660px;
+    padding: 36px 36px 30px;
+  }
+
+  .closing-letter-title {
+    font-size: 1.75rem;
+  }
+
+  .closing-letter-text {
+    font-size: 1.15rem;
+    line-height: 1.75;
+  }
+}
+
+@media (max-width: 440px) {
+  .cake-stage-container {
+    margin: 10px 0 20px;
+  }
+
+  .cake-wrapper {
+    width: min(310px, calc(100vw - 36px));
+    transform: scale(0.92);
+    transform-origin: center bottom;
+    margin: 0 auto;
+  }
+
+  .wooden-table-surface {
+    max-width: min(330px, calc(100vw - 28px));
+  }
+
+  .cake-table-shadow {
+    width: min(290px, calc(100vw - 44px));
+  }
+
+  .pedestal-plate {
+    width: 285px;
+  }
+
+  .bunting-garland {
+    max-width: min(330px, 92vw);
+    height: 30px;
+  }
+
+  .bunting-flag {
+    border-top-width: 22px;
+    border-left-width: 12px;
+    border-right-width: 12px;
+  }
+
+  .closing-letter-card {
+    padding: 22px 16px 18px;
+    max-width: calc(100vw - 32px);
+  }
+
+  .closing-letter-title {
+    font-size: 1.35rem;
+  }
+
+  .closing-letter-text {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .btn-blow-all {
+    padding: 8px 18px;
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .cake-wrapper {
+    transform: scale(0.85);
+  }
+
+  .wooden-table-surface {
+    max-width: 280px;
+  }
+
+  .cake-table-shadow {
+    width: 260px;
+  }
 }

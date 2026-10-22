@@ -16,7 +16,7 @@ const ContentStore = (() => {
       interests: ["dancing", "painting", "cakes", "tea", "blankets"]
     },
     siteMeta: {
-      title: "A Storybook for Kritika 📖✨",
+      title: "A Storybook for Kritika",
       subtitle: "A little bundle of love for the birthday girl"
     },
     guesses: [
@@ -82,7 +82,7 @@ const ContentStore = (() => {
       return {
         success: false,
         reason: "date_mismatch",
-        hint: "That's definitely you, but check the birthday again! (Psst... it's in October 😉)"
+        hint: "That's definitely you, but check the birthday date again! (Psst... it's in October)"
       };
     }
 

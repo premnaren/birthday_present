@@ -11,7 +11,7 @@ const BookStage = (() => {
     { id: "og_opp", index: 3, title: "OG Opp", label: "The OG Opp" },
     { id: "cousins", index: 4, title: "Cousins", label: "Cousin Air Mail" },
     { id: "friends", index: 5, title: "Friends", label: "Friends Corkboard" },
-    { id: "finale", index: 6, title: "Wish! 🎂", label: "Make a Wish" }
+    { id: "finale", index: 6, title: "Make a Wish", label: "Make a Wish" }
   ];
 
   let currentIndex = 0;
@@ -43,9 +43,9 @@ const BookStage = (() => {
     CHAPTERS.forEach((ch, idx) => {
       const tab = document.createElement('button');
       tab.className = `chapter-tab ${idx === currentIndex ? 'active' : ''} ${idx > maxUnlockedIndex ? 'locked' : ''}`;
-      tab.textContent = ch.title;
+      tab.textContent = idx <= maxUnlockedIndex ? ch.title : '';
       tab.setAttribute('data-index', idx);
-      tab.setAttribute('aria-label', `${ch.label} ${idx > maxUnlockedIndex ? '(Locked)' : ''}`);
+      tab.setAttribute('aria-label', idx <= maxUnlockedIndex ? ch.label : 'Locked Chapter');
 
       tab.addEventListener('click', () => {
         if (idx <= maxUnlockedIndex && idx !== currentIndex) {
@@ -172,6 +172,9 @@ const BookStage = (() => {
           gsap.set(nextSlide, { clearProps: "all" });
         }
         currentIndex = targetIndex;
+        if (window.PassportStamps) {
+          window.PassportStamps.awardStamp(targetIndex);
+        }
         updateNavControls();
         renderTabs();
         isAnimating = false;

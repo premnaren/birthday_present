@@ -1,0 +1,289 @@
+/* ==========================================================================
+   Birthday Storybook - Sticker Tray & Chapter Passport Stamps Styles
+   Collapsible sticker sheet, draggable die-cut stickers, and passport stamps
+   ========================================================================== */
+
+/* --- Collapsible Sticker Tray --- */
+.sticker-tray-container {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 180;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.sticker-tray-toggle-btn {
+  pointer-events: auto;
+  background: var(--color-butter-light);
+  border: 1.5px dashed var(--color-rose-deep);
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-family: 'Gaegu', cursive;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  cursor: pointer;
+  box-shadow: var(--shadow-lifted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s var(--ease-bounce), background 0.2s ease;
+  user-select: none;
+}
+
+.sticker-tray-toggle-btn:hover {
+  transform: scale(1.05) rotate(-1deg);
+  background: var(--color-butter);
+}
+
+.sticker-tray-sheet {
+  pointer-events: auto;
+  margin-bottom: 10px;
+  background: #FFFDF9;
+  border: 2px dashed rgba(74, 59, 63, 0.25);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+  padding: 16px 14px;
+  max-width: 320px;
+  display: none;
+  animation: tray-pop 0.3s var(--ease-bounce) forwards;
+}
+
+.sticker-tray-sheet.active {
+  display: block;
+}
+
+@keyframes tray-pop {
+  0% { transform: translateY(20px) scale(0.9); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.sticker-tray-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px dashed rgba(74, 59, 63, 0.2);
+  padding-bottom: 6px;
+}
+
+.sticker-tray-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.1rem;
+  color: var(--color-rose-deep);
+}
+
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Individual Die-Cut Sticker */
+.sticker-item {
+  width: 56px;
+  height: 56px;
+  background: #FFFDF9;
+  border: 2px solid #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(74, 59, 63, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.2s ease;
+}
+
+.sticker-item:hover {
+  transform: scale(1.12) rotate(3deg);
+  box-shadow: 0 6px 14px rgba(74, 59, 63, 0.25);
+}
+
+.sticker-svg-icon {
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+}
+
+/* Placed On-Page Sticker */
+.placed-sticker {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background: #FFFDF9;
+  border: 2.5px solid #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(74, 59, 63, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  z-index: 15;
+  user-select: none;
+  touch-action: none;
+}
+
+.placed-sticker:active {
+  cursor: grabbing;
+}
+
+/* --- Chapter Passport Stamps Progress Bar --- */
+.chapter-stamp-trail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 6px 0 16px;
+  width: 100%;
+}
+
+.passport-stamp-slot {
+  width: 34px;
+  height: 34px;
+  border: 1.5px dashed rgba(74, 59, 63, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.passport-stamp-slot.earned {
+  border-style: solid;
+  border-color: var(--color-rose-deep);
+  background: rgba(244, 194, 199, 0.3);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.stamp-mini-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.35;
+}
+
+.passport-stamp-slot.earned .stamp-mini-icon {
+  opacity: 1;
+}
+
+/* Stamp Collection Modal in Bookmark */
+.stamp-collection-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(35, 26, 30, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 250;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.stamp-collection-modal.active {
+  display: flex;
+}
+
+.stamp-passport-booklet {
+  background: #FFFDF9;
+  border: 2px dashed var(--color-rose);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  max-width: 420px;
+  width: 100%;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.stamp-booklet-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.5rem;
+  color: var(--color-rose-deep);
+  margin-bottom: 6px;
+}
+
+.stamp-booklet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.passport-page-stamp {
+  border: 2px dashed rgba(74, 59, 63, 0.25);
+  border-radius: 6px;
+  padding: 12px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.passport-page-stamp.stamped {
+  border: 2px solid var(--color-red);
+  background: #FFF8F8;
+  box-shadow: inset 0 1px 4px rgba(200, 72, 63, 0.15);
+  transform: rotate(-2deg);
+}
+
+.stamp-label {
+  font-family: 'Gaegu', cursive;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-top: 6px;
+}
+
+@media (max-width: 440px) {
+  .sticker-tray-container {
+    bottom: 12px;
+    right: 12px;
+  }
+
+  .sticker-tray-toggle-btn {
+    padding: 6px 14px;
+    font-size: 1.05rem;
+  }
+
+  .sticker-tray-sheet {
+    max-width: calc(100vw - 24px);
+    width: 285px;
+    padding: 12px 10px;
+  }
+
+  .sticker-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .sticker-item {
+    width: 50px;
+    height: 50px;
+  }
+
+  .stamp-passport-booklet {
+    max-width: calc(100vw - 28px);
+    padding: 18px 14px;
+  }
+
+  .stamp-booklet-grid {
+    gap: 8px;
+    margin: 14px 0;
+  }
+
+  .passport-page-stamp {
+    padding: 8px 4px;
+  }
+
+  .stamp-label {
+    font-size: 0.85rem;
+  }
+}

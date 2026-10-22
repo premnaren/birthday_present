@@ -1,6 +1,6 @@
 /**
  * Birthday Storybook - Chapter 3: The OG Opp (Sister) Controller
- * Playful parody wanted poster, sister snapshots, and peel-to-reveal sister confession
+ * Playful full-page wanted poster, sister snapshots, and peel-to-reveal sister confession
  */
 
 const ChapterOgOpp = (() => {
@@ -24,32 +24,34 @@ const ChapterOgOpp = (() => {
       "Painting masterworks while leaving brushes unwashed for days"
     ];
 
+    const sisterName = ogOppData?.sisterName || "Riya";
     const confession = ogOppData?.confession || 
       "Okay fine, I admit it! You might be annoying sometimes, but life would be so dreadfully boring without my favorite opponent. You're the best sister anyone could ask for. Happy birthday Lucky, stay weird! 💖";
 
     container.innerHTML = `
       <div class="chapter-content-wrapper">
-        <div class="washi-tape washi-tape-butter tape-center"></div>
+        <div class="washi-tape washi-tape-butter tape-corner-tr" style="width: 75px; height: 22px;"></div>
 
         <div class="chapter-header">
-          <span class="diary-ribbon-header">Chapter 3 ✦ Sibling Shenanigans</span>
-          <h2 class="h2">${ogOppData?.heading || "The OG Opp 💥"}</h2>
-          <p class="chapter-intro-note">${ogOppData?.intro || "Your sister: lifelong roommate, clothes thief, and undisputed rival."}</p>
+          <span class="diary-ribbon-header">Chapter 3 • Sibling Shenanigans</span>
+          <h2 class="h2" style="margin-top: 6px;">The OG Opp</h2>
+          <p class="chapter-intro-note font-caption" style="color: var(--color-ink-muted);">${sisterName}: lifelong roommate, clothes thief, and undisputed rival.</p>
         </div>
 
+        <!-- Full Page Authentic Wanted Poster Layout -->
         <div class="siblings-zine-spread">
-          <!-- Parody Wanted Poster -->
-          <div class="wanted-poster tilt-neg-2">
-            <div class="washi-tape washi-tape-pink tape-center" style="width: 75px; height: 22px;"></div>
+          <div class="wanted-poster tilt-neg-1">
+            <div class="washi-tape washi-tape-pink tape-corner-tl" style="width: 70px; height: 20px;"></div>
+            <div class="washi-tape washi-tape-sage tape-corner-tr" style="width: 70px; height: 20px;"></div>
             
             <div class="case-file-badge">CASE FILE #1016-OPP</div>
             <div class="wanted-title">WANTED!</div>
-            <div class="wanted-subtitle">Alias: Kritika / Lucky • Target: Sister's Peace of Mind</div>
+            <div class="wanted-subtitle">Alias: Kritika / Lucky • Accused by Sister ${sisterName}</div>
 
-            <!-- Sister & Lucky Snapshot -->
+            <!-- Sister & Lucky Large Snapshot Frame -->
             <div class="sister-polaroid-frame">
               <div class="sister-photo-inner">
-                <span class="sister-photo-art">👯‍♀️</span>
+                <svg class="doodle-polaroid-art" style="width: 80px; height: 75px;"><use href="#doodle-sister-snap"/></svg>
               </div>
               <div class="sister-photo-label font-handwriting">"Roommates by blood, rivals by choice"</div>
             </div>
@@ -57,7 +59,8 @@ const ChapterOgOpp = (() => {
             <!-- Crimes Dossier -->
             <div class="crimes-dossier">
               <div class="crimes-heading">
-                <span>⚠️</span> SUSPECTED CRIMES & INFRACTIONS:
+                <svg class="doodle-icon" style="width: 20px; height: 20px; color: var(--color-red);"><use href="#doodle-burst"/></svg>
+                <span>SUSPECTED CRIMES & INFRACTIONS:</span>
               </div>
               <ul class="crimes-list">
                 ${crimes.map(c => `<li>${c}</li>`).join('')}
@@ -65,14 +68,16 @@ const ChapterOgOpp = (() => {
             </div>
 
             <!-- Interactive Peelable Washi Tape Confession -->
-            <div class="peelable-tape-wrapper" id="sister-peel-tape" title="Tap to peel tape and read secret message">
-              <div class="washi-tape washi-tape-sage tape-center" id="tape-strip" style="width: 82%; height: 26px; top: -12px;"></div>
+            <div class="peelable-tape-wrapper" id="sister-peel-tape" title="Tap tape to peel and read secret message">
+              <div class="washi-tape washi-tape-sage tape-corner-tr" id="tape-strip" style="width: 85%; height: 26px; top: -14px;"></div>
               <span class="peelable-tape-label" id="peel-prompt">
-                Tap tape to peel & read sister confession 🤫
+                Tap tape to peel & read sister confession ✦
               </span>
               <div class="peelable-secret-text" id="secret-message">
                 "${confession}"
-                <div class="verdict-stamp">VERDICT: BEST SISTER FOR LIFE 💖</div>
+                <div class="verdict-stamp">
+                  VERDICT: BEST SISTER FOR LIFE <svg class="doodle-heart-inline"><use href="#doodle-heart"/></svg>
+                </div>
               </div>
             </div>
           </div>
@@ -81,7 +86,7 @@ const ChapterOgOpp = (() => {
         <!-- Advance Button to Chapter 4 (Cousins) -->
         <div class="chapter-advance-row">
           <button class="btn-chapter-advance" id="btn-to-cousins">
-            Turn to Cousin Air Mail ✈️ <span aria-hidden="true">→</span>
+            Turn to Cousin Air Mail <svg class="doodle-arrow"><use href="#doodle-arrow-sketch"/></svg>
           </button>
         </div>
       </div>
@@ -105,10 +110,10 @@ const ChapterOgOpp = (() => {
 
         if (peelWrapper.classList.contains('peeled')) {
           if (tapeStrip) tapeStrip.style.transform = 'translateX(-50%) rotate(18deg) scaleY(0.7)';
-          if (peelPrompt) peelPrompt.textContent = "Sister confession revealed! 🤫💖";
+          if (peelPrompt) peelPrompt.textContent = "Sister confession revealed! ✦";
         } else {
           if (tapeStrip) tapeStrip.style.transform = 'translateX(-50%) rotate(-1.5deg)';
-          if (peelPrompt) peelPrompt.textContent = "Tap tape to peel & read sister confession 🤫";
+          if (peelPrompt) peelPrompt.textContent = "Tap tape to peel & read sister confession ✦";
         }
       });
     }

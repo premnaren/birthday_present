@@ -14,6 +14,12 @@
   width: 100%;
 }
 
+@media (min-width: 768px) {
+  .chapter-content-wrapper {
+    max-width: 880px;
+  }
+}
+
 .chapter-header {
   text-align: center;
   margin-bottom: 20px;
@@ -29,43 +35,30 @@
 }
 
 /* ==========================================================================
-   Chapter 2: Parents (Mom & Daddy) Vintage Album
+   Chapter 2: Parents (Mom & Daddy) Heirloom Photo Album
    ========================================================================== */
 
-.family-album-spread {
+.parents-album-page {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
+  align-items: center;
 }
 
-.family-entry-card {
-  background: var(--color-paper-cream);
-  padding: 22px 18px;
+.parents-heirloom-frame {
+  width: 100%;
+  background: #FAF5ED;
+  border: 1.5px solid rgba(74, 59, 63, 0.2);
   border-radius: var(--radius-sm);
+  padding: 22px 18px;
   box-shadow: var(--shadow-paper-deep);
   position: relative;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: center;
 }
 
-.family-entry-card:hover {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: var(--shadow-lifted);
-}
-
-.photo-frame-vintage {
-  position: relative;
-  background: #FAF3E8;
-  padding: 16px 14px;
-  border: 1px solid rgba(74, 59, 63, 0.15);
-  box-shadow: var(--shadow-paper);
-  border-radius: 2px;
-}
-
-/* Antique Photo Corners */
-.corner {
+/* Antique Photo Mounting Corners */
+.photo-corner {
   position: absolute;
   width: 16px;
   height: 16px;
@@ -73,85 +66,202 @@
   pointer-events: none;
 }
 
-.corner-tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
-.corner-tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
-.corner-bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
-.corner-br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+.photo-corner.corner-tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+.photo-corner.corner-tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+.photo-corner.corner-bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+.photo-corner.corner-br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
 
-.parents-card-top {
+.heirloom-portraits-row {
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 12px;
+  gap: 12px;
 }
 
-.parents-portrait-badge {
-  width: 62px;
-  height: 62px;
+.parent-portrait-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.parent-portrait-circle {
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 2px 4px rgba(74, 59, 63, 0.15), 0 2px 6px rgba(74, 59, 63, 0.1);
-  border: 2px solid #FFFDF8;
-  flex-shrink: 0;
+  border: 2.5px solid #FFFDF8;
+  box-shadow: inset 0 2px 4px rgba(74, 59, 63, 0.12), 0 3px 8px rgba(74, 59, 63, 0.15);
+  overflow: hidden;
+  position: relative;
 }
 
-.parents-avatar {
-  font-size: 2.2rem;
+.doodle-portrait {
+  width: 58px;
+  height: 58px;
 }
 
-.parents-meta {
-  flex: 1;
+.parent-portrait-name {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.25rem;
+  color: var(--color-rose-deep);
+  margin-top: 4px;
+}
+
+.heirloom-center-decor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+}
+
+.parents-letters-spread {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.parent-letter-sheet {
+  padding: 20px 18px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-paper);
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.parent-letter-sheet:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: var(--shadow-lifted);
+}
+
+.letter-sheet-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 .family-sender-tag {
   font-family: 'Permanent Marker', cursive;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--color-rose-deep);
-}
-
-.family-relation-label {
-  font-family: 'Gaegu', cursive;
-  font-size: 1rem;
-  color: var(--color-ink-muted);
-  margin-left: 6px;
-}
-
-.parents-photo-caption {
-  font-family: 'Caveat', cursive;
-  font-size: 1.1rem;
-  color: var(--color-ink-light);
-  margin-top: 2px;
-}
-
-.parents-botanical {
-  font-size: 1.8rem;
-  opacity: 0.85;
-}
-
-.family-message-container {
-  background: rgba(255, 253, 248, 0.7);
-  padding: 12px 14px;
-  border-radius: 4px;
-  border-left: 3px solid var(--color-rose);
-  margin: 6px 0 12px;
 }
 
 .family-message-text {
   font-family: 'Lora', serif;
   font-size: 1.05rem;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--color-ink);
   font-style: italic;
+  margin: 0;
 }
 
-.parents-signoff-row {
+.letter-sheet-signoff {
+  margin-top: 14px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   border-top: 1px dashed rgba(74, 59, 63, 0.18);
-  padding-top: 10px;
+  padding-top: 8px;
+}
+
+@media (min-width: 768px) {
+  .parents-album-page {
+    max-width: 860px;
+  }
+
+  .parents-heirloom-frame {
+    max-width: 720px;
+    padding: 26px 24px;
+  }
+
+  .parents-letters-spread {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .parent-letter-sheet {
+    padding: 24px 22px;
+  }
+
+  .wanted-poster {
+    max-width: 520px;
+    padding: 34px 32px;
+  }
+
+  .sister-polaroid-frame {
+    width: 175px;
+  }
+
+  .sister-photo-inner {
+    height: 125px;
+  }
+}
+
+@media (max-width: 440px) {
+  .parents-heirloom-frame {
+    padding: 16px 12px;
+  }
+
+  .parent-portrait-circle {
+    width: 66px;
+    height: 66px;
+  }
+
+  .doodle-portrait {
+    width: 48px;
+    height: 48px;
+  }
+
+  .parent-portrait-name {
+    font-size: 1.15rem;
+  }
+
+  .parent-letter-sheet {
+    padding: 16px 14px;
+  }
+
+  .family-message-text {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .wanted-poster {
+    padding: 18px 12px;
+  }
+
+  .wanted-title {
+    font-size: 1.75rem;
+    letter-spacing: 2px;
+  }
+
+  .sister-polaroid-frame {
+    width: 135px;
+    padding: 8px 8px 12px;
+  }
+
+  .sister-photo-inner {
+    height: 95px;
+  }
+
+  .crimes-dossier {
+    padding: 10px 12px;
+    font-size: 0.88rem;
+  }
+
+  .peelable-tape-wrapper {
+    padding: 12px 10px;
+  }
+
+  .peelable-secret-text {
+    font-size: 1.25rem;
+  }
 }
 
 /* ==========================================================================
@@ -310,39 +420,160 @@
    Chapter 4: Cousins Air Mail & Snapshots Gallery
    ========================================================================== */
 
-.cousins-photo-grid {
+/* ==========================================================================
+   Chapter 4: Cousins Air Mail & Organic Scattered Postcards
+   ========================================================================== */
+
+.cousins-scatter-stage {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  padding: 10px 4px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 10px 4px 24px;
+  position: relative;
 }
 
-@media (max-width: 440px) {
-  .cousins-photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-}
-
-.cousin-snapshot-card {
+.cousin-postcard-item {
+  width: calc(50% - 10px);
+  max-width: 220px;
   background: #FFFDF9;
-  border: 1px solid rgba(74, 59, 63, 0.15);
+  border: 1px solid rgba(74, 59, 63, 0.16);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-polaroid);
-  padding: 12px 10px 16px;
+  padding: 14px 12px 16px;
   position: relative;
   cursor: pointer;
   user-select: none;
-  transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s ease;
+  transition: transform 0.28s var(--ease-bounce), box-shadow 0.28s ease, z-index 0.1s ease;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-.cousin-snapshot-card:hover {
-  transform: translateY(-4px) scale(1.04) !important;
+.cousin-postcard-item:hover {
+  transform: translateY(-6px) scale(1.05) !important;
   box-shadow: var(--shadow-lifted);
+  z-index: 15;
+}
+
+/* Organic Asymmetrical Tilts & Offsets */
+.scatter-card-1 {
+  transform: rotate(-3deg) translateY(4px);
+  z-index: 1;
+}
+
+.scatter-card-2 {
+  transform: rotate(2.5deg) translateY(-6px);
+  z-index: 2;
+}
+
+.scatter-card-3 {
+  transform: rotate(-2deg) translateY(8px);
+  z-index: 2;
+}
+
+.scatter-card-4 {
+  transform: rotate(3.5deg) translateY(-4px);
+  z-index: 3;
+}
+
+@media (min-width: 768px) {
+  .cousins-scatter-stage {
+    max-width: 860px;
+    gap: 16px;
+    justify-content: space-between;
+  }
+
+  .cousin-postcard-item {
+    width: calc(25% - 13px);
+    max-width: 195px;
+    padding: 14px 10px 16px;
+  }
+
+  .cousin-photo-frame {
+    height: 105px;
+  }
+
+  .airmail-modal-card {
+    max-width: 480px;
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 440px) {
+  .cousins-scatter-stage {
+    gap: 10px;
+    padding: 8px 2px 20px;
+  }
+
+  .cousin-postcard-item {
+    width: calc(50% - 6px);
+    padding: 10px 8px 12px;
+  }
+
+  .cousin-photo-frame {
+    height: 90px;
+  }
+
+  .cousin-name {
+    font-size: 1.1rem;
+  }
+
+  .cousin-caption {
+    font-size: 1rem;
+  }
+
+  .cousin-airmail-badge {
+    padding: 2px 8px;
+    font-size: 0.8rem;
+  }
+
+  .airmail-modal-card {
+    max-width: calc(100vw - 32px);
+    padding: 18px 14px;
+  }
+
+  .postcard-letter-body {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .cousin-postcard-item {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+.cousin-postcard-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.postcard-stamp-mini {
+  width: 36px;
+  height: 44px;
+  border: 1.5px dashed rgba(74, 59, 63, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  box-shadow: var(--shadow-tape);
+  transform: rotate(3deg);
+}
+
+.postcard-postmark-mini {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  color: rgba(74, 59, 63, 0.6);
+  border: 1px solid rgba(74, 59, 63, 0.35);
+  padding: 2px 6px;
+  border-radius: 10px;
+  transform: rotate(-8deg);
 }
 
 .cousin-photo-frame {
@@ -356,12 +587,8 @@
   box-shadow: inset 0 2px 4px rgba(74, 59, 63, 0.06);
 }
 
-.cousin-avatar-emoji {
-  font-size: 2.8rem;
-}
-
 .cousin-card-info {
-  margin-top: 8px;
+  margin-top: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -370,40 +597,45 @@
 
 .cousin-name {
   font-family: 'Permanent Marker', cursive;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: var(--color-ink);
   margin: 0;
 }
 
 .cousin-tag {
   font-family: 'Gaegu', cursive;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--color-rose-deep);
   font-weight: 700;
 }
 
 .cousin-caption {
-  font-size: 1.05rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.15rem;
   color: var(--color-ink-muted);
   margin-top: 2px;
 }
 
 .cousin-airmail-badge {
-  margin-top: 8px;
+  margin-top: 10px;
   background: var(--color-butter-light);
   border: 1px dashed var(--color-rose);
   border-radius: 12px;
-  padding: 3px 10px;
+  padding: 3px 12px;
   font-family: 'Gaegu', cursive;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--color-ink);
-  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.cousin-snapshot-card:hover .cousin-airmail-badge {
+.cousin-postcard-item:hover .cousin-airmail-badge {
   background: var(--color-rose-light);
   color: var(--color-rose-deep);
+  transform: scale(1.04);
 }
 
 /* Air Mail Modal Overlay */
@@ -544,18 +776,169 @@
    Chapter 5: Friends Corkboard, Enlarged Photocards & Glass Memory Jar
    ========================================================================== */
 
+/* ==========================================================================
+   Chapter 5: Friends Corkboard, Enlarged Photocards & Glass Memory Jar
+   ========================================================================== */
+
+.corkboard-frame-container {
+  width: 100%;
+  position: relative;
+  background-color: #C99665;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(138, 86, 45, 0.25) 10%, transparent 15%),
+    radial-gradient(circle at 20% 80%, rgba(100, 60, 30, 0.2) 8%, transparent 12%),
+    radial-gradient(circle at 80% 20%, rgba(100, 60, 30, 0.2) 8%, transparent 12%);
+  background-size: 32px 32px, 48px 48px, 48px 48px;
+  border: 8px solid #8C592C;
+  border-radius: var(--radius-md);
+  box-shadow: inset 0 3px 12px rgba(45, 25, 10, 0.4), 0 10px 28px rgba(74, 59, 63, 0.2);
+  padding: 24px 12px 32px;
+}
+
+.cork-red-string-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .friends-corkboard-canvas {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  padding: 10px 4px 24px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .corkboard-frame-container {
+    max-width: 880px;
+    padding: 32px 24px 38px;
+    border-width: 10px;
+  }
+
+  .friends-corkboard-canvas {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .friend-polaroid-card {
+    max-width: 190px;
+    padding: 14px 10px 16px;
+  }
+
+  .friend-photo-frame {
+    height: 120px;
+  }
+
+  .lightbox-content-wrap {
+    max-width: 380px;
+  }
+
+  .lightbox-polaroid-card {
+    height: 450px;
+  }
+
+  .memory-jar-section {
+    margin-top: 48px;
+  }
+
+  .unfolded-paper-note {
+    max-width: 420px;
+    padding: 32px 28px 24px;
+  }
 }
 
 @media (max-width: 440px) {
+  .corkboard-frame-container {
+    padding: 14px 6px 20px;
+    border-width: 6px;
+  }
+
   .friends-corkboard-canvas {
+    gap: 8px;
+  }
+
+  .friend-polaroid-card {
+    padding: 10px 6px 12px;
+    max-width: 100%;
+  }
+
+  .friend-photo-frame {
+    height: 95px;
+  }
+
+  .friend-from-name {
+    font-size: 1.1rem;
+  }
+
+  .friend-moment {
+    font-size: 0.95rem;
+  }
+
+  .lightbox-content-wrap {
+    max-width: calc(100vw - 32px);
+  }
+
+  .lightbox-polaroid-card {
+    height: 390px;
+  }
+
+  .lightbox-photo-large {
+    height: 175px;
+  }
+
+  .lightbox-name {
+    font-size: 1.4rem;
+  }
+
+  .lightbox-caption {
+    font-size: 1.2rem;
+  }
+
+  .lightbox-back-message {
+    font-size: 1.2rem;
+  }
+
+  .unfolded-paper-note {
+    max-width: calc(100vw - 32px);
+    padding: 20px 16px 16px;
+  }
+
+  .memory-note-content {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .friends-corkboard-canvas {
+    grid-template-columns: 1fr;
     gap: 14px;
   }
+
+  .friend-polaroid-card {
+    max-width: 260px;
+  }
+
+  .friend-photo-frame {
+    height: 140px;
+  }
+}
+
+/* Pushpin mounted at top center */
+.cork-pushpin {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 22px;
+  z-index: 10;
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.35));
 }
 
 /* Enlarged Friend Photocards (approx 175px - 185px) */
@@ -563,22 +946,23 @@
   width: 100%;
   max-width: 200px;
   background: #FFFDF9;
-  border: 1px solid rgba(74, 59, 63, 0.15);
+  border: 1px solid rgba(74, 59, 63, 0.16);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-polaroid);
-  padding: 12px 10px 18px;
+  padding: 14px 10px 18px;
   position: relative;
   cursor: pointer;
   user-select: none;
-  transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s ease;
+  transition: transform 0.28s var(--ease-bounce), box-shadow 0.28s ease, z-index 0.1s ease;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
 }
 
 .friend-polaroid-card:hover {
-  transform: translateY(-5px) scale(1.04) !important;
+  transform: translateY(-6px) scale(1.05) !important;
   box-shadow: var(--shadow-lifted);
+  z-index: 15;
 }
 
 .friend-photo-frame {
@@ -588,12 +972,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(74, 59, 63, 0.08);
+  border: 1px solid rgba(74, 59, 63, 0.1);
   box-shadow: inset 0 2px 4px rgba(74, 59, 63, 0.06);
-}
-
-.friend-avatar-art {
-  font-size: 3.2rem;
 }
 
 .friend-caption-block {
@@ -604,12 +984,15 @@
 }
 
 .friend-from-name {
+  font-family: 'Permanent Marker', cursive;
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--color-ink);
 }
 
 .friend-moment {
+  font-family: 'Caveat', cursive;
+  font-size: 1.15rem;
   color: var(--color-ink-muted);
   margin-top: 2px;
 }

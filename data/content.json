@@ -22,7 +22,7 @@
     ]
   },
   "siteMeta": {
-    "title": "A Storybook for Kritika 📖✨",
+    "title": "A Storybook for Kritika",
     "subtitle": "A little bundle of love for the birthday girl"
   },
   "guesses": [
@@ -76,7 +76,7 @@
           "id": "mom",
           "from": "Mom",
           "relation": "Mother",
-          "avatar": "👩‍👧",
+          "doodle": "portrait-mom",
           "caption": "My darling Lucky",
           "placeholderColor": "#FDE8ED",
           "message": "To my sweetest Kritika, watching you bring so much warmth, kindness, and art into our home is my greatest happiness. May God bless you with the strongest health, vibrant smiles, and peaceful days ahead. Eat well and rest up, my baby!"
@@ -85,7 +85,7 @@
           "id": "daddy",
           "from": "Daddy",
           "relation": "Father",
-          "avatar": "👨‍👧",
+          "doodle": "portrait-daddy",
           "caption": "Daddy's pride and joy",
           "placeholderColor": "#E8F0FE",
           "message": "My dearest Lucky, you will always be my little girl who danced around the living room and filled the house with joy. Keep dreaming high and painting your life in radiant colors. I am always in your corner. Happy belated birthday beta!"
@@ -96,9 +96,9 @@
       "id": "og_opp",
       "index": 3,
       "tabTitle": "OG Opp",
-      "heading": "The OG Opp 💥",
+      "heading": "The OG Opp",
       "intro": "Your sister: lifelong roommate, clothes thief, and undisputed rival.",
-      "sisterName": "Your Sister",
+      "sisterName": "Riya",
       "wantedCrimes": [
         "Unauthorized borrowing of hoodies and scrunchies",
         "Eating 75% of the birthday cake frosting without shame",
@@ -111,13 +111,13 @@
       "id": "cousins",
       "index": 4,
       "tabTitle": "Cousins",
-      "heading": "Cousin Air Mail ✈️",
-      "intro": "Tap on any cousin's snapshot to unfold their personal Air Mail letter!",
+      "heading": "Cousin Air Mail",
+      "intro": "Tap on any cousin's snapshot to unfold their personal Air Mail letter.",
       "entries": [
         {
           "id": "cousin-aarav",
           "name": "Aarav",
-          "avatar": "🏖️",
+          "doodle": "beach",
           "tag": "Vacation Partner",
           "caption": "Summer Goa Trip",
           "stampColor": "#F4C2C7",
@@ -127,7 +127,7 @@
         {
           "id": "cousin-simran",
           "name": "Simran",
-          "avatar": "💃",
+          "doodle": "dance",
           "tag": "Choreo Queen",
           "caption": "Sangeet Practice",
           "stampColor": "#CDB8E3",
@@ -137,7 +137,7 @@
         {
           "id": "cousin-kabir",
           "name": "Kabir",
-          "avatar": "🍕",
+          "doodle": "pizza",
           "tag": "Foodie Gang",
           "caption": "Midnight Pizza Run",
           "stampColor": "#F7E3A1",
@@ -147,7 +147,7 @@
         {
           "id": "cousin-diya",
           "name": "Diya",
-          "avatar": "🎨",
+          "doodle": "art",
           "tag": "Art Connoisseur",
           "caption": "Pottery Workshop",
           "stampColor": "#B7C9A8",
@@ -161,77 +161,77 @@
       "index": 5,
       "tabTitle": "Friends",
       "heading": "The Friends Corkboard",
-      "intro": "Tap any photo to zoom in and read their note! (And don't miss the Memory Jar 🫙)",
+      "intro": "Notes from your favourite people. Tap any card to read their note.",
       "entries": [
         {
           "id": "friend-ananya",
           "from": "Ananya",
+          "doodle": "camera",
           "tag": "Bestie since day one",
           "caption": "Late night giggles",
-          "avatar": "📸",
           "placeholderColor": "#FCE4E8",
           "message": "Happy belated birthday Lucky! Missing our endless tea sessions and spontaneous dance breaks. Get fully rested and back on your feet soon—we have so many adventures lined up!"
         },
         {
           "id": "friend-rohan",
           "from": "Rohan",
+          "doodle": "paintbrush",
           "tag": "The Art Critic",
           "caption": "Watercolor chaos",
-          "avatar": "🎨",
           "placeholderColor": "#E8F0E2",
           "message": "To the undisputed queen of creativity and dance floor energy: so glad to know you! Wishing you the happiest, healthiest year ahead. Don't stop painting!"
         },
         {
           "id": "friend-meera",
           "from": "Meera",
+          "doodle": "cake-slice",
           "tag": "Cake Connoisseur",
           "caption": "Sweet tooth crew",
-          "avatar": "🍰",
           "placeholderColor": "#FDF4D4",
           "message": "Nobody appreciates a delicious slice of chocolate cake quite like you do. We saved the biggest slice for our reunion celebration! Get well soon and shine on!"
         },
         {
           "id": "friend-priya",
           "from": "Priya",
+          "doodle": "teacup",
           "tag": "Chai Partner",
           "caption": "Café hopping days",
-          "avatar": "☕",
           "placeholderColor": "#E7DCF4",
           "message": "Lucky, life is so much brighter with your laughs! Take all the time you need to recover, drink all the warm tea, and let everyone spoil you. Happy belated birthday!"
         },
         {
-          "id": "friend-kabir",
-          "from": "Kabir",
+          "id": "friend-dev",
+          "from": "Dev",
+          "doodle": "headphones",
           "tag": "DJ of the Group",
           "caption": "Concert night",
-          "avatar": "🎧",
           "placeholderColor": "#E0F2FE",
           "message": "Happy birthday Lucky! Next time we hang out, I promise to let you pick the playlist for the first 30 minutes. Rest up and bounce back with your signature energy!"
         },
         {
           "id": "friend-sneha",
           "from": "Sneha",
+          "doodle": "sparkle",
           "tag": "Study & Vent Buddy",
           "caption": "Library escape",
-          "avatar": "✨",
           "placeholderColor": "#FEE2E2",
           "message": "To my rock and sweetest confidante: I hope this year brings you peace, vibrant health, and endless inspiration. You deserve the sweetest things in the universe!"
         },
         {
           "id": "friend-tanvi",
           "from": "Tanvi",
+          "doodle": "dance",
           "tag": "Dance Floor Partner",
           "caption": "College festival",
-          "avatar": "💃",
           "placeholderColor": "#FEF3C7",
           "message": "The dance floor is literally not the same without Lucky! Sending you huge hugs and prayers for a speedy recovery. Can't wait to celebrate properly!"
         },
         {
           "id": "friend-arjun",
           "from": "Arjun",
+          "doodle": "sunset",
           "tag": "Photographer",
           "caption": "Sunset memories",
-          "avatar": "🌅",
           "placeholderColor": "#DCFCE7",
           "message": "Happy belated birthday Lucky! May your camera roll always be full of aesthetic shots and happy days. Wishing you the happiest year yet!"
         }
@@ -248,7 +248,7 @@
       "id": "finale",
       "index": 6,
       "tabTitle": "Make a Wish",
-      "heading": "Make a Wish, Kritika! 🎂",
+      "heading": "Make a Wish, Kritika!",
       "candlesCount": 3,
       "closingLetter": {
         "from": "Prem",

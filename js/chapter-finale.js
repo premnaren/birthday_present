@@ -1,6 +1,6 @@
 /**
  * Birthday Storybook - Chapter 6: Make a Wish Finale Controller
- * Interactive birthday cake, candle blowout with smoke puffs, soft confetti, and closing letter
+ * Grand birthday cake, candle blowout with smoke curls, bunting garland, soft confetti, and closing letter
  */
 
 const ChapterFinale = (() => {
@@ -24,18 +24,29 @@ const ChapterFinale = (() => {
     const letter = finaleData?.closingLetter || {
       from: "Prem",
       title: "A Note from Prem",
-      message: "Hey Kritika,\n\nWe know being unwell on your birthday wasn't in the plan, but birthdays don't expire—and neither does how much everyone loves and cherishes you.\n\nTake all the time you need to recover, drink all the warm tea, and let this little scrapbook remind you of all the love and smiles waiting for you on the other side.\n\nHappy Belated Birthday, Lucky! 🎂✨"
+      message: "Hey Kritika,\n\nWe know being unwell on your birthday wasn't in the plan, but birthdays don't expire—and neither does how much everyone loves and cherishes you.\n\nTake all the time you need to recover, drink all the warm tea, and let this little scrapbook remind you of all the love and smiles waiting for you on the other side.\n\nHappy Belated Birthday, Lucky!"
     };
 
     container.innerHTML = `
       <div class="finale-content-wrapper">
-        <div class="washi-tape washi-tape-pink tape-center"></div>
+        <!-- Hand-drawn Paper Bunting Garland Across Top -->
+        <div class="bunting-garland" aria-hidden="true">
+          <div class="bunting-flag"></div>
+          <div class="bunting-flag"></div>
+          <div class="bunting-flag"></div>
+          <div class="bunting-flag"></div>
+          <div class="bunting-flag"></div>
+          <div class="bunting-flag"></div>
+          <div class="bunting-flag"></div>
+          <div class="bunting-flag"></div>
+          <div class="bunting-flag"></div>
+        </div>
 
         <div class="chapter-header">
-          <span class="diary-ribbon-header">The Finale ✦ Make a Wish</span>
-          <h2 class="h2">${finaleData?.heading || "Make a Wish, Lucky! 🎂"}</h2>
-          <p class="chapter-intro-note" id="candle-status-prompt">
-            Tap each candle to blow it out, or blow them all together! ✨
+          <span class="diary-ribbon-header">The Finale • Make a Wish</span>
+          <h2 class="h2" style="margin-top: 6px;">${finaleData?.heading || "Make a Wish, Lucky!"}</h2>
+          <p class="chapter-intro-note font-caption" id="candle-status-prompt" style="color: var(--color-ink-muted);">
+            Tap each candle to blow it out, or blow them all together!
           </p>
         </div>
 
@@ -75,14 +86,13 @@ const ChapterFinale = (() => {
               </div>
             </div>
 
-            <!-- Fresh Strawberry & Berry Cake Toppings -->
+            <!-- Fresh Strawberry & Berry Cake Toppings (Hand-drawn SVG Doodles) -->
             <div class="cake-toppings-row">
-              <span class="cake-berry berry-1" title="Fresh strawberry">🍓</span>
+              <svg class="cake-doodle-topping berry-1"><use href="#doodle-strawberry"/></svg>
               <span class="cream-dollop dollop-1"></span>
-              <span class="cake-berry berry-2" title="Sweet strawberry">🍓</span>
+              <svg class="cake-doodle-topping berry-2"><use href="#doodle-strawberry"/></svg>
               <span class="cream-dollop dollop-2"></span>
-              <span class="cake-berry berry-3" title="Berry delight">🫐</span>
-              <span class="cake-leaf leaf-1">🍃</span>
+              <svg class="cake-doodle-topping leaf-1"><use href="#doodle-leaf-sprig"/></svg>
             </div>
 
             <!-- Top Tier: Velvety Strawberry Cream with Glossy Glaze Drips -->
@@ -119,14 +129,12 @@ const ChapterFinale = (() => {
             <!-- Bottom Tier: Decadent Belgian Chocolate Velvet Sponge -->
             <div class="cake-tier-bottom">
               <div class="tier-sponge-crumb"></div>
-              <!-- Chocolate swirls and gold pearls -->
               <div class="chocolate-drizzle"></div>
               <div class="gold-pearl p1"></div>
               <div class="gold-pearl p2"></div>
               <div class="gold-pearl p3"></div>
               <div class="gold-pearl p4"></div>
               <div class="gold-pearl p5"></div>
-              <!-- Bottom Scalloped Piped Frosting -->
               <div class="bottom-scallop-frosting"></div>
             </div>
 
@@ -137,18 +145,22 @@ const ChapterFinale = (() => {
               <div class="pedestal-foot"></div>
             </div>
 
+            <!-- Wooden Table Surface Under Cake Pedestal -->
+            <div class="wooden-table-surface"></div>
+
             <!-- Warm Drop Shadow on Table -->
             <div class="cake-table-shadow"></div>
           </div>
 
           <button class="btn-blow-all" id="btn-blow-all">
-            Blow Out All Candles 🕯️✨
+            <span>Blow Out All Candles</span>
+            <svg class="doodle-icon" style="width: 20px; height: 20px;"><use href="#doodle-sparkle"/></svg>
           </button>
         </div>
 
-        <!-- Prem's Closing Letter (Revealed after candles are blown out) -->
+        <!-- Prem's Closing Letter (Strictly Hidden until candles are blown out) -->
         <div class="closing-letter-card" id="closing-letter">
-          <div class="washi-tape washi-tape-butter tape-center" style="width: 70px; height: 18px;"></div>
+          <div class="washi-tape washi-tape-butter tape-corner-tr" style="width: 75px; height: 20px;"></div>
           <h3 class="closing-letter-title">${letter.title || "A Note from Prem"}</h3>
           
           <div class="closing-letter-text">
@@ -156,12 +168,19 @@ const ChapterFinale = (() => {
           </div>
 
           <div class="closing-signoff">
-            <span class="font-handwriting" style="font-size: 1.45rem; color: var(--color-rose-deep);">
-              Always rooting for you 💖 - ${letter.from}
+            <span class="font-handwriting" style="font-size: 1.45rem; color: var(--color-rose-deep); display: flex; align-items: center; gap: 6px;">
+              Always rooting for you <svg class="doodle-heart-inline" style="width: 22px; height: 22px;"><use href="#doodle-heart"/></svg> — ${letter.from}
             </span>
-            <button class="btn-replay-storybook" id="btn-replay">
-              Replay from Cover ↺
-            </button>
+            
+            <div class="finale-action-buttons">
+              <button class="btn-view-stamps" id="btn-view-stamps" title="View collected passport stamps">
+                <svg class="doodle-icon" style="width: 18px; height: 18px;"><use href="#doodle-wax-star"/></svg>
+                <span>Passport Stamps</span>
+              </button>
+              <button class="btn-replay-storybook" id="btn-replay">
+                Replay from Cover ↺
+              </button>
+            </div>
           </div>
         </div>
 
@@ -201,6 +220,16 @@ const ChapterFinale = (() => {
         }
       });
     }
+
+    const btnViewStamps = document.getElementById('btn-view-stamps');
+    if (btnViewStamps) {
+      btnViewStamps.addEventListener('click', () => {
+        const modal = document.getElementById('stamp-modal-container');
+        if (modal) {
+          modal.classList.add('active');
+        }
+      });
+    }
   }
 
   function extinguishCandle(candleEl) {
@@ -215,9 +244,9 @@ const ChapterFinale = (() => {
 
     const prompt = document.getElementById('candle-status-prompt');
     if (prompt) {
-      if (litCandlesCount === 2) prompt.textContent = "Two more to go! Make a wish ✨";
-      if (litCandlesCount === 1) prompt.textContent = "Last candle! Dream big 💖";
-      if (litCandlesCount === 0) prompt.textContent = "✨ All wishes sent to the universe! ✨";
+      if (litCandlesCount === 2) prompt.textContent = "Two more to go! Make a wish.";
+      if (litCandlesCount === 1) prompt.textContent = "Last candle! Dream big.";
+      if (litCandlesCount === 0) prompt.textContent = "All wishes sent to the universe!";
     }
 
     if (litCandlesCount <= 0 && !isWishCompleted) {

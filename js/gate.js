@@ -191,7 +191,7 @@ const EntryGate = (() => {
       feedbackText.textContent = result.hint || "That doesn't quite sound like the birthday girl… try again?";
       
       if (failedAttempts >= 3) {
-        feedbackHint.textContent = "💡 Friendly Hint: Her nickname is Lucky, and her birthday is October 16th!";
+        feedbackHint.textContent = "Friendly Hint: Her nickname is Lucky, and her birthday is October 16th!";
       } else {
         feedbackHint.textContent = "";
       }

@@ -15,6 +15,6 @@
 | REQ-09 | Chapter 3 Family: Vintage photo album with photo corners and pressed flora | SPEC Goal 3 | Complete |
 | REQ-10 | Chapter 4 Siblings: Playful chaotic scrapbook page with sticker collage & banter | SPEC Goal 3 | Complete |
 | REQ-11 | Chapter 5 Cousins: Summer postcards and unfolding letter envelope interaction | SPEC Goal 3 | Complete |
-| REQ-12 | Final Chapter: Interactive birthday cake, tap-to-blow candles, confetti burst & closing note | SPEC Goal 3 | Pending |
-| REQ-13 | Mobile-first responsive optimization (360px–430px mobile up to 1200px+ desktop) | SPEC Goal 4 | Pending |
-| REQ-14 | Privacy metadata (`noindex`, `robots.txt`) and custom WhatsApp OpenGraph preview | Non-Goals | Pending |
+| REQ-12 | Final Chapter: Interactive birthday cake, tap-to-blow candles, confetti burst & closing note | SPEC Goal 3 | Complete |
+| REQ-13 | Mobile-first responsive optimization (360px–430px mobile up to 1200px+ desktop) | SPEC Goal 4 | Complete |
+| REQ-14 | Privacy metadata (`noindex`, `robots.txt`) and custom WhatsApp OpenGraph preview | Non-Goals | Complete |

@@ -1,0 +1,231 @@
+/* ==========================================================================
+   Birthday Storybook - Scrapbook Textures & Tactile Components
+   Torn paper, washi tape, Polaroids, stickers, pins, and wobbly angles
+   ========================================================================== */
+
+/* --- Paper Grain Overlay --- */
+.paper-grain {
+  position: relative;
+}
+
+.paper-grain::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../assets/textures/paper-grain.svg');
+  background-repeat: repeat;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --- Washi Tape Strips --- */
+.washi-tape {
+  position: absolute;
+  height: 26px;
+  width: 90px;
+  background-color: rgba(244, 194, 199, 0.75);
+  box-shadow: var(--shadow-tape);
+  z-index: 10;
+  pointer-events: none;
+  /* Serrated / torn washi tape edge ends */
+  clip-path: polygon(
+    0% 4px, 3% 0px, 6% 3px, 9% 0px, 12% 4px, 15% 1px, 18% 3px, 21% 0px, 
+    100% 0%, 98% 3px, 100% 7px, 97% 11px, 100% 15px, 98% 19px, 100% 23px, 97% 26px,
+    78% 26px, 75% 23px, 72% 26px, 69% 22px, 0% 26px, 2% 21px, 0% 16px, 3% 10px
+  );
+  backdrop-filter: blur(0.5px);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.15) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+.washi-tape.tape-center {
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+}
+
+.washi-tape.tape-top-left {
+  top: -10px;
+  left: -15px;
+  transform: rotate(-18deg);
+}
+
+.washi-tape.tape-top-right {
+  top: -10px;
+  right: -15px;
+  transform: rotate(18deg);
+}
+
+.washi-tape-pink {
+  background-color: rgba(244, 194, 199, 0.8);
+}
+
+.washi-tape-sage {
+  background-color: rgba(183, 201, 168, 0.8);
+}
+
+.washi-tape-butter {
+  background-color: rgba(247, 227, 161, 0.85);
+}
+
+.washi-tape-lavender {
+  background-color: rgba(205, 184, 227, 0.8);
+}
+
+.washi-tape-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.4) 15%, transparent 16%);
+  background-size: 8px 8px;
+}
+
+/* --- Polaroid Photo Frames --- */
+.polaroid-frame {
+  background: #FFFDF9;
+  padding: 12px 12px 28px 12px;
+  box-shadow: var(--shadow-polaroid);
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform var(--duration-fast) var(--ease-gentle), box-shadow var(--duration-fast) var(--ease-gentle);
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+}
+
+.polaroid-frame:hover {
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: var(--shadow-lifted);
+  z-index: 20;
+}
+
+.polaroid-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #F3EBE0;
+  overflow: hidden;
+  position: relative;
+  border-radius: 1px;
+}
+
+.polaroid-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: contrast(102%) saturate(95%);
+}
+
+.polaroid-caption {
+  margin-top: 10px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* --- Torn Paper Cards & Sticky Notes --- */
+.torn-card {
+  background: var(--color-paper-cream);
+  padding: 24px;
+  box-shadow: var(--shadow-paper);
+  position: relative;
+  clip-path: polygon(
+    0% 2px, 2% 0px, 8% 2px, 15% 0px, 22% 3px, 35% 0px, 48% 2px, 60% 0px, 75% 3px, 90% 0px, 100% 2px,
+    99% 15%, 100% 30%, 98% 45%, 100% 60%, 99% 75%, 100% 90%, 99% 100%,
+    88% 99%, 75% 100%, 62% 98%, 45% 100%, 30% 99%, 15% 100%, 0% 98%,
+    1% 85%, 0% 70%, 2% 55%, 0% 40%, 1% 25%, 0% 10%
+  );
+}
+
+.sticky-note {
+  background: var(--color-butter-light);
+  padding: 18px;
+  box-shadow: var(--shadow-paper);
+  position: relative;
+  font-family: 'Gaegu', cursive;
+  color: var(--color-ink);
+  font-size: 1.15rem;
+}
+
+.sticky-note-pink {
+  background: var(--color-blush-light);
+}
+
+.sticky-note-sage {
+  background: var(--color-sage-light);
+}
+
+.sticky-note-lavender {
+  background: var(--color-lavender-light);
+}
+
+/* --- Scrapbook Stickers & Doodles --- */
+.scrapbook-sticker {
+  display: inline-block;
+  padding: 4px;
+  background: #FFFDF8;
+  border-radius: var(--radius-sticker);
+  box-shadow: var(--shadow-sticker);
+  border: 2px solid #FFFDF8;
+  transition: transform 0.2s var(--ease-bounce);
+  cursor: pointer;
+}
+
+.scrapbook-sticker:hover {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+.scrapbook-doodle {
+  pointer-events: none;
+  position: absolute;
+  opacity: 0.85;
+}
+
+/* --- Handcrafted Tilt Utilities (-6deg to +6deg) --- */
+.tilt-neg-6 { transform: rotate(-6deg); }
+.tilt-neg-5 { transform: rotate(-5deg); }
+.tilt-neg-4 { transform: rotate(-4deg); }
+.tilt-neg-3 { transform: rotate(-3deg); }
+.tilt-neg-2 { transform: rotate(-2deg); }
+.tilt-neg-1 { transform: rotate(-1deg); }
+
+.tilt-pos-1 { transform: rotate(1deg); }
+.tilt-pos-2 { transform: rotate(2deg); }
+.tilt-pos-3 { transform: rotate(3deg); }
+.tilt-pos-4 { transform: rotate(4deg); }
+.tilt-pos-5 { transform: rotate(5deg); }
+.tilt-pos-6 { transform: rotate(6deg); }
+
+/* --- Gentle Wobble Animation --- */
+@keyframes gentle-wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2.5deg) scale(1.02); }
+  75% { transform: rotate(2.5deg) scale(1.02); }
+}
+
+.animate-wobble {
+  animation: gentle-wobble 0.6s var(--ease-bounce);
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-wobble {
+    animation: none !important;
+  }
+  .polaroid-frame:hover {
+    transform: none !important;
+  }
+  .scrapbook-sticker:hover {
+    transform: none !important;
+  }
+}

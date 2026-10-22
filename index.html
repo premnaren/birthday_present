@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>A Storybook for Kritika ("Lucky") 📖✨</title>
+  
+  <!-- Privacy: Do not index this personal gift -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="A handcrafted personal birthday storybook for Kritika ('Lucky').">
+
+  <!-- OpenGraph Metadata for WhatsApp & Social Previews -->
+  <meta property="og:title" content="A Belated Birthday Storybook for Kritika 📖✨">
+  <meta property="og:description" content="A handcrafted scrapbook of memories, laughs, and love from your people.">
+  <meta property="og:type" content="website">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/scrapbook.css">
+  <link rel="stylesheet" href="css/audio-player.css">
+  <link rel="stylesheet" href="css/book-stage.css">
+</head>
+<body class="paper-grain">
+
+  <!-- Ambient Audio Toggle Widget -->
+  <div class="audio-toggle-container" id="audio-container">
+    <span class="audio-label" id="audio-status-text">Sound: Off</span>
+    <button id="audio-toggle-btn" class="audio-btn muted" aria-label="Toggle background music and tactile sounds" title="Toggle audio">
+      <svg class="audio-icon" viewBox="0 0 24 24">
+        <!-- Speaker body -->
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+        <!-- Sound Waves -->
+        <path class="sound-wave" d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+        <path class="sound-wave" d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+        <!-- Slash for muted state -->
+        <line class="slash-line" x1="2" y1="2" x2="22" y2="22" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Main Desk Viewport -->
+  <main class="desk-viewport" id="main-desk">
+    
+    <!-- Scrapbook Journal Element -->
+    <article class="scrapbook-journal" id="journal-book" aria-label="Kritika's Birthday Scrapbook">
+      
+      <!-- Stitched Spine Effect -->
+      <div class="journal-spine" aria-hidden="true"></div>
+
+      <!-- Hanging Bookmark Ribbon Tail -->
+      <div class="bookmark-ribbon-container">
+        <div class="bookmark-tail" id="bookmark-tail" title="Quick Chapters Menu" aria-label="Open Chapters Menu"></div>
+      </div>
+
+      <!-- Chapter Tabs Navigation Strip -->
+      <nav class="chapter-tabs-strip" id="chapter-tabs" aria-label="Chapters Navigation">
+        <!-- Tabs injected by js/book-stage.js -->
+      </nav>
+
+      <!-- Pages Viewport -->
+      <section class="page-viewport" id="page-viewport">
+        
+        <!-- Chapter 0: Gate (Mount Point) -->
+        <div class="chapter-slide active-chapter" id="chapter-0" data-chapter="gate" role="region" aria-label="Chapter 0: Cover Gate">
+          <!-- Dynamically populated or rendered in Phase 2 -->
+          <div class="chapter-placeholder">
+            <h1 class="h1">A Secret Diary...</h1>
+            <p class="font-caption">Initializing storybook...</p>
+          </div>
+        </div>
+
+        <!-- Chapter 1: Let Me Guess (Mount Point) -->
+        <div class="chapter-slide" id="chapter-1" data-chapter="guess" role="region" aria-label="Chapter 1: Let Me Guess">
+          <div class="chapter-placeholder">
+            <h2 class="h2">Let Me Guess...</h2>
+          </div>
+        </div>
+
+        <!-- Chapter 2: Friends (Mount Point) -->
+        <div class="chapter-slide" id="chapter-2" data-chapter="friends" role="region" aria-label="Chapter 2: Friends Corkboard">
+          <div class="chapter-placeholder">
+            <h2 class="h2">The Friends Corkboard</h2>
+          </div>
+        </div>
+
+        <!-- Chapter 3: Family (Mount Point) -->
+        <div class="chapter-slide" id="chapter-3" data-chapter="family" role="region" aria-label="Chapter 3: Family Album">
+          <div class="chapter-placeholder">
+            <h2 class="h2">Family Album</h2>
+          </div>
+        </div>
+
+        <!-- Chapter 4: Siblings (Mount Point) -->
+        <div class="chapter-slide" id="chapter-4" data-chapter="siblings" role="region" aria-label="Chapter 4: Sibling Banter">
+          <div class="chapter-placeholder">
+            <h2 class="h2">Sibling Banter</h2>
+          </div>
+        </div>
+
+        <!-- Chapter 5: Cousins (Mount Point) -->
+        <div class="chapter-slide" id="chapter-5" data-chapter="cousins" role="region" aria-label="Chapter 5: Cousin Postcards">
+          <div class="chapter-placeholder">
+            <h2 class="h2">Cousin Postcards</h2>
+          </div>
+        </div>
+
+        <!-- Chapter 6: Make a Wish (Mount Point) -->
+        <div class="chapter-slide" id="chapter-6" data-chapter="finale" role="region" aria-label="Chapter 6: Make a Wish Finale">
+          <div class="chapter-placeholder">
+            <h2 class="h2">Make a Wish! 🎂</h2>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Bottom Navigation Bar -->
+      <footer class="journal-nav-bar" id="journal-nav">
+        <button id="btn-prev-page" class="nav-page-btn" aria-label="Previous Page" disabled>
+          <span aria-hidden="true">←</span> Previous
+        </button>
+        <span class="page-counter" id="page-counter">Cover</span>
+        <button id="btn-next-page" class="nav-page-btn" aria-label="Next Page">
+          Next <span aria-hidden="true">→</span>
+        </button>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <!-- GSAP Animation Library from cdnjs with safe fallback -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+  <script>
+    // Fallback if CDN fails or runs completely offline
+    if (typeof gsap === 'undefined') {
+      console.warn("GSAP CDN unavailable, using minimal fallback animation shim.");
+      window.gsap = {
+        to: (el, opts) => {
+          if (opts.onComplete) opts.onComplete();
+        },
+        fromTo: (el, from, to) => {
+          if (to.onComplete) to.onComplete();
+        },
+        set: (el, opts) => {}
+      };
+    }
+  </script>
+
+  <!-- Application Logic Modules -->
+  <script src="js/content-loader.js"></script>
+  <script src="js/audio-player.js"></script>
+  <script src="js/book-stage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

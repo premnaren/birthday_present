@@ -264,3 +264,59 @@ html, body {
     padding: 40px 48px 70px 48px;
   }
 }
+
+/* Mobile Screens (<= 480px) */
+@media (max-width: 480px) {
+  .desk-viewport {
+    padding: 12px 8px 24px;
+  }
+
+  .scrapbook-journal {
+    min-height: 580px;
+    margin-top: 4px;
+    border-radius: var(--radius-sm);
+  }
+
+  .journal-spine {
+    width: 16px;
+  }
+
+  .page-viewport {
+    padding: 24px 10px 40px 20px;
+  }
+
+  .chapter-slide {
+    padding: 24px 10px 45px 20px;
+  }
+
+  .chapter-tabs-strip {
+    left: 14px;
+    top: -30px;
+    max-width: calc(100% - 50px);
+  }
+
+  .chapter-tab {
+    padding: 3px 8px;
+    font-size: 0.88rem;
+  }
+
+  .journal-nav-bar {
+    padding: 10px 14px 12px 20px;
+  }
+
+  .nav-page-btn {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

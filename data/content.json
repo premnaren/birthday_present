@@ -1,0 +1,176 @@
+{
+  "recipient": {
+    "displayName": "Kritika",
+    "nickname": "Lucky",
+    "acceptedNames": [
+      "kritika",
+      "lucky",
+      "kriti",
+      "kittu",
+      "kritika "
+    ],
+    "birthday": {
+      "day": 16,
+      "month": 10
+    },
+    "interests": [
+      "dancing",
+      "painting",
+      "cakes",
+      "tea",
+      "blankets"
+    ]
+  },
+  "siteMeta": {
+    "title": "A Storybook for Kritika 📖✨",
+    "subtitle": "A little bundle of love for the birthday girl"
+  },
+  "guesses": [
+    {
+      "id": 1,
+      "text": "You are currently bundled up in your coziest blanket, sipping something warm.",
+      "tag": "Cozy Vibe"
+    },
+    {
+      "id": 2,
+      "text": "Your hands or sketchbook have some stray paint streaks from a sudden burst of creativity.",
+      "tag": "Artist Soul"
+    },
+    {
+      "id": 3,
+      "text": "You have mentally scheduled at least three different cake tastings this week.",
+      "tag": "Sweet Tooth"
+    },
+    {
+      "id": 4,
+      "text": "A song came on recently and you couldn't help doing a private dance routine in your room.",
+      "tag": "Dancer Mode"
+    },
+    {
+      "id": 5,
+      "text": "You were wondering if everyone forgot your belated celebration... (Never in a million years!).",
+      "tag": "Surprise!"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "gate",
+      "index": 0,
+      "tabTitle": "Cover",
+      "heading": "A Secret Storybook"
+    },
+    {
+      "id": "guess",
+      "index": 1,
+      "tabTitle": "Let Me Guess",
+      "heading": "Let Me Guess..."
+    },
+    {
+      "id": "friends",
+      "index": 2,
+      "tabTitle": "Friends",
+      "heading": "The Friends Corkboard",
+      "intro": "Tap any Polaroid to flip it and read the note on the back!",
+      "entries": [
+        {
+          "id": "friend-1",
+          "from": "Ananya",
+          "tag": "Bestie since day one",
+          "caption": "Late night giggle fits",
+          "placeholderColor": "#FCE4E8",
+          "doodle": "heart",
+          "message": "Happy belated birthday Lucky! Missing our endless tea sessions and spontaneous dance breaks. Get fully rested and back on your feet soon—we have so many adventures lined up!"
+        },
+        {
+          "id": "friend-2",
+          "from": "Rohan",
+          "tag": "The Art Critic",
+          "caption": "Watercolor chaos",
+          "placeholderColor": "#E8F0E2",
+          "doodle": "palette",
+          "message": "To the undisputed queen of creativity and dance floor energy: so glad to know you! Wishing you the happiest, healthiest year ahead. Don't stop painting!"
+        },
+        {
+          "id": "friend-3",
+          "from": "Meera",
+          "tag": "Cake Connoisseur",
+          "caption": "Sweet tooth crew",
+          "placeholderColor": "#FDF4D4",
+          "doodle": "cupcake",
+          "message": "Nobody appreciates a delicious slice of chocolate cake quite like you do. We saved the biggest slice for our reunion celebration! Get well soon and shine on!"
+        }
+      ]
+    },
+    {
+      "id": "family",
+      "index": 3,
+      "tabTitle": "Family",
+      "heading": "Family Album",
+      "intro": "Treasured memories and blessings from home.",
+      "entries": [
+        {
+          "id": "family-1",
+          "from": "Mom & Dad",
+          "relation": "Parents",
+          "caption": "Our radiant sunshine",
+          "placeholderColor": "#F5EFE4",
+          "message": "Watching you grow with so much warmth, kindness, and talent brings us endless joy. May this coming year shower you with vibrant health, glowing happiness, and laughter every single day."
+        },
+        {
+          "id": "family-2",
+          "from": "Dadi",
+          "relation": "Grandmother",
+          "caption": "Warmest blessings",
+          "placeholderColor": "#EFE6F7",
+          "message": "Sending all my love, prayers, and heartfelt blessings to my sweetest Lucky beta. Always keep that charming smile on your face."
+        }
+      ]
+    },
+    {
+      "id": "siblings",
+      "index": 4,
+      "tabTitle": "Siblings",
+      "heading": "Sibling Shenanigans",
+      "intro": "Things only siblings understand (and argue about).",
+      "entries": [
+        {
+          "id": "sib-1",
+          "from": "Your Sibling",
+          "tag": "Certified Annoyance",
+          "caption": "Official Cake Stealer",
+          "placeholderColor": "#FBE6D6",
+          "message": "Happy Birthday Lucky! I promise I only took ONE bite of your birthday cake while you weren't looking. Okay maybe two. Thanks for being the coolest partner in crime!"
+        }
+      ]
+    },
+    {
+      "id": "cousins",
+      "index": 5,
+      "tabTitle": "Cousins",
+      "heading": "Cousin Postcards",
+      "intro": "Summer letters from across the miles.",
+      "entries": [
+        {
+          "id": "cousin-1",
+          "from": "The Cousin Crew",
+          "stamp": "Postcard Stamp",
+          "caption": "Next reunion loading...",
+          "placeholderColor": "#E5EEF9",
+          "message": "Dear Lucky, vacations and family holidays are never quite as energetic without your dance routines and laughs. Rest up, recharge, and get ready for our next hangout!"
+        }
+      ]
+    },
+    {
+      "id": "finale",
+      "index": 6,
+      "tabTitle": "Make a Wish",
+      "heading": "Make a Wish, Kritika!",
+      "candlesCount": 3,
+      "closingLetter": {
+        "from": "Prem",
+        "title": "A Note from Prem",
+        "message": "Hey Kritika,\n\nWe know being unwell on your birthday wasn't in the plan, but birthdays don't expire—and neither does how much everyone loves and cherishes you.\n\nTake all the time you need to recover, drink all the warm tea, and let this little scrapbook remind you of all the love and smiles waiting for you on the other side.\n\nHappy Belated Birthday, Lucky! 🎂✨"
+      }
+    }
+  ]
+}

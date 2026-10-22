@@ -41,7 +41,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.EntryGate.init();
   }
 
-  // 5. Render Placeholder Shells for remaining chapters
+  // 5. Initialize Let Me Guess (Chapter 1)
+  if (window.LetMeGuess) {
+    window.LetMeGuess.init();
+  }
+
+  // 6. Render Placeholder Shells for remaining chapters (Phase 3 & 4)
   renderInitialChapterShells(content);
 });
 
@@ -52,26 +57,7 @@ function renderInitialChapterShells(content) {
   if (!content) return;
 
   // Chapter 0 is managed by EntryGate.init()
-
-  // Chapter 1: Let Me Guess preview
-  const ch1 = document.getElementById('chapter-1');
-  if (ch1) {
-    ch1.innerHTML = `
-      <div style="max-width: 480px; margin: 0 auto;">
-        <div class="washi-tape washi-tape-butter tape-center"></div>
-        <h2 class="h2" style="text-align: center; margin-top: 15px;">Let Me Guess, Kritika...</h2>
-        <p class="font-caption" style="text-align: center; color: var(--color-ink-muted); margin-bottom: 20px;">
-          (Interactive guessing cards in Phase 2)
-        </p>
-        <div class="sticky-note sticky-note-pink tilt-pos-2" style="margin-bottom: 16px;">
-          <p class="font-caption">🍰 "You've mentally scheduled at least 3 cake tastings this week."</p>
-        </div>
-        <div class="sticky-note sticky-note-sage tilt-neg-2">
-          <p class="font-caption">🎨 "Your sketchbook has random fresh paint streaks."</p>
-        </div>
-      </div>
-    `;
-  }
+  // Chapter 1 is managed by LetMeGuess.init()
 
   // Chapter 2: Friends Corkboard preview
   const ch2 = document.getElementById('chapter-2');

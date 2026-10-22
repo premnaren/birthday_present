@@ -1,0 +1,236 @@
+/* ==========================================================================
+   Birthday Storybook - Chapter 1: Let Me Guess & Celebration Reveal Styles
+   Interactive card deck, reaction stamps, and soft paper confetti
+   ========================================================================== */
+
+.guess-chapter-container {
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.guess-header {
+  margin-bottom: 20px;
+}
+
+.guess-step-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(74, 59, 63, 0.2);
+  transition: all 0.25s var(--ease-bounce);
+}
+
+.step-dot.active {
+  background: var(--color-rose-deep);
+  transform: scale(1.3);
+}
+
+.step-dot.completed {
+  background: var(--color-sage);
+}
+
+/* Card Deck Stage */
+.guess-card-stage {
+  width: 100%;
+  min-height: 290px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 800px;
+}
+
+.guess-card {
+  width: 100%;
+  background: var(--color-paper-cream);
+  padding: 32px 24px 26px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-paper-deep);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s var(--ease-gentle), opacity 0.3s ease;
+}
+
+.guess-tag {
+  font-family: 'Gaegu', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: var(--color-butter-light);
+  border: 1px dashed rgba(74, 59, 63, 0.25);
+  color: var(--color-ink-light);
+  margin-bottom: 14px;
+}
+
+.guess-text {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.4rem, 4vw, 1.85rem);
+  font-weight: 600;
+  color: var(--color-ink);
+  line-height: 1.35;
+  margin-bottom: 22px;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Reaction Buttons */
+.guess-actions {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-guess-reaction {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(74, 59, 63, 0.2);
+  cursor: pointer;
+  box-shadow: var(--shadow-tape);
+  transition: transform 0.2s var(--ease-bounce), box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.btn-guess-yes {
+  background: var(--color-sage-light);
+  color: #2F4D20;
+}
+
+.btn-guess-yes:hover {
+  transform: translateY(-2px) rotate(2deg) scale(1.05);
+  box-shadow: var(--shadow-sticker);
+}
+
+.btn-guess-nope {
+  background: var(--color-blush-light);
+  color: #6D2E37;
+}
+
+.btn-guess-nope:hover {
+  transform: translateY(-2px) rotate(-2deg) scale(1.05);
+  box-shadow: var(--shadow-sticker);
+}
+
+/* Reaction Rubber Stamp Overlay */
+.reaction-stamp {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg) scale(0);
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  padding: 6px 18px;
+  border: 3px dashed var(--color-rose-deep);
+  color: var(--color-rose-deep);
+  border-radius: 6px;
+  background: rgba(255, 253, 248, 0.9);
+  box-shadow: 0 4px 14px rgba(188, 99, 118, 0.25);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10;
+}
+
+.reaction-stamp.stamped {
+  opacity: 1;
+  animation: stamp-slam 0.4s var(--ease-bounce) forwards;
+}
+
+@keyframes stamp-slam {
+  0% { transform: translate(-50%, -50%) rotate(25deg) scale(2.2); opacity: 0; }
+  70% { transform: translate(-50%, -50%) rotate(-14deg) scale(0.9); opacity: 1; }
+  100% { transform: translate(-50%, -50%) rotate(-10deg) scale(1); opacity: 1; }
+}
+
+/* Grand Celebration Reveal Card */
+.guess-reveal-card {
+  width: 100%;
+  background: var(--color-paper-cream);
+  padding: 34px 24px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lifted);
+  border: 2px dashed rgba(188, 99, 118, 0.4);
+  position: relative;
+  text-align: center;
+  display: none;
+  animation: gentle-wobble 0.6s var(--ease-bounce);
+}
+
+.reveal-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(2.2rem, 5.5vw, 3rem);
+  font-weight: 700;
+  color: var(--color-rose-deep);
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+
+.reveal-message {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+  line-height: 1.45;
+  margin-bottom: 24px;
+}
+
+.btn-continue-friends {
+  background: linear-gradient(135deg, var(--color-rose-deep), var(--color-rose));
+  color: #FFFDF8;
+  font-family: 'Caveat', cursive;
+  font-size: 1.45rem;
+  font-weight: 700;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 6px 18px rgba(188, 99, 118, 0.4);
+  cursor: pointer;
+  transition: transform 0.25s var(--ease-bounce), box-shadow 0.2s ease;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-continue-friends:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 24px rgba(188, 99, 118, 0.5);
+}
+
+/* Soft Paper Confetti */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 14px;
+  opacity: 0.85;
+  border-radius: 1px;
+}

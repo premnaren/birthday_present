@@ -1,0 +1,12 @@
+{
+  "name": "birthday-storybook",
+  "version": "1.0.0",
+  "description": "A handcrafted birthday storybook for Kritika ('Lucky')",
+  "main": "serve.js",
+  "scripts": {
+    "start": "node serve.js"
+  },
+  "keywords": ["scrapbook", "birthday", "storybook"],
+  "author": "Prem",
+  "license": "UNLICENSED"
+}

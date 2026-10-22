@@ -49,8 +49,8 @@ const LetMeGuess = (() => {
             We know being unwell on your birthday wasn't the plan, but you are so deeply loved and celebrated every single day.
             Your people put together their favourite memories and letters just for you!
           </p>
-          <button class="btn-continue-friends" id="btn-to-friends">
-            Open The Friends Chapter <span aria-hidden="true">→</span>
+          <button class="btn-chapter-advance" id="btn-to-parents">
+            Open Mom & Daddy's Letters <span aria-hidden="true">→</span>
           </button>
         </div>
       </div>
@@ -173,10 +173,10 @@ const LetMeGuess = (() => {
 
       fireSoftPaperConfetti();
 
-      // Bind button to unlock and turn to Chapter 2
-      const btnToFriends = document.getElementById('btn-to-friends');
-      if (btnToFriends) {
-        btnToFriends.addEventListener('click', () => {
+      // Bind button to unlock and turn to Chapter 2 (Parents)
+      const btnToParents = document.getElementById('btn-to-parents');
+      if (btnToParents) {
+        btnToParents.addEventListener('click', () => {
           if (window.BookStage) {
             window.BookStage.unlockChapter(2);
             window.BookStage.goToChapter(2, 'forward');

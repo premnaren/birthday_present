@@ -7,10 +7,10 @@ const BookStage = (() => {
   const CHAPTERS = [
     { id: "gate", index: 0, title: "Cover", label: "Cover Gate" },
     { id: "guess", index: 1, title: "Guesses", label: "Let Me Guess" },
-    { id: "friends", index: 2, title: "Friends", label: "Friends Corkboard" },
-    { id: "family", index: 3, title: "Family", label: "Family Album" },
-    { id: "siblings", index: 4, title: "Siblings", label: "Sibling Banter" },
-    { id: "cousins", index: 5, title: "Cousins", label: "Cousin Postcards" },
+    { id: "parents", index: 2, title: "Parents", label: "Mom & Daddy" },
+    { id: "og_opp", index: 3, title: "OG Opp", label: "The OG Opp" },
+    { id: "cousins", index: 4, title: "Cousins", label: "Cousin Air Mail" },
+    { id: "friends", index: 5, title: "Friends", label: "Friends Corkboard" },
     { id: "finale", index: 6, title: "Wish! 🎂", label: "Make a Wish" }
   ];
 

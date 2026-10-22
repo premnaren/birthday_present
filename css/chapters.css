@@ -1,6 +1,6 @@
 /* ==========================================================================
    Birthday Storybook - Scrapbook Chapters Styles
-   Friends Corkboard, Family Album, Siblings Zine, and Cousins Postcards
+   Parents (Mom & Daddy), The OG Opp, Cousin Air Mail, and Friends Corkboard
    ========================================================================== */
 
 /* --- Common Chapter Wrapper --- */
@@ -29,179 +29,7 @@
 }
 
 /* ==========================================================================
-   Chapter 2: Friends Corkboard & Flippable Polaroids
-   ========================================================================== */
-
-.corkboard-canvas {
-  width: 100%;
-  min-height: 440px;
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 10px 4px 20px;
-}
-
-/* 3D Flip Card Container */
-.polaroid-3d-card {
-  width: 160px;
-  height: 220px;
-  perspective: 1000px;
-  cursor: pointer;
-  user-select: none;
-  touch-action: manipulation;
-  position: relative;
-}
-
-.polaroid-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.65s var(--ease-bounce), box-shadow 0.3s ease;
-  border-radius: var(--radius-sm);
-}
-
-.polaroid-3d-card.is-flipped .polaroid-inner {
-  transform: rotateY(180deg);
-}
-
-/* Front & Back Faces */
-.polaroid-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-polaroid);
-  padding: 10px 10px 22px 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Front Face */
-.polaroid-front {
-  background: #FFFDF9;
-}
-
-.polaroid-front .polaroid-photo {
-  width: 100%;
-  height: 125px;
-  background: #F3EBE0;
-  border-radius: 1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.2rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.polaroid-front .polaroid-caption {
-  margin-top: 8px;
-  font-family: 'Caveat', cursive;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--color-ink);
-  text-align: center;
-}
-
-.flip-hint {
-  font-family: 'Gaegu', cursive;
-  font-size: 0.85rem;
-  color: var(--color-rose-deep);
-  text-align: center;
-  margin-top: auto;
-}
-
-/* Back Face */
-.polaroid-back {
-  background: var(--color-paper-cream);
-  background-image: repeating-linear-gradient(
-    transparent,
-    transparent 18px,
-    rgba(74, 59, 63, 0.08) 18px,
-    rgba(74, 59, 63, 0.08) 19px
-  );
-  transform: rotateY(180deg);
-  padding: 14px 12px;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.polaroid-back::-webkit-scrollbar {
-  display: none;
-}
-
-.polaroid-back-from {
-  font-family: 'Permanent Marker', cursive;
-  font-size: 1rem;
-  color: var(--color-rose-deep);
-  margin-bottom: 6px;
-}
-
-.polaroid-back-msg {
-  font-family: 'Gaegu', cursive;
-  font-size: 1.05rem;
-  color: var(--color-ink);
-  line-height: 1.3;
-}
-
-/* Memory Jar Widget */
-.memory-jar-container {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.memory-jar-btn {
-  background: var(--color-butter-light);
-  border: 1px dashed var(--color-ink-light);
-  border-radius: 20px;
-  padding: 8px 18px;
-  font-family: 'Gaegu', cursive;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--color-ink);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: var(--shadow-tape);
-  transition: transform 0.2s var(--ease-bounce), background 0.2s ease;
-}
-
-.memory-jar-btn:hover {
-  transform: scale(1.06) rotate(-1deg);
-  background: var(--color-butter);
-}
-
-.memory-note-popup {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  background: var(--color-paper-cream);
-  padding: 22px 20px;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-lifted);
-  border: 2px dashed var(--color-rose);
-  max-width: 320px;
-  width: 90%;
-  z-index: 150;
-  display: none;
-  animation: gentle-wobble 0.4s var(--ease-bounce) forwards;
-}
-
-.memory-note-popup.active {
-  display: block;
-}
-
-/* ==========================================================================
-   Chapter 3: Family Vintage Album
+   Chapter 2: Parents (Mom & Daddy) Vintage Album
    ========================================================================== */
 
 .family-album-spread {
@@ -213,28 +41,34 @@
 
 .family-entry-card {
   background: var(--color-paper-cream);
-  padding: 24px 20px;
+  padding: 22px 18px;
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-paper-deep);
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Photo Corners (Vintage Photo Album Look) */
+.family-entry-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: var(--shadow-lifted);
+}
+
 .photo-frame-vintage {
   position: relative;
-  background: #F4ECE0;
-  padding: 8px;
+  background: #FAF3E8;
+  padding: 16px 14px;
   border: 1px solid rgba(74, 59, 63, 0.15);
   box-shadow: var(--shadow-paper);
+  border-radius: 2px;
 }
 
+/* Antique Photo Corners */
 .corner {
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border: 2px solid var(--color-ink);
   pointer-events: none;
 }
@@ -244,17 +78,64 @@
 .corner-bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
 .corner-br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
 
+.parents-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.parents-portrait-badge {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 4px rgba(74, 59, 63, 0.15), 0 2px 6px rgba(74, 59, 63, 0.1);
+  border: 2px solid #FFFDF8;
+  flex-shrink: 0;
+}
+
+.parents-avatar {
+  font-size: 2.2rem;
+}
+
+.parents-meta {
+  flex: 1;
+}
+
 .family-sender-tag {
   font-family: 'Permanent Marker', cursive;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   color: var(--color-rose-deep);
 }
 
 .family-relation-label {
   font-family: 'Gaegu', cursive;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--color-ink-muted);
   margin-left: 6px;
+}
+
+.parents-photo-caption {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--color-ink-light);
+  margin-top: 2px;
+}
+
+.parents-botanical {
+  font-size: 1.8rem;
+  opacity: 0.85;
+}
+
+.family-message-container {
+  background: rgba(255, 253, 248, 0.7);
+  padding: 12px 14px;
+  border-radius: 4px;
+  border-left: 3px solid var(--color-rose);
+  margin: 6px 0 12px;
 }
 
 .family-message-text {
@@ -265,8 +146,16 @@
   font-style: italic;
 }
 
+.parents-signoff-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed rgba(74, 59, 63, 0.18);
+  padding-top: 10px;
+}
+
 /* ==========================================================================
-   Chapter 4: Siblings Playful Banter Zine
+   Chapter 3: The OG Opp (Sister) Zine
    ========================================================================== */
 
 .siblings-zine-spread {
@@ -279,67 +168,138 @@
 
 .wanted-poster {
   width: 100%;
-  max-width: 380px;
+  max-width: 400px;
   background: #FFFDF8;
   border: 3px dashed var(--color-red);
-  padding: 22px 18px;
+  padding: 24px 20px;
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-paper-deep);
   position: relative;
   text-align: center;
 }
 
+.case-file-badge {
+  display: inline-block;
+  background: #FFE4E6;
+  color: var(--color-red);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--color-red);
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
 .wanted-title {
   font-family: 'Permanent Marker', cursive;
-  font-size: 1.8rem;
+  font-size: 2.1rem;
   color: var(--color-red);
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  margin: 2px 0;
 }
 
 .wanted-subtitle {
   font-family: 'Gaegu', cursive;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-ink);
-  margin: 4px 0 12px;
+  margin-bottom: 14px;
 }
 
-.wanted-sketch {
-  width: 110px;
+.sister-polaroid-frame {
+  width: 160px;
+  margin: 0 auto 14px;
+  background: #FFFDF9;
+  padding: 10px 10px 14px;
+  box-shadow: var(--shadow-polaroid);
+  border: 1px solid rgba(74, 59, 63, 0.15);
+  transform: rotate(-2deg);
+}
+
+.sister-photo-inner {
+  width: 100%;
   height: 110px;
-  margin: 0 auto 12px;
-  background: var(--color-paper-warm);
-  border-radius: 50%;
+  background: #FDE8ED;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
-  border: 2px solid rgba(74, 59, 63, 0.2);
+  font-size: 3.2rem;
+}
+
+.sister-photo-label {
+  font-size: 1rem;
+  color: var(--color-ink);
+  margin-top: 6px;
+  text-align: center;
+}
+
+.crimes-dossier {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.95rem;
+  text-align: left;
+  background: var(--color-paper-warm);
+  padding: 12px 14px;
+  border-radius: 4px;
+  border: 1px dashed rgba(74, 59, 63, 0.25);
+  margin-bottom: 14px;
+}
+
+.crimes-heading {
+  font-weight: 700;
+  color: var(--color-red);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.crimes-list {
+  padding-left: 18px;
+  margin: 0;
+  line-height: 1.5;
+  color: var(--color-ink);
 }
 
 .peelable-tape-wrapper {
   margin-top: 14px;
   background: var(--color-butter-light);
-  padding: 12px;
-  border-radius: 4px;
+  padding: 14px 12px;
+  border-radius: 6px;
   position: relative;
   cursor: pointer;
   user-select: none;
+  box-shadow: inset 0 1px 3px rgba(74, 59, 63, 0.08);
+  border: 1px dashed var(--color-rose-deep);
 }
 
 .peelable-tape-label {
   font-family: 'Gaegu', cursive;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-rose-deep);
 }
 
 .peelable-secret-text {
   font-family: 'Caveat', cursive;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   color: var(--color-ink);
   display: none;
-  margin-top: 6px;
+  margin-top: 8px;
+  line-height: 1.35;
+}
+
+.verdict-stamp {
+  margin-top: 10px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.1rem;
+  color: var(--color-red);
+  border: 2px dashed var(--color-red);
+  padding: 4px 10px;
+  display: inline-block;
+  transform: rotate(-3deg);
+  border-radius: 4px;
 }
 
 .peelable-tape-wrapper.peeled .peelable-secret-text {
@@ -347,24 +307,132 @@
 }
 
 /* ==========================================================================
-   Chapter 5: Cousins Summer Postcards
+   Chapter 4: Cousins Air Mail & Snapshots Gallery
    ========================================================================== */
 
-.cousins-postcard-spread {
+.cousins-photo-grid {
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  padding: 10px 4px 20px;
+}
+
+@media (max-width: 440px) {
+  .cousins-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+.cousin-snapshot-card {
+  background: #FFFDF9;
+  border: 1px solid rgba(74, 59, 63, 0.15);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-polaroid);
+  padding: 12px 10px 16px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
 }
 
-.postcard-card {
+.cousin-snapshot-card:hover {
+  transform: translateY(-4px) scale(1.04) !important;
+  box-shadow: var(--shadow-lifted);
+}
+
+.cousin-photo-frame {
   width: 100%;
-  max-width: 440px;
+  height: 110px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(74, 59, 63, 0.1);
+  box-shadow: inset 0 2px 4px rgba(74, 59, 63, 0.06);
+}
+
+.cousin-avatar-emoji {
+  font-size: 2.8rem;
+}
+
+.cousin-card-info {
+  margin-top: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cousin-name {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.15rem;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.cousin-tag {
+  font-family: 'Gaegu', cursive;
+  font-size: 0.9rem;
+  color: var(--color-rose-deep);
+  font-weight: 700;
+}
+
+.cousin-caption {
+  font-size: 1.05rem;
+  color: var(--color-ink-muted);
+  margin-top: 2px;
+}
+
+.cousin-airmail-badge {
+  margin-top: 8px;
+  background: var(--color-butter-light);
+  border: 1px dashed var(--color-rose);
+  border-radius: 12px;
+  padding: 3px 10px;
+  font-family: 'Gaegu', cursive;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  transition: background 0.2s ease;
+}
+
+.cousin-snapshot-card:hover .cousin-airmail-badge {
+  background: var(--color-rose-light);
+  color: var(--color-rose-deep);
+}
+
+/* Air Mail Modal Overlay */
+.airmail-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(45, 34, 38, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.airmail-modal-overlay.active {
+  display: flex;
+}
+
+.airmail-modal-card {
+  width: 100%;
+  max-width: 460px;
   background: #FFFDF9;
-  border: 1px solid rgba(74, 59, 63, 0.2);
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-paper-deep);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
   padding: 24px 20px;
   position: relative;
   display: flex;
@@ -372,15 +440,15 @@
 }
 
 .airmail-border {
-  border-top: 6px dashed var(--color-rose-deep);
-  border-bottom: 6px dashed #7EA4D9;
+  border-top: 8px dashed var(--color-rose-deep);
+  border-bottom: 8px dashed #7EA4D9;
 }
 
 .postcard-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .postage-stamp {
@@ -392,7 +460,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   transform: rotate(3deg);
   box-shadow: var(--shadow-tape);
 }
@@ -416,17 +484,620 @@
   pointer-events: none;
 }
 
+.airmail-banner {
+  background: rgba(251, 243, 228, 0.8);
+  padding: 10px 14px;
+  border-radius: 4px;
+  border-left: 3px solid var(--color-rose);
+  margin-bottom: 14px;
+}
+
+.airmail-line {
+  display: flex;
+  align-items: center;
+}
+
+.airmail-letter-sheet {
+  background: #FFFEFA;
+  border: 1px solid rgba(74, 59, 63, 0.1);
+  padding: 16px 14px;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(74, 59, 63, 0.05);
+}
+
 .postcard-letter-body {
   font-family: 'Caveat', cursive;
   font-size: 1.45rem;
   color: var(--color-ink);
   line-height: 1.4;
-  margin-top: 10px;
+  margin: 0;
 }
 
-/* Chapter Advance Button */
+.airmail-footer-row {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed rgba(74, 59, 63, 0.15);
+  padding-top: 12px;
+}
+
+.btn-close-airmail {
+  background: var(--color-butter-light);
+  border: 1px solid rgba(74, 59, 63, 0.25);
+  padding: 6px 14px;
+  border-radius: 18px;
+  font-family: 'Gaegu', cursive;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-close-airmail:hover {
+  background: var(--color-rose-light);
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Chapter 5: Friends Corkboard, Enlarged Photocards & Glass Memory Jar
+   ========================================================================== */
+
+.friends-corkboard-canvas {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 10px 4px 24px;
+}
+
+@media (max-width: 440px) {
+  .friends-corkboard-canvas {
+    gap: 14px;
+  }
+}
+
+/* Enlarged Friend Photocards (approx 175px - 185px) */
+.friend-polaroid-card {
+  width: 100%;
+  max-width: 200px;
+  background: #FFFDF9;
+  border: 1px solid rgba(74, 59, 63, 0.15);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-polaroid);
+  padding: 12px 10px 18px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.friend-polaroid-card:hover {
+  transform: translateY(-5px) scale(1.04) !important;
+  box-shadow: var(--shadow-lifted);
+}
+
+.friend-photo-frame {
+  width: 100%;
+  height: 135px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(74, 59, 63, 0.08);
+  box-shadow: inset 0 2px 4px rgba(74, 59, 63, 0.06);
+}
+
+.friend-avatar-art {
+  font-size: 3.2rem;
+}
+
+.friend-caption-block {
+  margin-top: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.friend-from-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.friend-moment {
+  color: var(--color-ink-muted);
+  margin-top: 2px;
+}
+
+/* Centered Lightbox Modal for Zoom & 3D Flip */
+.lightbox-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(35, 26, 30, 0.75);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 220;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.lightbox-modal-overlay.active {
+  display: flex;
+}
+
+.lightbox-content-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 360px;
+  width: 100%;
+}
+
+.lightbox-polaroid-card {
+  width: 100%;
+  height: 440px;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.lightbox-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.65s var(--ease-bounce);
+  border-radius: var(--radius-sm);
+}
+
+.lightbox-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.lightbox-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.lightbox-front {
+  background: #FFFDF9;
+}
+
+.lightbox-photo-large {
+  width: 100%;
+  height: 220px;
+  margin-top: 10px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 6px rgba(74, 59, 63, 0.1);
+  border: 1px solid rgba(74, 59, 63, 0.1);
+}
+
+.lightbox-front-meta {
+  margin-top: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-name {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.6rem;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.lightbox-caption {
+  font-family: 'Caveat', cursive;
+  font-size: 1.35rem;
+  color: var(--color-ink-light);
+  margin: 2px 0 6px;
+}
+
+.lightbox-tag-badge {
+  background: var(--color-butter-light);
+  border: 1px solid var(--color-rose);
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-family: 'Gaegu', cursive;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-rose-deep);
+}
+
+.lightbox-flip-prompt {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-rose-deep);
+  text-align: center;
+  margin-top: auto;
+}
+
+.lightbox-back {
+  background: var(--color-paper-cream);
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 22px,
+    rgba(74, 59, 63, 0.08) 22px,
+    rgba(74, 59, 63, 0.08) 23px
+  );
+  transform: rotateY(180deg);
+  padding: 22px 18px;
+}
+
+.lightbox-back-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  border-bottom: 1px dashed rgba(74, 59, 63, 0.2);
+  padding-bottom: 8px;
+}
+
+.lightbox-back-message {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.35rem;
+  color: var(--color-ink);
+  line-height: 1.5;
+  margin-top: 16px;
+}
+
+.lightbox-controls {
+  margin-top: 16px;
+}
+
+.btn-close-lightbox {
+  background: #FFFDF9;
+  border: 1px solid rgba(74, 59, 63, 0.3);
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-family: 'Gaegu', cursive;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-close-lightbox:hover {
+  background: var(--color-rose-light);
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Realistic Glass Memory Jar & Hand Reach Animation
+   ========================================================================== */
+
+.memory-jar-section {
+  width: 100%;
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.jar-header-ribbon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.glass-jar-stage {
+  position: relative;
+  width: 220px;
+  height: 250px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  user-select: none;
+}
+
+/* Animated Reaching Hand */
+.animated-reaching-hand {
+  position: absolute;
+  top: -85px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  width: 90px;
+  height: 150px;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.animated-reaching-hand.hand-reach-active {
+  opacity: 1;
+  animation: hand-reach-down-and-pull 1s ease-in-out forwards;
+}
+
+@keyframes hand-reach-down-and-pull {
+  0% {
+    transform: translateX(-50%) translateY(-40px) scale(0.9);
+    opacity: 0;
+  }
+  25% {
+    transform: translateX(-50%) translateY(35px) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) translateY(55px) scale(1);
+  }
+  75% {
+    transform: translateX(-50%) translateY(-20px) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50px) scale(1.05);
+    opacity: 0;
+  }
+}
+
+/* Mason Jar Body */
+.mason-jar-body {
+  position: relative;
+  width: 140px;
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.25s var(--ease-bounce);
+}
+
+.glass-jar-stage:hover .mason-jar-body {
+  transform: scale(1.04) rotate(-1deg);
+}
+
+/* Jar Lip & Cork */
+.jar-cork-rim {
+  position: relative;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.cork-lid {
+  width: 80px;
+  height: 18px;
+  background: linear-gradient(180deg, #D5A97D 0%, #B88555 100%);
+  border-radius: 4px 4px 2px 2px;
+  border: 1.5px solid #784E29;
+  box-shadow: 0 2px 4px rgba(74, 59, 63, 0.25);
+}
+
+.jar-glass-lip {
+  width: 96px;
+  height: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(200, 225, 240, 0.5) 100%);
+  border: 2px solid rgba(120, 150, 170, 0.5);
+  border-radius: 6px;
+  margin-top: -3px;
+}
+
+.jar-neck-twine {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.twine-string {
+  width: 86px;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, #BA8C5E, #BA8C5E 4px, #DFB98D 4px, #DFB98D 8px);
+  border-radius: 2px;
+}
+
+.twine-tag {
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  background: #E8D3B5;
+  border: 1px dashed #784E29;
+  padding: 2px 8px;
+  font-size: 0.95rem;
+  color: #4A3319;
+  border-radius: 2px;
+  transform: rotate(8deg);
+  box-shadow: 1px 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Glass Chamber */
+.jar-glass-chamber {
+  position: relative;
+  width: 130px;
+  height: 155px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(220, 240, 255, 0.18) 50%, rgba(200, 230, 250, 0.35) 100%);
+  border: 3px solid rgba(140, 175, 195, 0.55);
+  border-radius: 12px 12px 28px 28px;
+  overflow: hidden;
+  box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.6), 0 8px 24px rgba(74, 59, 63, 0.15);
+}
+
+.glass-shine-left {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  width: 12px;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border-radius: 6px;
+}
+
+.glass-shine-right {
+  position: absolute;
+  top: 25px;
+  right: 10px;
+  width: 6px;
+  height: 90px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 4px;
+}
+
+/* Colorful Paper Slips Inside Jar */
+.jar-paper-slips {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  height: 95px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.paper-slip {
+  position: absolute;
+  width: 22px;
+  height: 38px;
+  border-radius: 3px;
+  border: 1px solid rgba(74, 59, 63, 0.2);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+}
+
+.slip-1 { background: #FCE4E8; bottom: 12px; left: 24px; transform: rotate(-25deg); }
+.slip-2 { background: #FEF3C7; bottom: 8px; left: 45px; transform: rotate(12deg); }
+.slip-3 { background: #DCFCE7; bottom: 16px; right: 28px; transform: rotate(-15deg); }
+.slip-4 { background: #E0F2FE; bottom: 6px; right: 46px; transform: rotate(32deg); }
+.slip-5 { background: #F3E8FF; bottom: 28px; left: 38px; transform: rotate(-8deg); }
+.slip-6 { background: #FFF1F2; bottom: 24px; right: 35px; transform: rotate(20deg); }
+
+.jar-base-shadow {
+  width: 140px;
+  height: 12px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(74, 59, 63, 0.25) 0%, transparent 75%);
+  margin-top: 4px;
+}
+
+.jar-tap-callout {
+  margin-top: 10px;
+  font-family: 'Gaegu', cursive;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-rose-deep);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: gentle-wobble 2s infinite ease-in-out;
+}
+
+/* Unfolded Memory Note Modal */
+.unfolded-memory-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(35, 26, 30, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 230;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.unfolded-memory-modal.active {
+  display: flex;
+}
+
+.unfolded-paper-note {
+  background: #FFFDF9;
+  width: 100%;
+  max-width: 380px;
+  padding: 28px 24px 22px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  border: 2px dashed var(--color-rose);
+  position: relative;
+  text-align: center;
+}
+
+.memory-note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px dashed rgba(74, 59, 63, 0.15);
+  padding-bottom: 8px;
+}
+
+.memory-note-content {
+  font-size: 1.5rem;
+  color: var(--color-ink);
+  line-height: 1.45;
+  margin: 14px 0 24px;
+  text-align: center;
+}
+
+.memory-note-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn-fold-back,
+.btn-next-memory {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-fold-back {
+  background: none;
+  border: 1px solid rgba(74, 59, 63, 0.25);
+  color: var(--color-ink-muted);
+}
+
+.btn-next-memory {
+  background: var(--color-butter-light);
+  border: 1px solid var(--color-rose);
+  color: var(--color-rose-deep);
+}
+
+.btn-fold-back:hover,
+.btn-next-memory:hover {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Chapter Advance Button
+   ========================================================================== */
+
 .chapter-advance-row {
-  margin-top: 26px;
+  margin-top: 28px;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -438,7 +1109,7 @@
   font-family: 'Caveat', cursive;
   font-size: 1.4rem;
   font-weight: 700;
-  padding: 10px 22px;
+  padding: 10px 24px;
   border: none;
   border-radius: 25px;
   box-shadow: var(--shadow-paper);

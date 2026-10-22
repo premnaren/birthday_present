@@ -39,37 +39,106 @@ const ChapterFinale = (() => {
           </p>
         </div>
 
-        <!-- Handcrafted Cake Stage -->
+        <!-- Handcrafted Realistic & Vibrant Birthday Cake -->
         <div class="cake-stage-container">
+          <div class="cake-aura-glow" id="cake-glow"></div>
+
           <div class="cake-wrapper">
-            <!-- 3 Candles -->
+            <!-- 3 Realistic Candles with glowing aura -->
             <div class="candles-row" id="candles-row">
               <div class="candle-unit" data-candle="1" title="Tap to blow out candle">
-                <div class="candle-flame"></div>
+                <div class="flame-glow"></div>
+                <div class="candle-flame">
+                  <div class="flame-inner"></div>
+                </div>
                 <div class="smoke-puff"></div>
                 <div class="candle-wick"></div>
-                <div class="candle-wax"></div>
+                <div class="candle-wax candle-wax-pink"></div>
               </div>
               <div class="candle-unit" data-candle="2" title="Tap to blow out candle">
-                <div class="candle-flame"></div>
+                <div class="flame-glow"></div>
+                <div class="candle-flame">
+                  <div class="flame-inner"></div>
+                </div>
                 <div class="smoke-puff"></div>
                 <div class="candle-wick"></div>
-                <div class="candle-wax"></div>
+                <div class="candle-wax candle-wax-gold"></div>
               </div>
               <div class="candle-unit" data-candle="3" title="Tap to blow out candle">
-                <div class="candle-flame"></div>
+                <div class="flame-glow"></div>
+                <div class="candle-flame">
+                  <div class="flame-inner"></div>
+                </div>
                 <div class="smoke-puff"></div>
                 <div class="candle-wick"></div>
-                <div class="candle-wax"></div>
+                <div class="candle-wax candle-wax-sage"></div>
               </div>
             </div>
 
-            <!-- Cake Sponge Layers -->
-            <div class="cake-layer-top">
-              <div class="frosting-drips"></div>
+            <!-- Fresh Strawberry & Berry Cake Toppings -->
+            <div class="cake-toppings-row">
+              <span class="cake-berry berry-1" title="Fresh strawberry">🍓</span>
+              <span class="cream-dollop dollop-1"></span>
+              <span class="cake-berry berry-2" title="Sweet strawberry">🍓</span>
+              <span class="cream-dollop dollop-2"></span>
+              <span class="cake-berry berry-3" title="Berry delight">🫐</span>
+              <span class="cake-leaf leaf-1">🍃</span>
             </div>
-            <div class="cake-layer-bottom"></div>
-            <div class="cake-plate"></div>
+
+            <!-- Top Tier: Velvety Strawberry Cream with Glossy Glaze Drips -->
+            <div class="cake-tier-top">
+              <div class="tier-frosting-top">
+                <div class="frosting-sheen"></div>
+                <!-- Colorful Sprinkles -->
+                <div class="sprinkle s1"></div>
+                <div class="sprinkle s2"></div>
+                <div class="sprinkle s3"></div>
+                <div class="sprinkle s4"></div>
+                <div class="sprinkle s5"></div>
+              </div>
+              <!-- Specular Glossy Glaze Drips -->
+              <div class="glossy-glaze-drips">
+                <div class="drip drip-1"></div>
+                <div class="drip drip-2"></div>
+                <div class="drip drip-3"></div>
+                <div class="drip drip-4"></div>
+                <div class="drip drip-5"></div>
+              </div>
+              <div class="tier-cream-border"></div>
+            </div>
+
+            <!-- Middle Cream Rosettes Layer -->
+            <div class="cake-middle-piping">
+              <div class="piped-rosette"></div>
+              <div class="piped-rosette"></div>
+              <div class="piped-rosette"></div>
+              <div class="piped-rosette"></div>
+              <div class="piped-rosette"></div>
+            </div>
+
+            <!-- Bottom Tier: Decadent Belgian Chocolate Velvet Sponge -->
+            <div class="cake-tier-bottom">
+              <div class="tier-sponge-crumb"></div>
+              <!-- Chocolate swirls and gold pearls -->
+              <div class="chocolate-drizzle"></div>
+              <div class="gold-pearl p1"></div>
+              <div class="gold-pearl p2"></div>
+              <div class="gold-pearl p3"></div>
+              <div class="gold-pearl p4"></div>
+              <div class="gold-pearl p5"></div>
+              <!-- Bottom Scalloped Piped Frosting -->
+              <div class="bottom-scallop-frosting"></div>
+            </div>
+
+            <!-- Ceramic Cake Pedestal Stand -->
+            <div class="cake-pedestal">
+              <div class="pedestal-plate"></div>
+              <div class="pedestal-rim"></div>
+              <div class="pedestal-foot"></div>
+            </div>
+
+            <!-- Warm Drop Shadow on Table -->
+            <div class="cake-table-shadow"></div>
           </div>
 
           <button class="btn-blow-all" id="btn-blow-all">
@@ -153,6 +222,8 @@ const ChapterFinale = (() => {
 
     if (litCandlesCount <= 0 && !isWishCompleted) {
       isWishCompleted = true;
+      const cakeGlow = document.getElementById('cake-glow');
+      if (cakeGlow) cakeGlow.style.opacity = '0';
       triggerWishCelebration();
     }
   }

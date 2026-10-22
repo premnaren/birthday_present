@@ -46,24 +46,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.LetMeGuess.init();
   }
 
-  // 6. Initialize Friends (Chapter 2)
-  if (window.ChapterFriends) {
-    window.ChapterFriends.init();
+  // 6. Initialize Parents (Chapter 2)
+  if (window.ChapterParents) {
+    window.ChapterParents.init();
   }
 
-  // 7. Initialize Family (Chapter 3)
-  if (window.ChapterFamily) {
-    window.ChapterFamily.init();
+  // 7. Initialize OG Opp (Chapter 3)
+  if (window.ChapterOgOpp) {
+    window.ChapterOgOpp.init();
   }
 
-  // 8. Initialize Siblings (Chapter 4)
-  if (window.ChapterSiblings) {
-    window.ChapterSiblings.init();
-  }
-
-  // 9. Initialize Cousins (Chapter 5)
+  // 8. Initialize Cousins (Chapter 4)
   if (window.ChapterCousins) {
     window.ChapterCousins.init();
+  }
+
+  // 9. Initialize Friends (Chapter 5)
+  if (window.ChapterFriends) {
+    window.ChapterFriends.init();
   }
 
   // 10. Initialize Finale (Chapter 6)

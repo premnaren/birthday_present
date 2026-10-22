@@ -30,18 +30,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (window.BookStage) {
     window.BookStage.init();
 
-    // In Phase 1 foundation development, unlock all chapters if ?preview=all query param is passed,
-    // or provide developer access so all pages can be previewed
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('preview') === 'all') {
       window.BookStage.unlockChapter(6);
-    } else {
-      // By default unlock up to Ch 1 for immediate exploratory feel, or keep at 0
-      window.BookStage.unlockChapter(1);
     }
   }
 
-  // 4. Render Phase 1 Initial Chapter Shells
+  // 4. Initialize Entry Gate (Chapter 0)
+  if (window.EntryGate) {
+    window.EntryGate.init();
+  }
+
+  // 5. Render Placeholder Shells for remaining chapters
   renderInitialChapterShells(content);
 });
 
@@ -51,29 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 function renderInitialChapterShells(content) {
   if (!content) return;
 
-  // Chapter 0: Gate preview
-  const ch0 = document.getElementById('chapter-0');
-  if (ch0) {
-    ch0.innerHTML = `
-      <div style="text-align: center; margin: auto; max-width: 420px; position: relative;">
-        <div class="washi-tape washi-tape-pink tape-center"></div>
-        <div class="torn-card tilt-neg-1" style="margin-top: 15px;">
-          <h1 class="h1" style="margin-bottom: 8px;">A Secret Diary...</h1>
-          <p class="font-caption" style="color: var(--color-ink-light); margin-bottom: 20px;">
-            "Before we begin, tell us who you are..."
-          </p>
-          <div style="border: 2px dashed rgba(74, 59, 63, 0.2); padding: 18px; border-radius: 6px; background: rgba(255, 253, 248, 0.8);">
-            <p class="font-handwriting" style="font-size: 1.35rem; color: var(--color-rose-deep);">
-              ✨ Phase 1 Foundation Verified ✨
-            </p>
-            <p class="font-caption" style="margin-top: 6px;">
-              Ready for Phase 2: Interactive Entry Gate & Birthday Unlock!
-            </p>
-          </div>
-        </div>
-      </div>
-    `;
-  }
+  // Chapter 0 is managed by EntryGate.init()
 
   // Chapter 1: Let Me Guess preview
   const ch1 = document.getElementById('chapter-1');

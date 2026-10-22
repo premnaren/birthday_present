@@ -124,3 +124,6 @@ const ContentStore = (() => {
 if (typeof window !== 'undefined') {
   window.ContentStore = ContentStore;
 }
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = ContentStore;
+}

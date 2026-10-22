@@ -66,34 +66,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.ChapterCousins.init();
   }
 
-  // 10. Render Placeholder Shell for Finale (Phase 4)
-  renderInitialChapterShells(content);
-});
-
-/**
- * Populates tactile placeholder layouts into chapter slides to verify stage rendering
- */
-function renderInitialChapterShells(content) {
-  if (!content) return;
-
-  // Chapters 0-5 are managed by dedicated controllers
-
-  // Chapter 6: Finale Cake preview
-  const ch6 = document.getElementById('chapter-6');
-  if (ch6) {
-    ch6.innerHTML = `
-      <div style="max-width: 440px; margin: 0 auto; text-align: center;">
-        <h2 class="h2">Make a Wish, Lucky! 🎂</h2>
-        <p class="font-caption" style="color: var(--color-ink-muted); margin-bottom: 24px;">
-          Light and blow out your birthday candles
-        </p>
-        <div class="torn-card tilt-pos-1">
-          <div style="font-size: 3.5rem; margin: 10px 0;">🎂🕯️🕯️🕯️</div>
-          <p class="font-handwriting" style="font-size: 1.4rem; color: var(--color-rose-deep);">
-            "Birthdays don't expire, and neither does love."
-          </p>
-        </div>
-      </div>
-    `;
+  // 10. Initialize Finale (Chapter 6)
+  if (window.ChapterFinale) {
+    window.ChapterFinale.init();
   }
-}
+});

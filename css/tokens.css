@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Birthday Storybook - Design Tokens
+   Warm, tactile paper & scrapbook aesthetic for Kritika ("Lucky")
+   ========================================================================== */
+
+:root {
+  /* Paper & Canvas Colors */
+  --color-paper: #FBF3E4;
+  --color-paper-dark: #F2E5CE;
+  --color-paper-warm: #FAF0DC;
+  --color-paper-cream: #FFFDF8;
+  --color-desk-bg: #EFE4D2;
+  --color-desk-border: #D8C8B0;
+
+  /* Pastel Palette (Tuned for scrapbook collage) */
+  --color-blush: #F4C2C7;
+  --color-blush-light: #FBE5E8;
+  --color-rose: #D98A9B;
+  --color-rose-deep: #BC6376;
+  --color-lavender: #CDB8E3;
+  --color-lavender-light: #E7DCF4;
+  --color-butter: #F7E3A1;
+  --color-butter-light: #FDF4D4;
+  --color-sage: #B7C9A8;
+  --color-sage-light: #DCE5D4;
+
+  /* Ink Colors (Never harsh pitch black) */
+  --color-ink: #4A3B3F;
+  --color-ink-light: #705B61;
+  --color-ink-muted: #99838A;
+  --color-ink-subtle: #C2B3B8;
+
+  /* Hand-drawn Accents */
+  --color-red: #C8483F;
+  --color-pencil: #5C5255;
+  --color-wax-seal: #B23838;
+  --color-gold-wax: #C99635;
+
+  /* Tactile Shadows */
+  --shadow-paper: 0 4px 14px rgba(74, 59, 63, 0.08), 0 1px 3px rgba(74, 59, 63, 0.04);
+  --shadow-paper-deep: 0 10px 25px rgba(74, 59, 63, 0.12), 0 3px 8px rgba(74, 59, 63, 0.06);
+  --shadow-polaroid: 0 8px 24px rgba(74, 59, 63, 0.14), 0 2px 6px rgba(74, 59, 63, 0.08);
+  --shadow-lifted: 0 16px 36px rgba(74, 59, 63, 0.18), 0 6px 12px rgba(74, 59, 63, 0.10);
+  --shadow-tape: 0 1px 3px rgba(74, 59, 63, 0.15);
+  --shadow-sticker: 0 3px 8px rgba(74, 59, 63, 0.16);
+
+  /* Radius & Borders */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-sticker: 12px;
+
+  /* Transitions */
+  --ease-gentle: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 700ms;
+}

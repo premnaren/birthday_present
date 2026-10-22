@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Birthday Storybook - Audio Player Styles
+   Aesthetic paper sticker toggle for ambient background music & SFX
+   ========================================================================== */
+
+.audio-toggle-container {
+  position: fixed;
+  top: 16px;
+  right: 18px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.audio-btn {
+  background: var(--color-paper-cream);
+  color: var(--color-ink);
+  border: 2px dashed rgba(74, 59, 63, 0.25);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sticker);
+  cursor: pointer;
+  transition: transform 0.25s var(--ease-bounce), box-shadow 0.2s ease, background 0.2s ease;
+  padding: 0;
+  outline: none;
+  position: relative;
+  user-select: none;
+}
+
+.audio-btn:hover {
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: var(--shadow-lifted);
+  border-color: var(--color-rose);
+}
+
+.audio-btn:active {
+  transform: scale(0.95);
+}
+
+.audio-btn:focus-visible {
+  outline: 2px solid var(--color-rose-deep);
+  outline-offset: 3px;
+}
+
+/* Sound Icon SVG */
+.audio-icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--color-ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.2s ease;
+}
+
+/* Muted State - Slash Line */
+.audio-btn.muted .sound-wave {
+  display: none;
+}
+
+.audio-btn.muted .slash-line {
+  display: block;
+  stroke: var(--color-red);
+}
+
+.audio-btn.playing .slash-line {
+  display: none;
+}
+
+.audio-btn.playing .sound-wave {
+  display: block;
+  stroke: var(--color-rose-deep);
+  animation: pulse-wave 1.4s infinite ease-in-out;
+}
+
+.audio-btn.playing {
+  background: var(--color-blush-light);
+  border-color: var(--color-rose);
+}
+
+@keyframes pulse-wave {
+  0%, 100% { opacity: 0.3; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Sound Label Tag */
+.audio-label {
+  font-family: 'Gaegu', cursive;
+  font-size: 0.95rem;
+  color: var(--color-ink-light);
+  background: rgba(251, 243, 228, 0.85);
+  padding: 3px 8px;
+  border-radius: 4px;
+  box-shadow: var(--shadow-paper);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+@media (max-width: 480px) {
+  .audio-label {
+    display: none;
+  }
+  .audio-toggle-container {
+    top: 12px;
+    right: 12px;
+  }
+  .audio-btn {
+    width: 40px;
+    height: 40px;
+  }
+}

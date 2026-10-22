@@ -23,7 +23,7 @@
 **Requirements**: REQ-01, REQ-02, REQ-03, REQ-04, REQ-05
 
 ### Phase 2: The Portal — Entry Gate & "Let Me Guess..." Prologue
-**Status**: ⬜ Not Started  
+**Status**: ✅ Complete  
 **Objective**: Implement Chapter 0 (diary cover gate with handwritten input lines, case-insensitive nickname acceptance, playful hint animations, and wax seal unlock) and Chapter 1 ("Let Me Guess..." interactive guess cards for Kritika's traits with cute reactions and celebratory transition).  
 **Requirements**: REQ-06, REQ-07
 

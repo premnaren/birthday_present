@@ -46,7 +46,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.LetMeGuess.init();
   }
 
-  // 6. Render Placeholder Shells for remaining chapters (Phase 3 & 4)
+  // 6. Initialize Friends (Chapter 2)
+  if (window.ChapterFriends) {
+    window.ChapterFriends.init();
+  }
+
+  // 7. Initialize Family (Chapter 3)
+  if (window.ChapterFamily) {
+    window.ChapterFamily.init();
+  }
+
+  // 8. Render Placeholder Shells for remaining chapters
   renderInitialChapterShells(content);
 });
 
@@ -58,35 +68,8 @@ function renderInitialChapterShells(content) {
 
   // Chapter 0 is managed by EntryGate.init()
   // Chapter 1 is managed by LetMeGuess.init()
-
-  // Chapter 2: Friends Corkboard preview
-  const ch2 = document.getElementById('chapter-2');
-  if (ch2) {
-    ch2.innerHTML = `
-      <div style="max-width: 500px; margin: 0 auto; text-align: center;">
-        <h2 class="h2">The Friends Corkboard</h2>
-        <p class="font-caption" style="color: var(--color-ink-muted); margin-bottom: 18px;">
-          Polaroids pinned with love from Ananya, Rohan, Meera & more
-        </p>
-        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-          <div class="polaroid-frame tilt-neg-3" style="width: 150px;">
-            <div class="washi-tape washi-tape-lavender tape-center" style="width: 60px; height: 18px;"></div>
-            <div class="polaroid-img-wrap" style="display: flex; align-items: center; justify-content: center; font-size: 2rem;">
-              📸
-            </div>
-            <div class="polaroid-caption">Besties</div>
-          </div>
-          <div class="polaroid-frame tilt-pos-4" style="width: 150px;">
-            <div class="washi-tape washi-tape-pink tape-center" style="width: 60px; height: 18px;"></div>
-            <div class="polaroid-img-wrap" style="display: flex; align-items: center; justify-content: center; font-size: 2rem;">
-              🎨
-            </div>
-            <div class="polaroid-caption">Art Buddy</div>
-          </div>
-        </div>
-      </div>
-    `;
-  }
+  // Chapter 2 is managed by ChapterFriends.init()
+  // Chapter 3 is managed by ChapterFamily.init()
 
   // Chapter 6: Finale Cake preview
   const ch6 = document.getElementById('chapter-6');

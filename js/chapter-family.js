@@ -34,10 +34,10 @@ const ChapterFamily = (() => {
             <div class="family-entry-card ${idx % 2 === 0 ? 'tilt-neg-1' : 'tilt-pos-1'}">
               <div class="photo-frame-vintage">
                 <!-- Antique Photo Corners -->
-                <div class="corner corner-tl"></div>
-                <div class="corner corner-tr"></div>
-                <div class="corner corner-bl"></div>
-                <div class="corner corner-br"></div>
+                <div class="photo-corner corner corner-tl"></div>
+                <div class="photo-corner corner corner-tr"></div>
+                <div class="photo-corner corner corner-bl"></div>
+                <div class="photo-corner corner corner-br"></div>
 
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
                   <div>

@@ -28,7 +28,7 @@
 **Requirements**: REQ-06, REQ-07
 
 ### Phase 3: The Scrapbook Chapters — Friends, Family, Siblings & Cousins
-**Status**: ⬜ Not Started  
+**Status**: ✅ Complete  
 **Objective**: Build the 4 core memory chapters: Chapter 2 (Friends Polaroid corkboard with drag-and-drop & flip-to-read messages), Chapter 3 (Family album with photo corners and pressed flowers), Chapter 4 (Siblings zine with sticker collage and banter), and Chapter 5 (Cousins summer postcards with unfolding envelopes).  
 **Requirements**: REQ-08, REQ-09, REQ-10, REQ-11
 

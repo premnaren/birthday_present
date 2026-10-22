@@ -56,7 +56,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.ChapterFamily.init();
   }
 
-  // 8. Render Placeholder Shells for remaining chapters
+  // 8. Initialize Siblings (Chapter 4)
+  if (window.ChapterSiblings) {
+    window.ChapterSiblings.init();
+  }
+
+  // 9. Initialize Cousins (Chapter 5)
+  if (window.ChapterCousins) {
+    window.ChapterCousins.init();
+  }
+
+  // 10. Render Placeholder Shell for Finale (Phase 4)
   renderInitialChapterShells(content);
 });
 
@@ -66,10 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 function renderInitialChapterShells(content) {
   if (!content) return;
 
-  // Chapter 0 is managed by EntryGate.init()
-  // Chapter 1 is managed by LetMeGuess.init()
-  // Chapter 2 is managed by ChapterFriends.init()
-  // Chapter 3 is managed by ChapterFamily.init()
+  // Chapters 0-5 are managed by dedicated controllers
 
   // Chapter 6: Finale Cake preview
   const ch6 = document.getElementById('chapter-6');

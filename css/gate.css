@@ -239,3 +239,57 @@
   font-weight: 700;
   margin-top: 4px;
 }
+
+@media (max-width: 440px) {
+  .diary-cover-container {
+    margin: 4px auto 14px;
+    width: 100%;
+  }
+
+  .diary-cover-card {
+    padding: 18px 12px 22px;
+  }
+
+  .diary-ribbon-header {
+    font-size: 0.95rem;
+    padding: 3px 10px;
+    margin-bottom: 8px;
+  }
+
+  .diary-title {
+    font-size: 1.75rem;
+    margin-bottom: 2px;
+  }
+
+  .diary-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
+
+  .diary-form {
+    gap: 12px;
+  }
+
+  .input-label {
+    font-size: 1.15rem;
+  }
+
+  .handwritten-input {
+    font-size: 1.35rem;
+    padding: 2px 4px;
+  }
+
+  .wax-seal-wrapper {
+    margin-top: 12px;
+  }
+
+  .wax-seal-btn {
+    width: 72px;
+    height: 72px;
+  }
+
+  .seal-caption {
+    font-size: 0.95rem;
+    margin-top: 4px;
+  }
+}

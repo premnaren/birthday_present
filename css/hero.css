@@ -434,3 +434,84 @@
     grid-column: 1 / -1;
   }
 }
+
+@media (max-width: 440px) {
+  .hero-desk-stage {
+    width: 100%;
+  }
+
+  .diary-book-closed {
+    min-height: 400px;
+    padding: 18px 12px;
+  }
+
+  .diary-cover-gold-foil {
+    padding: 20px 14px;
+    width: 95%;
+  }
+
+  .diary-embossed-title {
+    font-size: 1.85rem;
+  }
+
+  .diary-embossed-for {
+    font-size: 1.3rem;
+  }
+
+  .calendar-picker-wrapper {
+    margin: 6px 0 10px;
+  }
+
+  .calendar-card {
+    padding: 10px 8px 12px;
+  }
+
+  .calendar-header {
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+  }
+
+  .calendar-month-title {
+    font-size: 1.15rem;
+  }
+
+  .cal-day-cell {
+    min-height: 32px;
+    font-size: 1.05rem;
+  }
+
+  .pen-circle-svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .hold-seal-btn {
+    width: 70px;
+    height: 70px;
+  }
+
+  .hold-seal-svg-ring {
+    top: -6px;
+    left: -6px;
+    width: 82px;
+    height: 82px;
+  }
+
+  .seal-star-svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .seal-word {
+    font-size: 0.75rem;
+  }
+
+  .seal-hold-hint {
+    font-size: 0.95rem;
+    margin-top: 6px;
+  }
+
+  .welcome-ink-text {
+    font-size: 1.35rem;
+  }
+}

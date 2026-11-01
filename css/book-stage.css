@@ -303,14 +303,24 @@ html, body {
 /* Mobile Screens (<768px) */
 @media (max-width: 767px) {
   .desk-viewport {
-    padding: 8px 6px 20px;
+    padding: 42px 8px 75px;
   }
 
   .scrapbook-journal {
     width: 100%;
-    min-height: 480px;
+    min-height: 460px;
     margin-top: 4px;
     border-radius: var(--radius-sm);
+  }
+
+  .bookmark-ribbon-container {
+    right: 52px;
+    top: -8px;
+  }
+
+  .bookmark-tail {
+    width: 20px;
+    height: 36px;
   }
 
   .journal-spine {
@@ -318,7 +328,7 @@ html, body {
   }
 
   .page-viewport {
-    padding: 20px 8px 26px 8px;
+    padding: 16px 6px 24px 6px;
   }
 
   .chapter-slide {
@@ -326,15 +336,15 @@ html, body {
   }
 
   .chapter-tabs-strip {
-    left: 8px;
+    left: 4px;
     top: -30px;
-    max-width: calc(100% - 42px);
-    gap: 4px;
+    max-width: calc(100% - 88px);
+    gap: 3px;
   }
 
   .chapter-tab {
-    padding: 4px 8px;
-    font-size: 0.88rem;
+    padding: 4px 7px;
+    font-size: 0.82rem;
   }
 
   /* Simplify navigation on mobile: remove bottom bar */

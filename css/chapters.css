@@ -1508,3 +1508,15 @@
   transform: translateY(-2px) scale(1.04);
   box-shadow: var(--shadow-lifted);
 }
+
+@media (max-width: 440px) {
+  .chapter-advance-row {
+    margin-top: 18px;
+    margin-bottom: 8px;
+  }
+
+  .btn-chapter-advance {
+    font-size: 1.25rem;
+    padding: 8px 18px;
+  }
+}

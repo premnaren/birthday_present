@@ -244,13 +244,13 @@
 
 @media (max-width: 440px) {
   .sticker-tray-container {
-    bottom: 12px;
-    right: 12px;
+    bottom: 10px;
+    right: 10px;
   }
 
   .sticker-tray-toggle-btn {
-    padding: 6px 14px;
-    font-size: 1.05rem;
+    padding: 5px 12px;
+    font-size: 0.95rem;
   }
 
   .sticker-tray-sheet {

@@ -8,7 +8,7 @@ const HeroPortal = (() => {
   let holdTimer = null;
   let holdProgress = 0;
   let holdInterval = null;
-  const HOLD_DURATION_MS = 1200;
+  const HOLD_DURATION_MS = 950;
 
   let selectedDay = null;
   let selectedMonth = 10; // Default October
@@ -250,8 +250,27 @@ const HeroPortal = (() => {
     if (!sealBtn || !progressBar) return;
 
     const circumference = 2 * Math.PI * 45; // ~283
+    let isUnlocking = false;
 
-    function startHold() {
+    // 1. Suppress mobile contextmenu and selection so long-press never gets hijacked
+    const sealWrapper = sealBtn.closest('.wax-seal-wrapper') || sealBtn.parentElement;
+    
+    function suppressCallout(e) {
+      if (e.cancelable) e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+
+    sealBtn.addEventListener('contextmenu', suppressCallout);
+    sealBtn.addEventListener('selectstart', suppressCallout);
+    if (sealWrapper) {
+      sealWrapper.addEventListener('contextmenu', suppressCallout);
+      sealWrapper.addEventListener('selectstart', suppressCallout);
+    }
+
+    function startHold(e) {
+      if (isHoldActive || isUnlocking) return;
+
       // Validate inputs first
       const nameInput = document.getElementById('gate-name');
       const inputName = nameInput ? nameInput.value : '';
@@ -285,13 +304,15 @@ const HeroPortal = (() => {
 
         if (holdProgress >= 1) {
           clearInterval(holdInterval);
+          isHoldActive = false;
+          isUnlocking = true;
           crackWaxSealAndUnlock();
         }
       }, 25);
     }
 
-    function cancelHold() {
-      if (!isHoldActive) return;
+    function cancelHold(e) {
+      if (!isHoldActive || isUnlocking) return;
       isHoldActive = false;
       clearInterval(holdInterval);
 
@@ -305,26 +326,55 @@ const HeroPortal = (() => {
       if (hintText) hintText.textContent = "Press and hold seal to unlock ✦";
     }
 
-    // Touch & pointer events
+    // Touch & pointer events with pointer capture
     sealBtn.addEventListener('pointerdown', (e) => {
-      e.preventDefault();
-      startHold();
+      if (e.button !== undefined && e.button !== 0) return; // Only primary click
+      if (e.cancelable) e.preventDefault();
+      try {
+        sealBtn.setPointerCapture(e.pointerId);
+      } catch (err) {}
+      startHold(e);
     });
 
+    function releasePointer(e) {
+      try {
+        if (e && e.pointerId && sealBtn.hasPointerCapture && sealBtn.hasPointerCapture(e.pointerId)) {
+          sealBtn.releasePointerCapture(e.pointerId);
+        }
+      } catch (err) {}
+      cancelHold(e);
+    }
+
+    sealBtn.addEventListener('pointerup', releasePointer);
+    sealBtn.addEventListener('pointercancel', releasePointer);
     window.addEventListener('pointerup', cancelHold);
-    window.addEventListener('pointercancel', cancelHold);
+
+    // Explicit touch safety net for iOS Safari & Android WebViews
+    sealBtn.addEventListener('touchstart', (e) => {
+      if (e.cancelable) e.preventDefault();
+      startHold(e);
+    }, { passive: false });
+
+    sealBtn.addEventListener('touchend', (e) => {
+      if (e.cancelable) e.preventDefault();
+      cancelHold(e);
+    }, { passive: false });
+
+    sealBtn.addEventListener('touchcancel', (e) => {
+      cancelHold(e);
+    });
 
     // Keyboard support: Space / Enter
     sealBtn.addEventListener('keydown', (e) => {
       if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
-        if (!isHoldActive) startHold();
+        if (!isHoldActive) startHold(e);
       }
     });
 
     sealBtn.addEventListener('keyup', (e) => {
       if (e.key === ' ' || e.key === 'Enter') {
-        cancelHold();
+        cancelHold(e);
       }
     });
   }

@@ -155,6 +155,10 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
 }
 
 .hold-seal-btn {
@@ -173,7 +177,11 @@
   align-items: center;
   justify-content: center;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
   touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
   transition: transform 0.2s var(--ease-bounce), box-shadow 0.2s ease;
 }
 
@@ -189,12 +197,16 @@
   height: 100px;
   pointer-events: none;
   transform: rotate(-90deg);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .hold-progress-bg {
   stroke: rgba(244, 194, 199, 0.35);
   stroke-width: 3.5;
   fill: none;
+  pointer-events: none;
 }
 
 .hold-progress-bar {
@@ -205,6 +217,7 @@
   stroke-dasharray: 283;
   stroke-dashoffset: 283;
   transition: stroke-dashoffset 0.1s linear;
+  pointer-events: none;
 }
 
 .seal-inner-emblem {
@@ -214,12 +227,18 @@
   justify-content: center;
   color: #FFE699;
   pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .seal-star-svg {
   width: 26px;
   height: 26px;
   fill: currentColor;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .seal-word {
@@ -227,6 +246,10 @@
   font-size: 0.85rem;
   letter-spacing: 1.5px;
   margin-top: 2px;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .seal-hold-hint {
@@ -235,6 +258,10 @@
   font-weight: 700;
   color: var(--color-ink-muted);
   margin-top: 10px;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 /* Wax Shards on Break */
@@ -310,6 +337,10 @@
   cursor: pointer;
   border-radius: 6px;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   transition: transform 0.15s ease, background 0.15s ease;
 }
 

@@ -22,6 +22,11 @@
   width: 100%;
   position: relative;
   transition: transform 0.3s var(--ease-bounce);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .diary-ribbon-header {
@@ -89,6 +94,8 @@
   outline: none;
   transition: border-color 0.2s ease, background-color 0.2s ease;
   caret-color: var(--color-rose-deep);
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 .handwritten-input:focus {

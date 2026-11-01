@@ -36,7 +36,7 @@ html, body {
 .scrapbook-journal {
   width: 100%;
   max-width: 580px;
-  min-height: 720px;
+  min-height: 560px;
   background-color: var(--color-paper);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lifted), 0 0 0 1px rgba(74, 59, 63, 0.05);
@@ -169,33 +169,26 @@ html, body {
 .page-viewport {
   flex: 1;
   position: relative;
-  overflow: hidden;
-  padding: 36px 24px 60px 38px;
+  overflow: visible;
+  padding: 30px 20px 40px 24px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .chapter-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 36px 24px 70px 38px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  display: flex;
+  display: none;
+  width: 100%;
   flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
 }
 
 .chapter-slide.active-chapter {
+  display: flex;
   opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  position: relative;
 }
 
 /* Navigation Footer */
@@ -243,16 +236,15 @@ html, body {
   color: var(--color-ink-muted);
 }
 
-/* Desktop Two-Page Spread (>860px) */
 /* Desktop Two-Page Spread (>=768px) */
 @media (min-width: 768px) {
   .desk-viewport {
-    padding: 32px 24px 48px;
+    padding: 24px 20px 36px;
   }
 
   .scrapbook-journal {
     max-width: 960px;
-    min-height: 700px;
+    min-height: 580px;
   }
 
   .journal-spine {
@@ -271,15 +263,13 @@ html, body {
   }
 
   .page-viewport {
-    padding: 44px 44px 60px;
+    padding: 34px 34px 44px;
     position: relative;
     z-index: 2;
   }
 
   .chapter-slide {
-    padding: 44px 44px 70px;
-    position: relative;
-    z-index: 2;
+    padding: 0;
   }
 
   .chapter-tabs-strip {
@@ -298,15 +288,15 @@ html, body {
 @media (min-width: 1200px) {
   .scrapbook-journal {
     max-width: 1040px;
-    min-height: 740px;
+    min-height: 600px;
   }
 
   .page-viewport {
-    padding: 48px 56px 64px;
+    padding: 38px 44px 48px;
   }
 
   .chapter-slide {
-    padding: 48px 56px 74px;
+    padding: 0;
   }
 }
 
@@ -318,7 +308,7 @@ html, body {
 
   .scrapbook-journal {
     width: 100%;
-    min-height: 560px;
+    min-height: 480px;
     margin-top: 4px;
     border-radius: var(--radius-sm);
   }
@@ -328,11 +318,11 @@ html, body {
   }
 
   .page-viewport {
-    padding: 24px 8px 36px 10px;
+    padding: 20px 8px 26px 8px;
   }
 
   .chapter-slide {
-    padding: 24px 8px 40px 10px;
+    padding: 0;
   }
 
   .chapter-tabs-strip {

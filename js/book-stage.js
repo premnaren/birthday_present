@@ -156,10 +156,22 @@ const BookStage = (() => {
     }
 
     // Tactile GSAP Page Transition
-    const xOffsetOut = direction === 'forward' ? -50 : 50;
-    const xOffsetIn = direction === 'forward' ? 50 : -50;
-    const rotateOut = direction === 'forward' ? -2 : 2;
-    const rotateIn = direction === 'forward' ? 2 : -2;
+    const xOffsetOut = direction === 'forward' ? -40 : 40;
+    const xOffsetIn = direction === 'forward' ? 40 : -40;
+    const rotateOut = direction === 'forward' ? -1.5 : 1.5;
+    const rotateIn = direction === 'forward' ? 1.5 : -1.5;
+
+    // Position currentSlide absolutely during transition so nextSlide enters at natural document flow
+    if (currentSlide) {
+      currentSlide.style.position = 'absolute';
+      currentSlide.style.top = '0';
+      currentSlide.style.left = '0';
+      currentSlide.style.width = '100%';
+    }
+
+    if (nextSlide) {
+      nextSlide.classList.add('active-chapter');
+    }
 
     const tl = gsap.timeline({
       onComplete: () => {
@@ -168,7 +180,6 @@ const BookStage = (() => {
           gsap.set(currentSlide, { clearProps: "all" });
         }
         if (nextSlide) {
-          nextSlide.classList.add('active-chapter');
           gsap.set(nextSlide, { clearProps: "all" });
         }
         currentIndex = targetIndex;
@@ -186,17 +197,16 @@ const BookStage = (() => {
         x: xOffsetOut,
         rotation: rotateOut,
         opacity: 0,
-        duration: 0.35,
+        duration: 0.3,
         ease: "power2.in"
       });
     }
 
     if (nextSlide) {
-      nextSlide.classList.add('active-chapter');
       tl.fromTo(nextSlide, 
         { x: xOffsetIn, rotation: rotateIn, opacity: 0 },
-        { x: 0, rotation: 0, opacity: 1, duration: 0.45, ease: "power2.out" },
-        "-=0.1"
+        { x: 0, rotation: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
+        "-=0.08"
       );
     }
   }

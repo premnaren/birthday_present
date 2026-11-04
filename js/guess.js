@@ -35,6 +35,9 @@ const LetMeGuess = (() => {
       <div class="guess-chapter-container">
         <div class="washi-tape washi-tape-butter tape-corner-tr" style="width: 75px; height: 20px;"></div>
 
+        <!-- Imperfection: Faint coffee ring stain away from text (Item 5) -->
+        <div class="coffee-ring-mark" aria-hidden="true"></div>
+
         <div class="guess-header">
           <span class="diary-ribbon-header">Chapter 1 • The Deductions</span>
           <h2 class="h2" style="margin-top: 6px;">Let Me Guess…</h2>
@@ -138,7 +141,7 @@ const LetMeGuess = (() => {
     const cardEl = document.getElementById('current-guess-card');
 
     if (window.AudioEngine) {
-      window.AudioEngine.playStickerPop();
+      window.AudioEngine.playStampThud();
     }
 
     // Pick random witty stamp without emoji

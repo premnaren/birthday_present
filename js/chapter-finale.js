@@ -29,6 +29,9 @@ const ChapterFinale = (() => {
 
     container.innerHTML = `
       <div class="finale-content-wrapper">
+        <!-- Imperfection: Small wax drip mark in margin (Item 5) -->
+        <div class="wax-drip-mark" aria-hidden="true"></div>
+
         <!-- Hand-drawn Paper Bunting Garland Across Top -->
         <div class="bunting-garland" aria-hidden="true">
           <div class="bunting-flag"></div>
@@ -177,8 +180,8 @@ const ChapterFinale = (() => {
                 <svg class="doodle-icon" style="width: 18px; height: 18px;"><use href="#doodle-wax-star"/></svg>
                 <span>Passport Stamps</span>
               </button>
-              <button class="btn-replay-storybook" id="btn-replay">
-                Replay from Cover ↺
+              <button class="btn-replay-storybook" id="btn-replay" aria-label="Replay storybook from cover">
+                Replay from Cover
               </button>
             </div>
           </div>

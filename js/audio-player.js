@@ -194,6 +194,132 @@ const AudioEngine = (() => {
   }
 
   /**
+   * Tactile SFX: Brittle wax seal crack & shatter
+   */
+  function playWaxCrack() {
+    if (isMuted) return;
+    initContext();
+    if (!audioCtx) return;
+
+    try {
+      const now = audioCtx.currentTime;
+
+      // 1. Sharp high-frequency mechanical snap
+      const osc = audioCtx.createOscillator();
+      const oscGain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(1250, now);
+      osc.frequency.exponentialRampToValueAtTime(260, now + 0.05);
+
+      oscGain.gain.setValueAtTime(0.18, now);
+      oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+      osc.connect(oscGain);
+      oscGain.connect(masterGain);
+      osc.start(now);
+      osc.stop(now + 0.07);
+
+      // 2. High-passed brittle noise burst
+      const bufferSize = Math.floor(audioCtx.sampleRate * 0.045);
+      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = buffer;
+      const hp = audioCtx.createBiquadFilter();
+      hp.type = 'highpass';
+      hp.frequency.setValueAtTime(2200, now);
+
+      const noiseGain = audioCtx.createGain();
+      noiseGain.gain.setValueAtTime(0.12, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+
+      noise.connect(hp);
+      hp.connect(noiseGain);
+      noiseGain.connect(masterGain);
+      noise.start(now);
+    } catch (e) {}
+  }
+
+  /**
+   * Tactile SFX: Heavy rubber stamp thud on wooden desk
+   */
+  function playStampThud() {
+    if (isMuted) return;
+    initContext();
+    if (!audioCtx) return;
+
+    try {
+      const now = audioCtx.currentTime;
+
+      // 1. Resonant low-frequency impact
+      const osc = audioCtx.createOscillator();
+      const oscGain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(145, now);
+      osc.frequency.exponentialRampToValueAtTime(42, now + 0.12);
+
+      oscGain.gain.setValueAtTime(0.22, now);
+      oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+      osc.connect(oscGain);
+      oscGain.connect(masterGain);
+      osc.start(now);
+      osc.stop(now + 0.15);
+
+      // 2. Muffled desk surface friction
+      const bufferSize = Math.floor(audioCtx.sampleRate * 0.06);
+      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = buffer;
+      const lp = audioCtx.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.setValueAtTime(320, now);
+
+      const noiseGain = audioCtx.createGain();
+      noiseGain.gain.setValueAtTime(0.14, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+
+      noise.connect(lp);
+      lp.connect(noiseGain);
+      noiseGain.connect(masterGain);
+      noise.start(now);
+    } catch (e) {}
+  }
+
+  /**
+   * Tactile SFX: Soft sticker placement on paper
+   */
+  function playStickerDrop() {
+    if (isMuted) return;
+    initContext();
+    if (!audioCtx) return;
+
+    try {
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(560, now);
+      osc.frequency.exponentialRampToValueAtTime(740, now + 0.04);
+      osc.frequency.exponentialRampToValueAtTime(480, now + 0.07);
+
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+      osc.connect(gain);
+      gain.connect(masterGain);
+      osc.start(now);
+      osc.stop(now + 0.08);
+    } catch (e) {}
+  }
+
+  /**
    * Tactile SFX: Sticker pop
    */
   function playStickerPop() {
@@ -294,6 +420,21 @@ const AudioEngine = (() => {
     }
   }
 
+  // Handle tab visibility change (Item 16)
+  if (typeof document !== 'undefined') {
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (isMusicPlaying && !isMuted) {
+          stopMusicLoop();
+        }
+      } else {
+        if (!isMuted && !isMusicPlaying) {
+          startMusicLoop();
+        }
+      }
+    });
+  }
+
   return {
     init: () => {
       updateUI();
@@ -303,6 +444,9 @@ const AudioEngine = (() => {
     playPaperRustle,
     playPageTurn,
     playStickerPop,
+    playWaxCrack,
+    playStampThud,
+    playStickerDrop,
     playCandleBlow
   };
 })();

@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Birthday Storybook - Scrapbook Textures & Tactile Components
    Torn paper, washi tape, Polaroids, stickers, pins, and wobbly angles
    ========================================================================== */
@@ -234,7 +234,7 @@
   padding: 18px;
   box-shadow: var(--shadow-paper);
   position: relative;
-  font-family: 'Gaegu', cursive;
+  font-family: var(--font-handwriting);
   color: var(--color-ink);
   font-size: 1.15rem;
 }

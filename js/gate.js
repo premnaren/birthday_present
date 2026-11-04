@@ -27,11 +27,13 @@ const EntryGate = (() => {
     bindEvents();
 
     // Check if previously unlocked in this session
-    if (sessionStorage.getItem(GATE_SESSION_KEY) === 'true') {
-      if (window.BookStage) {
-        window.BookStage.unlockChapter(1);
+    try {
+      if (sessionStorage.getItem(GATE_SESSION_KEY) === 'true') {
+        if (window.BookStage) {
+          window.BookStage.unlockChapter(1);
+        }
       }
-    }
+    } catch(e){}
   }
 
   function renderCover() {
@@ -138,7 +140,9 @@ const EntryGate = (() => {
         window.AudioEngine.playStickerPop();
       }
 
+      try {
       sessionStorage.setItem(GATE_SESSION_KEY, 'true');
+    } catch(e){}
 
       // GSAP Wax Seal Break Animation
       if (typeof gsap !== 'undefined') {

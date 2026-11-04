@@ -73,6 +73,9 @@ const ChapterCousins = (() => {
       <div class="chapter-content-wrapper">
         <div class="washi-tape washi-tape-pink tape-corner-tr" style="width: 75px; height: 22px;"></div>
 
+        <!-- Imperfection: Vintage paper clip impression away from text (Item 5) -->
+        <div class="paper-clip-mark" aria-hidden="true"></div>
+
         <div class="chapter-header">
           <span class="diary-ribbon-header">Chapter 4 • Airmail from the Tribe</span>
           <h2 class="h2" style="margin-top: 6px;">Cousin Air Mail</h2>

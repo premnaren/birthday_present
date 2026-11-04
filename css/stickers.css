@@ -21,7 +21,7 @@
   border: 1.5px dashed var(--color-rose-deep);
   border-radius: 24px;
   padding: 8px 16px;
-  font-family: 'Gaegu', cursive;
+  font-family: var(--font-handwriting);
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-ink);
@@ -71,7 +71,7 @@
 }
 
 .sticker-tray-title {
-  font-family: 'Permanent Marker', cursive;
+  font-family: var(--font-heading);
   font-size: 1.1rem;
   color: var(--color-rose-deep);
 }
@@ -86,6 +86,8 @@
 .sticker-item {
   width: 56px;
   height: 56px;
+  min-width: 44px;
+  min-height: 44px;
   background: #FFFDF9;
   border: 2px solid #FFFFFF;
   border-radius: 8px;
@@ -93,15 +95,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: grab;
+  cursor: pointer;
   user-select: none;
   touch-action: none;
   transition: transform 0.2s ease;
 }
 
-.sticker-item:hover {
+.sticker-item:hover,
+.sticker-item:focus-visible {
   transform: scale(1.12) rotate(3deg);
   box-shadow: 0 6px 14px rgba(74, 59, 63, 0.25);
+  outline: 2px dashed var(--color-rose-deep);
+  outline-offset: 2px;
 }
 
 .sticker-svg-icon {
@@ -110,7 +115,7 @@
   pointer-events: none;
 }
 
-/* Placed On-Page Sticker */
+/* Placed On-Page Sticker (Layered strictly below buttons & interactive text - Item 8) */
 .placed-sticker {
   position: absolute;
   width: 64px;
@@ -122,13 +127,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: grab;
-  z-index: 15;
+  z-index: 4;
+  pointer-events: none; /* Never blocks reading or clicks */
   user-select: none;
   touch-action: none;
 }
 
-.placed-sticker:active {
+/* Enabled for dragging only when Sticker Sheet is actively open (Decorate Mode - Item 8) */
+body.sticker-decorate-mode .placed-sticker {
+  pointer-events: auto !important;
+  cursor: grab;
+  z-index: 25 !important;
+}
+
+body.sticker-decorate-mode .placed-sticker:active {
   cursor: grabbing;
 }
 
@@ -204,7 +216,7 @@
 }
 
 .stamp-booklet-title {
-  font-family: 'Permanent Marker', cursive;
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   color: var(--color-rose-deep);
   margin-bottom: 6px;
@@ -235,7 +247,7 @@
 }
 
 .stamp-label {
-  font-family: 'Gaegu', cursive;
+  font-family: var(--font-handwriting);
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-ink);

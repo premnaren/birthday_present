@@ -85,4 +85,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (window.ChapterFinale) {
     window.ChapterFinale.init();
   }
+
+  // 13. Initialize Desktop Dotted Cursor Trail
+  if (window.CursorTrail) {
+    window.CursorTrail.init();
+  }
+
+  // 14. Global Keyboard Accessibility: Esc closes all open modals (Item 14)
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const activeModals = document.querySelectorAll(
+        '.airmail-modal-overlay.active, .lightbox-modal-overlay.active, .unfolded-memory-modal.active, #stamp-modal-container.active, .sticker-tray-sheet.active'
+      );
+      activeModals.forEach(m => {
+        m.classList.remove('active');
+        m.setAttribute('aria-hidden', 'true');
+      });
+      document.body.classList.remove('sticker-decorate-mode');
+    }
+  });
+
+  // 15. Pause Looping Animations when Tab is Hidden (Item 16)
+  document.addEventListener('visibilitychange', () => {
+    document.body.classList.toggle('tab-hidden-paused', document.hidden);
+  });
 });

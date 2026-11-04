@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Birthday Storybook - Audio Player Styles
    Aesthetic paper sticker toggle for ambient background music & SFX
    ========================================================================== */
@@ -91,7 +91,7 @@
 
 /* Sound Label Tag */
 .audio-label {
-  font-family: 'Gaegu', cursive;
+  font-family: var(--font-handwriting);
   font-size: 0.95rem;
   color: var(--color-ink-light);
   background: rgba(251, 243, 228, 0.85);

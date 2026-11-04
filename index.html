@@ -5,15 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>A Storybook for Kritika ("Lucky")</title>
   
-  <!-- Privacy: Do not index this personal gift -->
+  <!-- Privacy: Do not index this personal gift (Item 18) -->
   <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
   <meta name="description" content="A handcrafted personal birthday storybook for Kritika ('Lucky').">
 
-  <!-- OpenGraph Metadata for WhatsApp & Social Previews -->
-  <meta property="og:title" content="A Belated Birthday Storybook for Kritika">
-  <meta property="og:description" content="A handcrafted scrapbook of memories, laughs, and love from your people.">
+  <!-- OpenGraph Metadata for WhatsApp & Social Previews (Item 19) -->
+  <meta property="og:title" content="A Secret Storybook • For Kritika ('Lucky')">
+  <meta property="og:description" content="Handcrafted with love, memories, and laughs for the birthday girl. Tap to unhook the ribbon and enter.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/images/cover-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A handcrafted leather diary cover embossed with gold foil for Kritika">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="A Secret Storybook • For Kritika ('Lucky')">
+  <meta name="twitter:description" content="Handcrafted with love, memories, and laughs for the birthday girl. Tap to unhook the ribbon and enter.">
+  <meta name="twitter:image" content="assets/images/cover-preview.jpg">
+
+  <!-- Font Preconnect for fast subset loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/tokens.css">
@@ -27,6 +39,7 @@
   <link rel="stylesheet" href="css/guess.css">
   <link rel="stylesheet" href="css/chapters.css">
   <link rel="stylesheet" href="css/finale.css">
+  <link rel="stylesheet" href="css/cursor-trail.css">
 </head>
 <body class="paper-grain">
 
@@ -360,6 +373,10 @@
   <script src="js/chapter-cousins.js"></script>
   <script src="js/chapter-friends.js"></script>
   <script src="js/chapter-finale.js"></script>
+  <script src="js/cursor-trail.js"></script>
   <script src="js/app.js"></script>
+
+  <!-- Desktop-Only Dotted Cursor Trail Canvas -->
+  <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 </body>
 </html>

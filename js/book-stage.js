@@ -20,9 +20,25 @@ const BookStage = (() => {
 
   const STORAGE_KEY = 'storybook_unlocked_index';
 
+  const safeStorage = {
+    _mem: {},
+    get(key) {
+      try {
+        if (typeof sessionStorage !== 'undefined') return sessionStorage.getItem(key);
+      } catch(e){}
+      return this._mem[key] || null;
+    },
+    set(key, val) {
+      try {
+        if (typeof sessionStorage !== 'undefined') sessionStorage.setItem(key, val);
+      } catch(e){}
+      this._mem[key] = String(val);
+    }
+  };
+
   function init() {
-    // Restore unlock progress from session storage (default 0)
-    const saved = sessionStorage.getItem(STORAGE_KEY);
+    // Restore unlock progress from safe session storage (default 0)
+    const saved = safeStorage.get(STORAGE_KEY);
     if (saved !== null) {
       maxUnlockedIndex = parseInt(saved, 10);
     } else {
@@ -43,9 +59,10 @@ const BookStage = (() => {
     CHAPTERS.forEach((ch, idx) => {
       const tab = document.createElement('button');
       tab.className = `chapter-tab ${idx === currentIndex ? 'active' : ''} ${idx > maxUnlockedIndex ? 'locked' : ''}`;
-      tab.textContent = idx <= maxUnlockedIndex ? ch.title : '';
+      // Never reveal locked chapter names (Item 10)
+      tab.textContent = idx <= maxUnlockedIndex ? ch.title : '•••';
       tab.setAttribute('data-index', idx);
-      tab.setAttribute('aria-label', idx <= maxUnlockedIndex ? ch.label : 'Locked Chapter');
+      tab.setAttribute('aria-label', idx <= maxUnlockedIndex ? ch.label : `Locked Chapter ${idx}`);
 
       tab.addEventListener('click', () => {
         if (idx <= maxUnlockedIndex && idx !== currentIndex) {
@@ -214,7 +231,7 @@ const BookStage = (() => {
   function unlockChapter(index) {
     if (index > maxUnlockedIndex && index < CHAPTERS.length) {
       maxUnlockedIndex = index;
-      sessionStorage.setItem(STORAGE_KEY, maxUnlockedIndex);
+      safeStorage.set(STORAGE_KEY, maxUnlockedIndex);
       renderTabs();
       updateNavControls();
     }

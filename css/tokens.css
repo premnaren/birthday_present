@@ -24,11 +24,11 @@
   --color-sage: #B7C9A8;
   --color-sage-light: #DCE5D4;
 
-  /* Ink Colors (Never harsh pitch black) */
-  --color-ink: #4A3B3F;
-  --color-ink-light: #705B61;
-  --color-ink-muted: #99838A;
-  --color-ink-subtle: #C2B3B8;
+  /* Ink Colors - Tuned for WCAG AA Contrast (>= 4.5:1 on cream, kraft & cork) */
+  --color-ink: #281B1E;
+  --color-ink-light: #3D2D31;
+  --color-ink-muted: #523E43;
+  --color-ink-subtle: #685359;
 
   /* Hand-drawn Accents */
   --color-red: #C8483F;

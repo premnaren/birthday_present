@@ -504,7 +504,7 @@
   border: 1.5px dashed var(--color-rose-deep);
   border-radius: 22px;
   padding: 10px 24px;
-  font-family: 'Gaegu', cursive;
+  font-family: var(--font-handwriting);
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-rose-deep);
@@ -548,7 +548,7 @@
 }
 
 .closing-letter-title {
-  font-family: 'Permanent Marker', cursive;
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   color: var(--color-rose-deep);
   margin: 8px 0 14px;
@@ -585,10 +585,12 @@
 .btn-replay-storybook {
   background: var(--color-butter-light);
   border: 1px solid rgba(74, 59, 63, 0.25);
-  padding: 7px 16px;
-  border-radius: 18px;
-  font-family: 'Gaegu', cursive;
-  font-size: 1.05rem;
+  padding: 8px 18px;
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: 20px;
+  font-family: var(--font-handwriting);
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-ink);
   cursor: pointer;
@@ -730,4 +732,27 @@
   .cake-table-shadow {
     width: 260px;
   }
+}
+
+/* Prefers Reduced Motion: simplify flames, aura, and smoke (Item 13) */
+@media (prefers-reduced-motion: reduce) {
+  .candle-flame,
+  .flame-glow,
+  .cake-aura-glow {
+    animation: none !important;
+  }
+
+  .smoke-puff {
+    animation: none !important;
+    display: none !important;
+  }
+}
+
+/* Tab Hidden Animation Pause (Item 16) */
+body.tab-hidden-paused .candle-flame,
+body.tab-hidden-paused .flame-glow,
+body.tab-hidden-paused .cake-aura-glow,
+body.tab-hidden-paused .smoke-puff,
+body.tab-hidden-paused .friend-polaroid-card {
+  animation-play-state: paused !important;
 }

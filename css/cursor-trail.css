@@ -1,0 +1,24 @@
+/* ==========================================================================
+   Birthday Storybook - Dotted Cursor Trail Styles (Desktop Only)
+   Recreates the tactile vibrant rose/pink dotted cursor trail
+   ========================================================================== */
+
+#cursor-trail-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+  display: block;
+}
+
+/* Strictly hide and disable on mobile viewports, touchscreens, or reduced motion */
+@media (max-width: 767px), (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  #cursor-trail-canvas {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+

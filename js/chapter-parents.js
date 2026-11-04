@@ -34,6 +34,9 @@ const ChapterParents = (() => {
       <div class="chapter-content-wrapper">
         <div class="washi-tape washi-tape-lavender tape-corner-tr" style="width: 75px; height: 22px;"></div>
 
+        <!-- Imperfection: Pressed botanical sprig watermark away from text (Item 5) -->
+        <div class="pressed-flower-mark" aria-hidden="true"></div>
+
         <div class="chapter-header">
           <span class="diary-ribbon-header">Chapter 2 • Home & Heart</span>
           <h2 class="h2" style="margin-top: 6px;">Mom & Daddy</h2>

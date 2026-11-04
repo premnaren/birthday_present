@@ -122,9 +122,13 @@ html, body {
   border: 1px solid rgba(74, 59, 63, 0.15);
   border-bottom: none;
   border-radius: 4px 4px 0 0;
-  padding: 4px 10px;
-  font-family: 'Gaegu', cursive;
-  font-size: 0.95rem;
+  padding: 6px 12px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-handwriting);
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-ink-muted);
   cursor: pointer;
@@ -132,6 +136,11 @@ html, body {
   box-shadow: 0 -2px 5px rgba(74, 59, 63, 0.04);
   transition: all 0.2s ease;
   user-select: none;
+}
+
+:focus-visible {
+  outline: 2px dashed var(--color-rose-deep) !important;
+  outline-offset: 3px !important;
 }
 
 .chapter-tab.active {
@@ -206,15 +215,18 @@ html, body {
 .nav-page-btn {
   background: none;
   border: none;
-  font-family: 'Caveat', cursive;
+  font-family: var(--font-handwriting);
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--color-ink);
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 4px 10px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 6px 14px;
   border-radius: 4px;
   transition: all 0.2s var(--ease-bounce);
   user-select: none;
@@ -231,7 +243,7 @@ html, body {
 }
 
 .page-counter {
-  font-family: 'Gaegu', cursive;
+  font-family: var(--font-handwriting);
   font-size: 1.05rem;
   color: var(--color-ink-muted);
 }

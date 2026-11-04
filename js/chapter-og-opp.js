@@ -32,6 +32,9 @@ const ChapterOgOpp = (() => {
       <div class="chapter-content-wrapper">
         <div class="washi-tape washi-tape-butter tape-corner-tr" style="width: 75px; height: 22px;"></div>
 
+        <!-- Imperfection: Charcoal pencil smudge on kraft margin (Item 5) -->
+        <div class="pencil-smudge-mark" aria-hidden="true"></div>
+
         <div class="chapter-header">
           <span class="diary-ribbon-header">Chapter 3 • Sibling Shenanigans</span>
           <h2 class="h2" style="margin-top: 6px;">The OG Opp</h2>
@@ -71,7 +74,7 @@ const ChapterOgOpp = (() => {
             <div class="peelable-tape-wrapper" id="sister-peel-tape" title="Tap tape to peel and read secret message">
               <div class="washi-tape washi-tape-sage tape-corner-tr" id="tape-strip" style="width: 85%; height: 26px; top: -14px;"></div>
               <span class="peelable-tape-label" id="peel-prompt">
-                Tap tape to peel & read sister confession ✦
+                Tap tape to peel & read sister confession
               </span>
               <div class="peelable-secret-text" id="secret-message">
                 "${confession}"
@@ -110,10 +113,10 @@ const ChapterOgOpp = (() => {
 
         if (peelWrapper.classList.contains('peeled')) {
           if (tapeStrip) tapeStrip.style.transform = 'translateX(-50%) rotate(18deg) scaleY(0.7)';
-          if (peelPrompt) peelPrompt.textContent = "Sister confession revealed! ✦";
+          if (peelPrompt) peelPrompt.textContent = "Sister confession revealed!";
         } else {
           if (tapeStrip) tapeStrip.style.transform = 'translateX(-50%) rotate(-1.5deg)';
-          if (peelPrompt) peelPrompt.textContent = "Tap tape to peel & read sister confession ✦";
+          if (peelPrompt) peelPrompt.textContent = "Tap tape to peel & read sister confession";
         }
       });
     }

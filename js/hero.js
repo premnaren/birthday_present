@@ -10,8 +10,29 @@ const HeroPortal = (() => {
   let holdInterval = null;
   const HOLD_DURATION_MS = 950;
 
-  let selectedDay = null;
+  let selectedDay = 16;
   let selectedMonth = 10; // Default October
+
+  // Safe storage helper with in-memory fallback (Item 12)
+  const safeStorage = {
+    _mem: {},
+    get(key) {
+      try {
+        if (typeof sessionStorage !== 'undefined') {
+          return sessionStorage.getItem(key);
+        }
+      } catch (e) {}
+      return this._mem[key] || null;
+    },
+    set(key, val) {
+      try {
+        if (typeof sessionStorage !== 'undefined') {
+          sessionStorage.setItem(key, val);
+        }
+      } catch (e) {}
+      this._mem[key] = String(val);
+    }
+  };
 
   function init() {
     renderClosedJournalCover();
@@ -23,13 +44,13 @@ const HeroPortal = (() => {
     if (!chapter0) return;
 
     // Check if previously passed gate in this session
-    const isGatePassed = sessionStorage.getItem('storybook_gate_passed') === 'true';
+    const isGatePassed = safeStorage.get('storybook_gate_passed') === 'true';
 
     chapter0.innerHTML = `
       <div class="hero-desk-stage" id="hero-stage">
         
         <!-- Closed Journal (Hero Initial State) -->
-        <div class="diary-book-closed ${isGatePassed ? 'is-opening' : ''}" id="diary-closed-book" role="button" aria-label="A closed leather diary. Tap to unhook ribbon and open.">
+        <div class="diary-book-closed ${isGatePassed ? 'is-opening' : ''}" id="diary-closed-book" role="button" aria-label="A closed leather diary. Tap to unhook ribbon and open." tabindex="0">
           <div class="diary-closed-spine"></div>
           
           <div class="diary-cover-gold-foil">
@@ -40,13 +61,20 @@ const HeroPortal = (() => {
 
           <!-- Elastic Ribbon Band holding the book closed -->
           <div class="elastic-ribbon-band" id="elastic-ribbon" title="Tap ribbon to open diary">
-            <div class="ribbon-tag-charm">Pull to Open ✦</div>
+            <div class="ribbon-tag-charm">
+              <svg class="charm-icon" viewBox="0 0 24 24" style="width: 14px; height: 14px; vertical-align: -1px; margin-right: 4px;" aria-hidden="true">
+                <use href="#doodle-wax-star"/>
+              </svg>Pull to Open
+            </div>
           </div>
         </div>
 
         <!-- Inside Cover: Entry Gate Form & Calendar -->
         <div class="diary-cover-card" id="diary-inner-gate" style="${isGatePassed ? 'display: block;' : 'display: none;'}">
           <div class="washi-tape washi-tape-pink tape-corner-tr" style="width: 75px; height: 22px;"></div>
+
+          <!-- Imperfection: Small folded corner (Item 5) -->
+          <div class="folded-corner-mark" aria-hidden="true"></div>
 
           <div style="text-align: center; margin-bottom: 14px;">
             <span class="diary-ribbon-header">Private Storybook • Birthday Edition</span>
@@ -72,14 +100,14 @@ const HeroPortal = (() => {
 
             <!-- Hand-drawn Interactive Calendar Birthday Picker -->
             <div class="input-group">
-              <label class="input-label">When's your birthday? (Tap your date below)</label>
+              <label class="input-label" id="cal-label">When's your birthday? (Tap your date below)</label>
               <div class="calendar-picker-wrapper">
-                <div class="calendar-card">
+                <div class="calendar-card" role="region" aria-labelledby="cal-label">
                   <div class="washi-tape washi-tape-sage tape-corner-tl" style="width: 55px; height: 16px;"></div>
                   
                   <div class="calendar-header">
                     <span class="calendar-month-title">OCTOBER</span>
-                    <span class="font-caption">Libra Season ✦</span>
+                    <span class="font-caption">Libra Season</span>
                   </div>
 
                   <div class="calendar-days-grid" id="cal-grid">
@@ -92,10 +120,10 @@ const HeroPortal = (() => {
                     <span class="calendar-weekday">Sa</span>
 
                     <!-- Empty slots before Oct 1 (Oct 2026 starts on Thursday -> 4 empty slots) -->
-                    <span class="cal-day-cell empty"></span>
-                    <span class="cal-day-cell empty"></span>
-                    <span class="cal-day-cell empty"></span>
-                    <span class="cal-day-cell empty"></span>
+                    <span class="cal-day-cell empty" aria-hidden="true"></span>
+                    <span class="cal-day-cell empty" aria-hidden="true"></span>
+                    <span class="cal-day-cell empty" aria-hidden="true"></span>
+                    <span class="cal-day-cell empty" aria-hidden="true"></span>
 
                     <!-- Days 1 to 31 -->
                     ${generateCalendarCells()}
@@ -103,25 +131,37 @@ const HeroPortal = (() => {
                 </div>
               </div>
 
-              <!-- Accessible hidden select for screen readers -->
+              <!-- Accessible fallback select for screen readers and non-pointer users (Item 9) -->
+              <div style="margin-top: 6px;">
+                <label for="cal-day-select" class="sr-only">Or choose birth date from list:</label>
+                <select id="cal-day-select" class="calendar-sr-select" aria-label="Select October birth date">
+                  ${[...Array(31)].map((_, i) => `<option value="${i+1}" ${i+1 === 16 ? 'selected' : ''}>October ${i+1}</option>`).join('')}
+                </select>
+              </div>
+
               <input type="hidden" id="selected-day-input" value="16" />
               <input type="hidden" id="selected-month-input" value="10" />
             </div>
 
-            <!-- Hold-to-Crack Wax Seal Button -->
+            <!-- Wax Seal Button & Non-hold Fallback (Item 9) -->
             <div class="wax-seal-wrapper">
               <button type="button" id="hold-wax-seal" class="hold-seal-btn" title="Press and hold wax seal to break & open diary" aria-label="Press and hold wax seal to break & open diary">
-                <svg class="hold-seal-svg-ring" viewBox="0 0 100 100">
+                <svg class="hold-seal-svg-ring" viewBox="0 0 100 100" aria-hidden="true">
                   <circle class="hold-progress-bg" cx="50" cy="50" r="45" />
                   <circle class="hold-progress-bar" id="seal-progress-bar" cx="50" cy="50" r="45" />
                 </svg>
                 
                 <div class="seal-inner-emblem">
-                  <svg class="seal-star-svg" viewBox="0 0 24 24"><use href="#doodle-wax-star"/></svg>
+                  <svg class="seal-star-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#doodle-wax-star"/></svg>
                   <span class="seal-word">OPEN</span>
                 </div>
               </button>
-              <span class="seal-hold-hint" id="seal-instruction">Press and hold seal to unlock ✦</span>
+              <span class="seal-hold-hint" id="seal-instruction">Press and hold seal to unlock</span>
+
+              <!-- Non-hold Fallback Button (Item 9) -->
+              <button type="button" class="btn-seal-fallback" id="btn-seal-fallback" aria-label="Open storybook directly without holding">
+                Open Storybook
+              </button>
             </div>
 
             <!-- Playful Post-it Hint Note -->
@@ -144,13 +184,17 @@ const HeroPortal = (() => {
   function generateCalendarCells() {
     let cells = '';
     for (let day = 1; day <= 31; day++) {
-      const isSelected = (day === 16);
+      const isSelected = day === 16;
       cells += `
-        <button type="button" class="cal-day-cell ${isSelected ? 'selected' : ''}" data-day="${day}" aria-label="October ${day}">
-          <span>${day}</span>
-          <svg class="pen-circle-svg" viewBox="0 0 50 50">
-            <path d="M25 6 C36 5, 45 14, 45 25 C45 36, 36 45, 25 45 C14 45, 5 36, 6 25 C7 14, 16 5, 27 6" />
-          </svg>
+        <button 
+          type="button" 
+          class="cal-day-cell ${isSelected ? 'selected' : ''}" 
+          data-day="${day}" 
+          aria-label="October ${day}"
+          tabindex="0"
+        >
+          ${day}
+          ${isSelected ? '<svg class="pen-circle-svg" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16"/></svg>' : ''}
         </button>
       `;
     }
@@ -171,8 +215,20 @@ const HeroPortal = (() => {
         window.AudioEngine.playPaperRustle();
       }
 
+      // Check prefers-reduced-motion (Item 13)
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       // 1. Unhook elastic ribbon
       ribbon.classList.add('unhooked');
+
+      if (reducedMotion) {
+        closedBook.style.display = 'none';
+        if (innerGate) {
+          innerGate.style.display = 'block';
+          innerGate.style.opacity = '1';
+        }
+        return;
+      }
 
       // 2. Open cover in 3D
       setTimeout(() => {
@@ -202,6 +258,12 @@ const HeroPortal = (() => {
     });
 
     closedBook.addEventListener('click', openDiaryCover);
+    closedBook.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openDiaryCover();
+      }
+    });
   }
 
   function bindNameTyping() {
@@ -218,12 +280,20 @@ const HeroPortal = (() => {
           inkPreview.classList.remove('visible');
         }
       });
+
+      nameInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          validateAndCrack();
+        }
+      });
     }
   }
 
   function bindCalendarEvents() {
     const dayCells = document.querySelectorAll('.cal-day-cell:not(.empty)');
     const hiddenDayInput = document.getElementById('selected-day-input');
+    const daySelect = document.getElementById('cal-day-select');
 
     dayCells.forEach(cell => {
       cell.addEventListener('click', () => {
@@ -231,19 +301,56 @@ const HeroPortal = (() => {
         cell.classList.add('selected');
         selectedDay = parseInt(cell.dataset.day, 10);
         if (hiddenDayInput) hiddenDayInput.value = selectedDay;
+        if (daySelect) daySelect.value = String(selectedDay);
 
         if (window.AudioEngine) {
-          window.AudioEngine.playStickerPop();
+          window.AudioEngine.playStickerDrop();
         }
       });
     });
+
+    // Synchronize select dropdown
+    if (daySelect) {
+      daySelect.addEventListener('change', () => {
+        const val = parseInt(daySelect.value, 10);
+        selectedDay = val;
+        if (hiddenDayInput) hiddenDayInput.value = val;
+        dayCells.forEach(cell => {
+          if (parseInt(cell.dataset.day, 10) === val) {
+            cell.classList.add('selected');
+          } else {
+            cell.classList.remove('selected');
+          }
+        });
+      });
+    }
 
     // Default select 16
     selectedDay = 16;
   }
 
+  function validateAndCrack() {
+    const nameInput = document.getElementById('gate-name');
+    const name = nameInput ? nameInput.value.trim().toLowerCase() : '';
+    const day = selectedDay || 16;
+    const accepted = ['kritika', 'lucky', 'kriti', 'kittu'];
+    const nameMatches = accepted.some(alias => name.includes(alias));
+
+    if (!nameMatches || day !== 16) {
+      if (!nameMatches) {
+        showHint("Try typing 'Kritika' or her nickname 'Lucky'!");
+      } else {
+        showHint("Check the calendar date! (Hint: October 16th!)");
+      }
+      return;
+    }
+
+    crackWaxSealAndUnlock();
+  }
+
   function bindHoldSealEvents() {
     const sealBtn = document.getElementById('hold-wax-seal');
+    const fallbackBtn = document.getElementById('btn-seal-fallback');
     const progressBar = document.getElementById('seal-progress-bar');
     const hintText = document.getElementById('seal-instruction');
 
@@ -252,7 +359,7 @@ const HeroPortal = (() => {
     const circumference = 2 * Math.PI * 45; // ~283
     let isUnlocking = false;
 
-    // 1. Suppress mobile contextmenu and selection so long-press never gets hijacked
+    // Suppress mobile contextmenu and selection so long-press never gets hijacked
     const sealWrapper = sealBtn.closest('.wax-seal-wrapper') || sealBtn.parentElement;
     
     function suppressCallout(e) {
@@ -261,120 +368,94 @@ const HeroPortal = (() => {
       return false;
     }
 
-    sealBtn.addEventListener('contextmenu', suppressCallout);
-    sealBtn.addEventListener('selectstart', suppressCallout);
     if (sealWrapper) {
       sealWrapper.addEventListener('contextmenu', suppressCallout);
       sealWrapper.addEventListener('selectstart', suppressCallout);
     }
 
+    function setProgress(percent) {
+      const offset = circumference - (percent / 100) * circumference;
+      progressBar.style.strokeDashoffset = offset;
+    }
+
+    // Reset initially
+    progressBar.style.strokeDasharray = `${circumference} ${circumference}`;
+    setProgress(0);
+
     function startHold(e) {
-      if (isHoldActive || isUnlocking) return;
-
-      // Validate inputs first
-      const nameInput = document.getElementById('gate-name');
-      const inputName = nameInput ? nameInput.value : '';
-      const day = selectedDay || 16;
-      const month = 10;
-
-      if (window.ContentStore) {
-        const validation = window.ContentStore.validateGate(inputName, day, month);
-        if (!validation.success) {
-          showHint(validation.hint);
-          // Shake seal
-          sealBtn.classList.add('seal-shake');
-          setTimeout(() => sealBtn.classList.remove('seal-shake'), 450);
-          return;
-        }
-      }
-
+      if (isUnlocking) return;
       isHoldActive = true;
       holdProgress = 0;
-      if (hintText) hintText.textContent = "Hold steady... unlocking ✦";
+      sealBtn.classList.add('holding');
+
+      if (hintText) hintText.textContent = "Hold steady... unlocking";
 
       const startTime = performance.now();
 
+      clearInterval(holdInterval);
       holdInterval = setInterval(() => {
         if (!isHoldActive) return;
+
         const elapsed = performance.now() - startTime;
-        holdProgress = Math.min(elapsed / HOLD_DURATION_MS, 1);
+        holdProgress = Math.min(100, (elapsed / HOLD_DURATION_MS) * 100);
+        setProgress(holdProgress);
 
-        const offset = circumference * (1 - holdProgress);
-        progressBar.style.strokeDashoffset = offset;
-
-        if (holdProgress >= 1) {
+        if (holdProgress >= 100) {
           clearInterval(holdInterval);
           isHoldActive = false;
           isUnlocking = true;
-          crackWaxSealAndUnlock();
+          sealBtn.classList.remove('holding');
+          validateAndCrack();
         }
-      }, 25);
+      }, 16);
     }
 
     function cancelHold(e) {
-      if (!isHoldActive || isUnlocking) return;
+      if (isUnlocking) return;
+      if (!isHoldActive) return;
+
       isHoldActive = false;
       clearInterval(holdInterval);
+      sealBtn.classList.remove('holding');
 
-      // Drain progress with gentle wobble
-      progressBar.style.transition = 'stroke-dashoffset 0.3s ease';
-      progressBar.style.strokeDashoffset = circumference;
-      setTimeout(() => {
-        progressBar.style.transition = 'stroke-dashoffset 0.1s linear';
-      }, 300);
+      if (hintText) hintText.textContent = "Press and hold seal to unlock";
 
-      if (hintText) hintText.textContent = "Press and hold seal to unlock ✦";
+      // Animate progress drain
+      if (typeof gsap !== 'undefined') {
+        gsap.to({ p: holdProgress }, {
+          p: 0,
+          duration: 0.25,
+          onUpdate: function () {
+            setProgress(this.targets()[0].p);
+          }
+        });
+      } else {
+        setProgress(0);
+      }
     }
 
-    // Touch & pointer events with pointer capture
+    // Pointer events for desktop and mobile
     sealBtn.addEventListener('pointerdown', (e) => {
-      if (e.button !== undefined && e.button !== 0) return; // Only primary click
-      if (e.cancelable) e.preventDefault();
-      try {
-        sealBtn.setPointerCapture(e.pointerId);
-      } catch (err) {}
+      if (e.button !== undefined && e.button !== 0) return;
       startHold(e);
     });
 
-    function releasePointer(e) {
-      try {
-        if (e && e.pointerId && sealBtn.hasPointerCapture && sealBtn.hasPointerCapture(e.pointerId)) {
-          sealBtn.releasePointerCapture(e.pointerId);
-        }
-      } catch (err) {}
-      cancelHold(e);
+    window.addEventListener('pointerup', cancelHold);
+    window.addEventListener('pointercancel', cancelHold);
+
+    // Fallback button click (Item 9)
+    if (fallbackBtn) {
+      fallbackBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        validateAndCrack();
+      });
     }
 
-    sealBtn.addEventListener('pointerup', releasePointer);
-    sealBtn.addEventListener('pointercancel', releasePointer);
-    window.addEventListener('pointerup', cancelHold);
-
-    // Explicit touch safety net for iOS Safari & Android WebViews
-    sealBtn.addEventListener('touchstart', (e) => {
-      if (e.cancelable) e.preventDefault();
-      startHold(e);
-    }, { passive: false });
-
-    sealBtn.addEventListener('touchend', (e) => {
-      if (e.cancelable) e.preventDefault();
-      cancelHold(e);
-    }, { passive: false });
-
-    sealBtn.addEventListener('touchcancel', (e) => {
-      cancelHold(e);
-    });
-
-    // Keyboard support: Space / Enter
+    // Keyboard support: Enter / Space triggers unlock directly
     sealBtn.addEventListener('keydown', (e) => {
       if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
-        if (!isHoldActive) startHold(e);
-      }
-    });
-
-    sealBtn.addEventListener('keyup', (e) => {
-      if (e.key === ' ' || e.key === 'Enter') {
-        cancelHold(e);
+        validateAndCrack();
       }
     });
   }
@@ -383,8 +464,9 @@ const HeroPortal = (() => {
     const sealBtn = document.getElementById('hold-wax-seal');
     const hintText = document.getElementById('seal-instruction');
 
+    // Distinct brittle wax crack SFX (Item 11)
     if (window.AudioEngine) {
-      window.AudioEngine.playStickerPop();
+      window.AudioEngine.playWaxCrack();
       setTimeout(() => window.AudioEngine.playPageTurn(), 400);
     }
 
@@ -393,11 +475,12 @@ const HeroPortal = (() => {
       try { navigator.vibrate(35); } catch(e){}
     }
 
-    if (hintText) hintText.textContent = "Seal broken! Welcome, Lucky ✦";
+    if (hintText) hintText.textContent = "Seal broken! Welcome, Lucky";
 
-    // Create 4 animated wax shards
-    if (sealBtn && typeof gsap !== 'undefined') {
-      const rect = sealBtn.getBoundingClientRect();
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Create 4 animated wax shards (Item 13: skip if reduced motion)
+    if (sealBtn && typeof gsap !== 'undefined' && !reducedMotion) {
       const parent = sealBtn.parentElement;
 
       for (let i = 0; i < 4; i++) {
@@ -423,9 +506,11 @@ const HeroPortal = (() => {
       }
 
       gsap.to(sealBtn, { scale: 0.85, opacity: 0.4, duration: 0.3 });
+    } else if (sealBtn) {
+      sealBtn.style.opacity = '0.4';
     }
 
-    sessionStorage.setItem('storybook_gate_passed', 'true');
+    safeStorage.set('storybook_gate_passed', 'true');
 
     // Unlock Chapter 1 and advance
     setTimeout(() => {
@@ -441,7 +526,7 @@ const HeroPortal = (() => {
     const feedbackHint = document.getElementById('feedback-hint');
 
     if (window.AudioEngine) {
-      window.AudioEngine.playStickerPop();
+      window.AudioEngine.playStickerDrop();
     }
 
     if (feedback && feedbackHint) {

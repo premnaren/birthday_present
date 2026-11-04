@@ -1,6 +1,7 @@
 /**
  * Birthday Storybook - Interactive Sticker Sheet & Draggable Tray
  * Allows Kritika to decorate pages with handcrafted die-cut stickers
+ * Includes Decorate Mode to ensure stickers never block reading or clicks
  */
 
 const StickerTray = (() => {
@@ -16,7 +17,24 @@ const StickerTray = (() => {
   ];
 
   const STORAGE_KEY = 'storybook_placed_stickers';
-  let placedStickers = [];
+
+  const safeStorage = {
+    _mem: {},
+    get(key) {
+      try {
+        if (typeof sessionStorage !== 'undefined') return sessionStorage.getItem(key);
+      } catch(e){}
+      return this._mem[key] || null;
+    },
+    set(key, val) {
+      try {
+        if (typeof sessionStorage !== 'undefined') sessionStorage.setItem(key, val);
+      } catch(e){}
+      this._mem[key] = String(val);
+    }
+  };
+
+  let isDecorateMode = false;
 
   function init() {
     renderTray();
@@ -24,7 +42,6 @@ const StickerTray = (() => {
   }
 
   function renderTray() {
-    // Check if container already exists
     if (document.getElementById('sticker-tray-wrap')) return;
 
     const wrap = document.createElement('div');
@@ -34,21 +51,21 @@ const StickerTray = (() => {
     wrap.innerHTML = `
       <div class="sticker-tray-sheet" id="sticker-sheet">
         <div class="sticker-tray-header">
-          <span class="sticker-tray-title">Sticker Sheet ✦</span>
-          <button type="button" id="btn-close-stickers" style="background:none; border:none; font-family:'Gaegu',cursive; font-size:1.1rem; cursor:pointer; color:var(--color-ink-muted);">✕</button>
+          <span class="sticker-tray-title">Sticker Sheet</span>
+          <button type="button" id="btn-close-stickers" style="background:none; border:none; font-family:var(--font-handwriting); font-size:1.3rem; font-weight:700; cursor:pointer; color:var(--color-ink-muted);" aria-label="Close Sticker Sheet">✕</button>
         </div>
-        <p class="font-caption" style="margin-bottom: 10px; font-size: 0.85rem;">Tap any sticker to place on page!</p>
+        <p class="font-caption" style="margin-bottom: 10px; font-size: 1rem; color: var(--color-ink-muted);">Tap to place stickers! (Decorate Mode active)</p>
         <div class="sticker-grid" id="sticker-palette">
           ${STICKER_TYPES.map(s => `
-            <button type="button" class="sticker-item" data-id="${s.id}" data-doodle="${s.doodleId}" title="Place ${s.name} sticker">
-              <svg class="sticker-svg-icon" viewBox="0 0 40 40"><use href="#${s.doodleId}"/></svg>
+            <button type="button" class="sticker-item" data-id="${s.id}" data-doodle="${s.doodleId}" title="Place ${s.name} sticker" aria-label="Place ${s.name} sticker">
+              <svg class="sticker-svg-icon" viewBox="0 0 40 40" aria-hidden="true"><use href="#${s.doodleId}"/></svg>
             </button>
           `).join('')}
         </div>
       </div>
 
       <button type="button" class="sticker-tray-toggle-btn" id="btn-toggle-stickers" aria-label="Open Sticker Sheet to decorate page">
-        <svg class="doodle-icon" style="width:20px;height:20px;"><use href="#doodle-sparkle"/></svg>
+        <svg class="doodle-icon" style="width:20px;height:20px;" aria-hidden="true"><use href="#doodle-sparkle"/></svg>
         <span>Stickers</span>
       </button>
     `;
@@ -59,18 +76,33 @@ const StickerTray = (() => {
     const closeBtn = document.getElementById('btn-close-stickers');
     const sheet = document.getElementById('sticker-sheet');
 
+    function setDecorateMode(active) {
+      isDecorateMode = active;
+      document.body.classList.toggle('sticker-decorate-mode', active);
+      if (sheet) sheet.classList.toggle('active', active);
+    }
+
     if (toggleBtn && sheet) {
       toggleBtn.addEventListener('click', () => {
-        sheet.classList.toggle('active');
-        if (window.AudioEngine) window.AudioEngine.playStickerPop();
+        const nextState = !sheet.classList.contains('active');
+        setDecorateMode(nextState);
+        if (window.AudioEngine) window.AudioEngine.playStickerDrop();
       });
     }
 
-    if (closeBtn && sheet) {
+    if (closeBtn) {
       closeBtn.addEventListener('click', () => {
-        sheet.classList.remove('active');
+        setDecorateMode(false);
+        if (window.AudioEngine) window.AudioEngine.playPaperRustle();
       });
     }
+
+    // Esc closes sticker sheet
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isDecorateMode) {
+        setDecorateMode(false);
+      }
+    });
 
     // Attach click events on sticker items
     const paletteItems = wrap.querySelectorAll('.sticker-item');
@@ -86,13 +118,14 @@ const StickerTray = (() => {
     const activeSlide = document.querySelector('.chapter-slide.active-chapter') || document.getElementById('page-viewport');
     if (!activeSlide) return;
 
+    // Tactile SFX for sticker drop (Item 11)
     if (window.AudioEngine && !savedData) {
-      window.AudioEngine.playStickerPop();
+      window.AudioEngine.playStickerDrop();
     }
 
     const stickerEl = document.createElement('div');
     stickerEl.className = 'placed-sticker';
-    stickerEl.innerHTML = `<svg class="sticker-svg-icon" style="width:42px;height:42px;" viewBox="0 0 40 40"><use href="#${doodleId}"/></svg>`;
+    stickerEl.innerHTML = `<svg class="sticker-svg-icon" style="width:42px;height:42px;" viewBox="0 0 40 40" aria-hidden="true"><use href="#${doodleId}"/></svg>`;
 
     // Position
     const posX = savedData ? savedData.x : (40 + Math.random() * 120);
@@ -105,17 +138,17 @@ const StickerTray = (() => {
 
     activeSlide.appendChild(stickerEl);
 
-    // Make Draggable with GSAP
+    // Make Draggable with GSAP when decorate mode is on
     if (typeof Draggable !== 'undefined') {
       Draggable.create(stickerEl, {
         bounds: activeSlide,
         edgeResistance: 0.65,
         type: 'x,y',
         onDragStart: function() {
-          stickerEl.style.zIndex = 100;
+          stickerEl.style.zIndex = 30;
         },
         onDragEnd: function() {
-          stickerEl.style.zIndex = 15;
+          stickerEl.style.zIndex = 4;
           saveStickers();
         }
       });
@@ -127,33 +160,31 @@ const StickerTray = (() => {
   }
 
   function saveStickers() {
-    try {
-      const stickers = document.querySelectorAll('.placed-sticker');
-      const data = [];
-      stickers.forEach(s => {
-        const useEl = s.querySelector('use');
-        const doodleId = useEl ? useEl.getAttribute('href').replace('#', '') : 'doodle-heart';
-        data.push({
-          doodleId,
-          x: parseInt(s.style.left, 10) || 50,
-          y: parseInt(s.style.top, 10) || 100,
-          rotation: 0
-        });
+    const stickers = document.querySelectorAll('.placed-sticker');
+    const data = [];
+    stickers.forEach(s => {
+      const useEl = s.querySelector('use');
+      const doodleId = useEl ? useEl.getAttribute('href').replace('#', '') : 'doodle-heart';
+      data.push({
+        doodleId,
+        x: parseInt(s.style.left, 10) || 50,
+        y: parseInt(s.style.top, 10) || 100,
+        rotation: 0
       });
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    } catch(e) {}
+    });
+    safeStorage.set(STORAGE_KEY, JSON.stringify(data));
   }
 
   function loadPersistedStickers() {
-    try {
-      const saved = sessionStorage.getItem(STORAGE_KEY);
-      if (saved) {
+    const saved = safeStorage.get(STORAGE_KEY);
+    if (saved) {
+      try {
         const list = JSON.parse(saved);
         list.forEach(item => {
           placeStickerOnActivePage(item.doodleId, item);
         });
-      }
-    } catch(e) {}
+      } catch(e) {}
+    }
   }
 
   return {
